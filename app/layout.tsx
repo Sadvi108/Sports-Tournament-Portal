@@ -1,11 +1,16 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
+import { Oswald } from "next/font/google"
 import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { AppProvider } from "@/contexts/app-context"
 import { Suspense } from "react"
 import "./globals.css"
+
+const oswald = Oswald({
+  subsets: ['latin'],
+  variable: '--font-oswald',
+})
 
 export const metadata: Metadata = {
   title: "Sports Tournament Portal",
@@ -32,7 +37,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={`font-sans ${oswald.variable} ${GeistMono.variable}`}>
         <Suspense fallback={<div>Loading...</div>}>
           <AppProvider>{children}</AppProvider>
         </Suspense>
