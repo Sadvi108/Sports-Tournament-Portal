@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
-import { CreditCard, Building2, Banknote, Check } from "lucide-react"
+import { CreditCard, Building2, Banknote, Check, Loader2 } from "lucide-react"
 import { useApp } from "@/contexts/app-context"
 import type { Payment } from "@/lib/types"
 
@@ -23,6 +23,8 @@ export default function CheckoutPage() {
   const [cardCvv, setCardCvv] = useState("")
   const [cardName, setCardName] = useState("")
   const [processing, setProcessing] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [processingStep, setProcessingStep] = useState(0)
 
   useEffect(() => {
     if (!currentPlayer) {
@@ -47,9 +49,20 @@ export default function CheckoutPage() {
 
   const handlePayment = async () => {
     setProcessing(true)
+    setProcessingStep(0)
 
-    // Simulate payment processing
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    // Simulate payment processing steps
+    const steps = [
+      { label: "Validating payment details", delay: 500 },
+      { label: "Processing payment", delay: 1000 },
+      { label: "Confirming transaction", delay: 500 },
+      { label: "Completing payment", delay: 500 },
+    ]
+
+    for (let i = 0; i < steps.length; i++) {
+      setProcessingStep(i + 1)
+      await new Promise((resolve) => setTimeout(resolve, steps[i].delay))
+    }
 
     const items: Payment["items"] = []
 
@@ -94,7 +107,12 @@ export default function CheckoutPage() {
 
     addPayment(payment)
     setProcessing(false)
-    router.push("/dashboard")
+    setSuccess(true)
+
+    // Show success for 2 seconds before redirecting
+    setTimeout(() => {
+      router.push("/dashboard")
+    }, 2000)
   }
 
   const isFormValid =
@@ -201,47 +219,56 @@ export default function CheckoutPage() {
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-3 gap-4">
                       <Card
-                        className={`cursor-pointer transition-all ${
+                        className={`cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 ${
                           paymentMethod === "card" ? "ring-2 ring-primary" : ""
                         }`}
                         onClick={() => setPaymentMethod("card")}
                       >
-                        <CardContent className="p-4 text-center">
+                        <CardContent className="p-4 text-center relative">
                           <CreditCard className="h-6 w-6 mx-auto mb-2 text-primary" />
                           <p className="text-sm font-medium">Card</p>
-                          {paymentMethod === "card" && <Check className="h-4 w-4 mx-auto mt-2 text-primary" />}
+                          {paymentMethod === "card" && (
+                            <Check className="h-4 w-4 mx-auto mt-2 text-primary animate-in fade-in-0 zoom-in-90 duration-300" />
+                          )}
                         </CardContent>
                       </Card>
 
                       <Card
-                        className={`cursor-pointer transition-all ${
+                        className={`cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 ${
                           paymentMethod === "bank_transfer" ? "ring-2 ring-primary" : ""
                         }`}
                         onClick={() => setPaymentMethod("bank_transfer")}
                       >
-                        <CardContent className="p-4 text-center">
+                        <CardContent className="p-4 text-center relative">
                           <Building2 className="h-6 w-6 mx-auto mb-2 text-primary" />
                           <p className="text-sm font-medium">Bank</p>
-                          {paymentMethod === "bank_transfer" && <Check className="h-4 w-4 mx-auto mt-2 text-primary" />}
+                          {paymentMethod === "bank_transfer" && (
+                            <Check className="h-4 w-4 mx-auto mt-2 text-primary animate-in fade-in-0 zoom-in-90 duration-300" />
+                          )}
                         </CardContent>
                       </Card>
 
                       <Card
-                        className={`cursor-pointer transition-all ${
+                        className={`cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 ${
                           paymentMethod === "cash" ? "ring-2 ring-primary" : ""
                         }`}
                         onClick={() => setPaymentMethod("cash")}
                       >
-                        <CardContent className="p-4 text-center">
+                        <CardContent className="p-4 text-center relative">
                           <Banknote className="h-6 w-6 mx-auto mb-2 text-primary" />
                           <p className="text-sm font-medium">Cash</p>
-                          {paymentMethod === "cash" && <Check className="h-4 w-4 mx-auto mt-2 text-primary" />}
+                          {paymentMethod === "cash" && (
+                            <Check className="h-4 w-4 mx-auto mt-2 text-primary animate-in fade-in-0 zoom-in-90 duration-300" />
+                          )}
                         </CardContent>
                       </Card>
                     </div>
 
                     {paymentMethod === "card" && (
-                      <div className="space-y-4 pt-4">
+                      <div
+                        className="space-y-4 pt-4 overflow-hidden transition-all duration-500 ease-in-out"
+                        key="card-form"
+                      >
                         <div>
                           <Label htmlFor="cardName">Cardholder Name</Label>
                           <Input
@@ -249,6 +276,7 @@ export default function CheckoutPage() {
                             value={cardName}
                             onChange={(e) => setCardName(e.target.value)}
                             placeholder="John Doe"
+                            className="focus:ring-2 focus:ring-primary focus:ring-offset-1 transition-shadow duration-300"
                           />
                         </div>
 
@@ -260,6 +288,7 @@ export default function CheckoutPage() {
                             onChange={(e) => setCardNumber(e.target.value)}
                             placeholder="1234 5678 9012 3456"
                             maxLength={19}
+                            className="focus:ring-2 focus:ring-primary focus:ring-offset-1 transition-shadow duration-300"
                           />
                         </div>
 
@@ -272,6 +301,7 @@ export default function CheckoutPage() {
                               onChange={(e) => setCardExpiry(e.target.value)}
                               placeholder="MM/YY"
                               maxLength={5}
+                              className="focus:ring-2 focus:ring-primary focus:ring-offset-1 transition-shadow duration-300"
                             />
                           </div>
 
@@ -284,6 +314,7 @@ export default function CheckoutPage() {
                               onChange={(e) => setCardCvv(e.target.value)}
                               placeholder="123"
                               maxLength={4}
+                              className="focus:ring-2 focus:ring-primary focus:ring-offset-1 transition-shadow duration-300"
                             />
                           </div>
                         </div>
@@ -291,7 +322,10 @@ export default function CheckoutPage() {
                     )}
 
                     {paymentMethod === "bank_transfer" && (
-                      <div className="p-4 rounded-lg bg-muted/50 text-sm space-y-2">
+                      <div
+                        className="p-4 rounded-lg bg-muted/50 text-sm space-y-2 animate-in slide-in-from-top-2 duration-500"
+                        key="bank-transfer-info"
+                      >
                         <p className="font-semibold">Bank Transfer Details:</p>
                         <p>Bank: Tournament Bank</p>
                         <p>Account: 1234567890</p>
@@ -301,7 +335,10 @@ export default function CheckoutPage() {
                     )}
 
                     {paymentMethod === "cash" && (
-                      <div className="p-4 rounded-lg bg-muted/50 text-sm">
+                      <div
+                        className="p-4 rounded-lg bg-muted/50 text-sm animate-in slide-in-from-top-2 duration-500"
+                        key="cash-payment-info"
+                      >
                         <p className="font-semibold mb-2">Cash Payment:</p>
                         <p className="text-muted-foreground">
                           You can pay in cash at the tournament registration desk. Please bring exact amount if
@@ -340,8 +377,20 @@ export default function CheckoutPage() {
                   </div>
 
                   {subtotal > 0 && (
-                    <Button className="w-full" size="lg" onClick={handlePayment} disabled={!isFormValid || processing}>
-                      {processing ? "Processing..." : `Pay $${total.toFixed(2)}`}
+                    <Button
+                      className="w-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:hover:scale-100 disabled:opacity-50"
+                      size="lg"
+                      onClick={handlePayment}
+                      disabled={!isFormValid || processing}
+                    >
+                      {processing ? (
+                        <div className="flex items-center gap-2">
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Processing...
+                        </div>
+                      ) : (
+                        `Pay $${total.toFixed(2)}`
+                      )}
                     </Button>
                   )}
 
@@ -357,6 +406,65 @@ export default function CheckoutPage() {
       </main>
 
       <Footer />
+
+      {/* Processing Overlay */}
+      {processing && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
+          <Card className="w-full max-w-md mx-4 animate-in fade-in-0 zoom-in-95 duration-300">
+            <CardContent className="p-8 text-center space-y-6">
+              <div className="relative">
+                <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto" />
+                <div className="absolute inset-0 rounded-full border-2 border-primary/20 animate-pulse" />
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">Processing Payment</h3>
+                <p className="text-sm text-muted-foreground">
+                  {processingStep === 0 && "Initializing..."}
+                  {processingStep === 1 && "Validating payment details..."}
+                  {processingStep === 2 && "Processing payment..."}
+                  {processingStep === 3 && "Confirming transaction..."}
+                  {processingStep === 4 && "Completing payment..."}
+                </p>
+              </div>
+
+              <div className="w-full bg-muted rounded-full h-2">
+                <div
+                  className="bg-primary h-2 rounded-full transition-all duration-500 ease-out"
+                  style={{ width: `${(processingStep / 4) * 100}%` }}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Success Modal */}
+      {success && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
+          <Card className="w-full max-w-md mx-4 animate-in fade-in-0 zoom-in-95 duration-500">
+            <CardContent className="p-8 text-center space-y-6">
+              <div className="relative">
+                <div className="h-16 w-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto">
+                  <Check className="h-8 w-8 text-green-600 dark:text-green-400 animate-in zoom-in-50 duration-300 delay-200" />
+                </div>
+                <div className="absolute inset-0 rounded-full border-2 border-green-200 dark:border-green-800 animate-ping" />
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Payment Successful!</h3>
+                <p className="text-sm text-muted-foreground">
+                  Your payment of ${total.toFixed(2)} has been processed successfully.
+                </p>
+              </div>
+
+              <div className="text-xs text-muted-foreground">
+                Redirecting to dashboard...
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   )
 }

@@ -124,8 +124,8 @@ export default function BookMealsPage() {
                   return (
                     <Card
                       key={planItem.id}
-                      className={`cursor-pointer transition-all relative ${
-                        selectedPlan === planItem.id ? "ring-2 ring-primary" : ""
+                      className={`cursor-pointer transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg relative ${
+                        selectedPlan === planItem.id ? "ring-2 ring-primary shadow-lg" : ""
                       }`}
                       onClick={() => setSelectedPlan(planItem.id)}
                     >
@@ -137,7 +137,9 @@ export default function BookMealsPage() {
                       <CardHeader>
                         <div className="flex items-start justify-between">
                           <Icon className="h-8 w-8 text-primary mb-2" />
-                          {selectedPlan === planItem.id && <Check className="h-5 w-5 text-primary" />}
+                          {selectedPlan === planItem.id && (
+                            <Check className="h-5 w-5 text-primary animate-in fade-in-0 zoom-in-90 duration-300" />
+                          )}
                         </div>
                         <CardTitle className="text-lg">{planItem.name}</CardTitle>
                         <CardDescription>{planItem.description}</CardDescription>
@@ -164,7 +166,7 @@ export default function BookMealsPage() {
               </div>
 
               {selectedPlan && (
-                <Card>
+                <Card className="animate-in slide-in-from-bottom-4 duration-500">
                   <CardHeader>
                     <CardTitle>Booking Details</CardTitle>
                     <CardDescription>Select your meal plan dates</CardDescription>
@@ -179,6 +181,7 @@ export default function BookMealsPage() {
                           value={startDate}
                           onChange={(e) => setStartDate(e.target.value)}
                           min={new Date().toISOString().split("T")[0]}
+                          className="focus:ring-2 focus:ring-primary focus:ring-offset-1 transition-shadow duration-300"
                         />
                       </div>
 
@@ -190,6 +193,7 @@ export default function BookMealsPage() {
                           value={endDate}
                           onChange={(e) => setEndDate(e.target.value)}
                           min={startDate || new Date().toISOString().split("T")[0]}
+                          className="focus:ring-2 focus:ring-primary focus:ring-offset-1 transition-shadow duration-300"
                         />
                       </div>
                     </div>
@@ -202,6 +206,7 @@ export default function BookMealsPage() {
                         onChange={(e) => setDietaryPreferences(e.target.value)}
                         placeholder="Vegetarian, vegan, gluten-free, allergies, etc..."
                         rows={3}
+                        className="focus:ring-2 focus:ring-primary focus:ring-offset-1 transition-shadow duration-300"
                       />
                       <p className="text-xs text-muted-foreground mt-1">
                         Let us know about any dietary restrictions or preferences

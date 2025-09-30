@@ -44,7 +44,7 @@ export default function LoginPage() {
 
       <main className="flex-1 pt-24 pb-16 flex items-center justify-center">
         <div className="container mx-auto px-4 max-w-md">
-          <Card>
+          <Card className="animate-in fade-in-0 zoom-in-95 duration-500">
             <CardHeader>
               <CardTitle>Login</CardTitle>
               <CardDescription>Access your tournament dashboard</CardDescription>
@@ -67,6 +67,7 @@ export default function LoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="john@example.com"
                     required
+                    className="focus:ring-2 focus:ring-primary focus:ring-offset-1 transition-shadow duration-300"
                   />
                 </div>
 
@@ -79,6 +80,7 @@ export default function LoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
                     required
+                    className="focus:ring-2 focus:ring-primary focus:ring-offset-1 transition-shadow duration-300"
                   />
                 </div>
 

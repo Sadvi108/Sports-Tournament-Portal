@@ -62,7 +62,7 @@ export default function DashboardPage() {
 
           {/* Stats Overview */}
           <div className="grid md:grid-cols-4 gap-4 mb-8">
-            <Card>
+            <Card className="animate-in fade-in-0 slide-in-from-bottom-4 duration-500 delay-100">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
@@ -74,7 +74,7 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="animate-in fade-in-0 slide-in-from-bottom-4 duration-500 delay-200">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
@@ -86,7 +86,7 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="animate-in fade-in-0 slide-in-from-bottom-4 duration-500 delay-300">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
@@ -98,7 +98,7 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="animate-in fade-in-0 slide-in-from-bottom-4 duration-500 delay-500">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
@@ -115,7 +115,7 @@ export default function DashboardPage() {
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-6">
               {/* Tournament Registrations */}
-              <Card>
+              <Card className="animate-in fade-in-0 slide-in-from-left-4 duration-500 delay-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Trophy className="h-5 w-5" />
@@ -169,7 +169,7 @@ export default function DashboardPage() {
               </Card>
 
               {/* Hotel Bookings */}
-              <Card>
+              <Card className="animate-in fade-in-0 slide-in-from-left-4 duration-500 delay-900">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Hotel className="h-5 w-5" />
@@ -225,7 +225,7 @@ export default function DashboardPage() {
               </Card>
 
               {/* Meal Bookings */}
-              <Card>
+              <Card className="animate-in fade-in-0 slide-in-from-left-4 duration-500 delay-1100">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <UtensilsCrossed className="h-5 w-5" />
@@ -284,7 +284,7 @@ export default function DashboardPage() {
             {/* Sidebar */}
             <div className="space-y-6">
               {/* Player Info */}
-              <Card>
+              <Card className="animate-in fade-in-0 slide-in-from-right-4 duration-500 delay-1300">
                 <CardHeader>
                   <CardTitle>Player Information</CardTitle>
                 </CardHeader>
@@ -313,7 +313,7 @@ export default function DashboardPage() {
 
               {/* QR Code */}
               {playerRegistrations.length > 0 && (
-                <Card>
+                <Card className="animate-in fade-in-0 slide-in-from-right-4 duration-500 delay-1500">
                   <CardHeader>
                     <CardTitle>Your QR Code</CardTitle>
                     <CardDescription>Show this at check-in</CardDescription>
@@ -333,7 +333,7 @@ export default function DashboardPage() {
               )}
 
               {/* Payment History */}
-              <Card>
+              <Card className="animate-in fade-in-0 slide-in-from-right-4 duration-500 delay-1700">
                 <CardHeader>
                   <CardTitle>Payment History</CardTitle>
                 </CardHeader>
@@ -369,7 +369,7 @@ export default function DashboardPage() {
               </Card>
 
               {/* Quick Actions */}
-              <Card>
+              <Card className="animate-in fade-in-0 slide-in-from-right-4 duration-500 delay-1900">
                 <CardHeader>
                   <CardTitle>Quick Actions</CardTitle>
                 </CardHeader>

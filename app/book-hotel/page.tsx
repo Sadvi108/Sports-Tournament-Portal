@@ -130,8 +130,8 @@ export default function BookHotelPage() {
               {HOTELS.map((hotelItem) => (
                 <Card
                   key={hotelItem.id}
-                  className={`cursor-pointer transition-all ${
-                    selectedHotel === hotelItem.id ? "ring-2 ring-primary" : ""
+                  className={`cursor-pointer transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg ${
+                    selectedHotel === hotelItem.id ? "ring-2 ring-primary shadow-lg" : ""
                   }`}
                   onClick={() => setSelectedHotel(hotelItem.id)}
                 >
@@ -158,7 +158,9 @@ export default function BookHotelPage() {
                               <span>{hotelItem.distance}</span>
                             </div>
                           </div>
-                          {selectedHotel === hotelItem.id && <Badge>Selected</Badge>}
+                          {selectedHotel === hotelItem.id && (
+                            <Badge className="animate-in fade-in-0 zoom-in-90 duration-300">Selected</Badge>
+                          )}
                         </div>
 
                         <div className="flex flex-wrap gap-2 mb-4">
@@ -170,14 +172,14 @@ export default function BookHotelPage() {
                         </div>
 
                         {selectedHotel === hotelItem.id && (
-                          <div className="space-y-2 pt-4 border-t">
+                          <div className="space-y-2 pt-4 border-t animate-in slide-in-from-top-2 duration-500">
                             <p className="text-sm font-semibold mb-2">Available Rooms:</p>
                             {hotelItem.rooms.map((roomItem) => (
                               <div
                                 key={roomItem.type}
-                                className={`flex items-center justify-between p-3 rounded-lg border cursor-pointer transition-colors ${
+                                className={`flex items-center justify-between p-3 rounded-lg border cursor-pointer transition-all duration-300 ease-in-out hover:scale-[1.01] hover:shadow-sm ${
                                   selectedRoom === roomItem.type
-                                    ? "border-primary bg-primary/5"
+                                    ? "border-primary bg-primary/5 shadow-sm"
                                     : "border-border hover:border-primary/50"
                                 }`}
                                 onClick={(e) => {
@@ -207,23 +209,24 @@ export default function BookHotelPage() {
               ))}
 
               {selectedHotel && selectedRoom && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Booking Details</CardTitle>
-                    <CardDescription>Complete your hotel reservation</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="checkIn">Check-in Date</Label>
-                        <Input
-                          id="checkIn"
-                          type="date"
-                          value={checkIn}
-                          onChange={(e) => setCheckIn(e.target.value)}
-                          min={new Date().toISOString().split("T")[0]}
-                        />
-                      </div>
+                  <Card className="animate-in slide-in-from-bottom-4 duration-500">
+                    <CardHeader>
+                      <CardTitle>Booking Details</CardTitle>
+                      <CardDescription>Complete your hotel reservation</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <Label htmlFor="checkIn">Check-in Date</Label>
+                          <Input
+                            id="checkIn"
+                            type="date"
+                            value={checkIn}
+                            onChange={(e) => setCheckIn(e.target.value)}
+                            min={new Date().toISOString().split("T")[0]}
+                            className="focus:ring-2 focus:ring-primary focus:ring-offset-1 transition-shadow duration-300"
+                          />
+                        </div>
 
                       <div>
                         <Label htmlFor="checkOut">Check-out Date</Label>
@@ -233,6 +236,7 @@ export default function BookHotelPage() {
                           value={checkOut}
                           onChange={(e) => setCheckOut(e.target.value)}
                           min={checkIn || new Date().toISOString().split("T")[0]}
+                          className="focus:ring-2 focus:ring-primary focus:ring-offset-1 transition-shadow duration-300"
                         />
                       </div>
                     </div>
@@ -261,6 +265,7 @@ export default function BookHotelPage() {
                         onChange={(e) => setSpecialRequests(e.target.value)}
                         placeholder="Early check-in, extra pillows, etc..."
                         rows={3}
+                        className="focus:ring-2 focus:ring-primary focus:ring-offset-1 transition-shadow duration-300"
                       />
                     </div>
                   </CardContent>
