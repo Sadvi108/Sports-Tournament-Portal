@@ -28,6 +28,9 @@ export default function RegisterPage() {
     phone: "",
     dateOfBirth: "",
     gender: "",
+    teamName: "",
+    clubName: "",
+    coachName: "",
     // Emergency Contact
     emergencyName: "",
     emergencyPhone: "",
@@ -60,6 +63,9 @@ export default function RegisterPage() {
       phone: formData.phone,
       dateOfBirth: formData.dateOfBirth,
       gender: formData.gender as "male" | "female" | "other",
+      teamName: formData.teamName || undefined,
+      clubName: formData.clubName || undefined,
+      coachName: formData.coachName || undefined,
       emergencyContact: {
         name: formData.emergencyName,
         phone: formData.emergencyPhone,
@@ -217,6 +223,36 @@ export default function RegisterPage() {
                           </SelectContent>
                         </Select>
                       </div>
+
+                      <div>
+                        <Label htmlFor="teamName">Team Name</Label>
+                        <Input
+                          id="teamName"
+                          value={formData.teamName}
+                          onChange={(e) => updateField("teamName", e.target.value)}
+                          placeholder="Enter your team name"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="clubName">Club Name</Label>
+                        <Input
+                          id="clubName"
+                          value={formData.clubName}
+                          onChange={(e) => updateField("clubName", e.target.value)}
+                          placeholder="Enter your club name"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="coachName">Coach Name</Label>
+                        <Input
+                          id="coachName"
+                          value={formData.coachName}
+                          onChange={(e) => updateField("coachName", e.target.value)}
+                          placeholder="Enter your coach name"
+                        />
+                      </div>
                     </div>
                   )}
 
@@ -355,9 +391,14 @@ export default function RegisterPage() {
                         <ChevronRight className="h-4 w-4 ml-2" />
                       </Button>
                     ) : (
-                      <Button onClick={handleSubmit} disabled={!isStep3Valid}>
-                        Complete Registration
-                      </Button>
+                      <div className="flex gap-4">
+                        <Button onClick={() => router.push("/login")} variant="outline">
+                          Log In
+                        </Button>
+                        <Button onClick={handleSubmit} disabled={!isStep3Valid}>
+                          Complete Registration
+                        </Button>
+                      </div>
                     )}
                   </div>
                 </CardContent>

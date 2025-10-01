@@ -5,6 +5,9 @@ export interface Player {
   phone: string
   dateOfBirth: string
   gender: "male" | "female" | "other"
+  teamName?: string
+  clubName?: string
+  coachName?: string
   emergencyContact: {
     name: string
     phone: string
