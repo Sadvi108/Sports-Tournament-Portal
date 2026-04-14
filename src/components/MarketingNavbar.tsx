@@ -1,8 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Trophy } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
+import dclixLogo from '@/assets/dclix-logo.svg';
 
 type NavItem = { label: string; to: string };
 
@@ -33,7 +34,7 @@ export default function MarketingNavbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center border border-rose-pink/20">
-            <Trophy className="w-6 h-6" />
+            <img src={dclixLogo} alt="D-CLIX" className="w-7 h-7" />
           </div>
           <div className="leading-tight">
             <div className="font-black tracking-tighter text-lg dark:text-white text-dark-gray">D-Clix</div>

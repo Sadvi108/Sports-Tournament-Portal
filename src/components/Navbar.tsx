@@ -1,7 +1,8 @@
 import React from 'react';
-import { Trophy, Sun, Moon, LogOut, User } from 'lucide-react';
+import { Sun, Moon, LogOut, User } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigate, useLocation } from 'react-router-dom';
+import dclixLogo from '@/assets/dclix-logo.svg';
 
 const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -24,7 +25,9 @@ const Navbar: React.FC = () => {
         className="flex items-center space-x-2 cursor-pointer group"
         onClick={() => navigate('/competition')}
       >
-        <Trophy className="w-8 h-8 text-rose-pink group-hover:scale-110 transition-transform" />
+        <div className="w-10 h-10 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center border border-rose-pink/20 group-hover:scale-[1.03] transition-transform">
+          <img src={dclixLogo} alt="D-CLIX" className="w-7 h-7" />
+        </div>
         <span className="font-bold text-xl tracking-tight dark:text-white text-dark-gray">
           D-CLIX Arena
         </span>

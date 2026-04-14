@@ -23,6 +23,7 @@ import {
   Settings,
   ArrowLeft
 } from 'lucide-react';
+import dclixLogo from '@/assets/dclix-logo.svg';
 
 const LandingPage: React.FC = () => {
   const [selectedSport, setSelectedSport] = useState<Sport | null>(null);
@@ -306,7 +307,9 @@ const LandingPage: React.FC = () => {
       <footer className="py-12 px-6 dark:bg-deep-black bg-white border-t border-gray-100 dark:border-white/5 transition-colors duration-300">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center space-x-2">
-            <Trophy className="w-6 h-6 text-rose-pink" />
+            <div className="w-10 h-10 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center border border-rose-pink/20">
+              <img src={dclixLogo} alt="D-CLIX" className="w-7 h-7" />
+            </div>
             <span className="font-black text-lg tracking-tighter dark:text-white text-dark-gray uppercase italic">D-CLIX Arena</span>
           </div>
           <div className="text-muted-gray text-[10px] font-orbitron uppercase tracking-[0.2em]">
