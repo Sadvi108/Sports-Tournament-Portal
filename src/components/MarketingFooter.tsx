@@ -33,7 +33,7 @@ export default function MarketingFooter() {
           <div className="flex items-start gap-3 text-sm">
             <MapPin className="w-5 h-5 text-rose-pink mt-0.5" />
             <div className="text-muted-gray font-medium">
-              Suite 650 Level 6 Block A, Kelana Centre Point, Jalan SS 7/19, SS7, 47301 Petaling Jaya, Selangor
+              Suite 442 Level 4 Block A, Kelana Centre Point, Jalan SS 7/19, SS7, 47301 Petaling Jaya, Selangor
             </div>
           </div>
         </div>
