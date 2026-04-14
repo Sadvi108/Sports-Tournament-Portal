@@ -165,8 +165,8 @@ const LandingPage: React.FC = () => {
                     <div className="w-24 h-24 rounded-3xl bg-rose-pink/10 flex items-center justify-center text-rose-pink mb-6 shadow-2xl shadow-rose-pink/20">
                       <selectedSport.icon className="w-12 h-12" />
                     </div>
-                    <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter dark:text-white text-dark-gray leading-none">
-                      {selectedSport.name} <span className="text-rose-pink italic">Portal</span>
+                    <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter dark:text-white text-dark-gray leading-none" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.35)', WebkitTextStroke: '0.5px rgba(0,0,0,0.25)' }}>
+                      {selectedSport.name} <span className="text-rose-pink italic">PORTAL</span>
                     </h2>
                   </div>
                 </div>
