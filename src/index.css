@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --rose-pink: #e11d48;
+  --deep-black: #000000;
+  --dark-gray: #111111;
+  --muted-gray: #9ca3af;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  @apply bg-white text-dark-gray dark:bg-deep-black dark:text-white transition-colors duration-300;
+}
+
+/* Red/Dark/White styles from images */
+.dark-card {
+  @apply bg-white/5 backdrop-blur-sm border border-white/5 rounded-3xl transition-all duration-300;
+}
+
+.dark-card:hover {
+  @apply border-white/10 bg-white/[0.07];
+}
+
+.rose-badge {
+  @apply bg-rose-pink/10 border border-rose-pink/30 text-rose-pink rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2;
+}
+
+.rose-btn-primary {
+  @apply bg-rose-pink hover:bg-rose-pink-light text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-lg shadow-rose-pink/20 active:scale-95;
+}
+
+.rose-btn-secondary {
+  @apply border border-white/20 hover:border-white/40 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 active:scale-95;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-white dark:bg-deep-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-rose-pink rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-rose-pink/80;
+}
+
+/* Light Mode specific cards */
+.light .dark-card {
+  @apply bg-gray-50 border-gray-200 text-dark-gray shadow-sm;
+}
+
+.light .dark-card:hover {
+  @apply border-gray-300 bg-white shadow-md;
+}
+
+.light .rose-btn-secondary {
+  @apply border-dark-gray/20 text-dark-gray hover:border-dark-gray/40;
+}
+
+.light .rose-badge {
+  @apply bg-rose-pink/5 border-rose-pink/10;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tight;
+}
+
+.glow-text-rose {
+  text-shadow: 0 0 10px rgba(225, 29, 72, 0.3);
+}
