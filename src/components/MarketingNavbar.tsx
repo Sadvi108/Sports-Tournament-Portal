@@ -33,8 +33,8 @@ export default function MarketingNavbar() {
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-deep-black/80 backdrop-blur-md border-b border-gray-200 dark:border-white/5 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center border border-rose-pink/20">
-            <img src={dclixLogo} alt="D-CLIX" className="w-7 h-7" />
+          <div className="w-12 h-12 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center border border-rose-pink/20">
+            <img src={dclixLogo} alt="D-CLIX" className="w-8 h-8" />
           </div>
           <div className="leading-tight">
             <div className="font-black tracking-tighter text-lg dark:text-white text-dark-gray">D-Clix</div>

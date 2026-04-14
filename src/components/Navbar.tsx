@@ -25,8 +25,8 @@ const Navbar: React.FC = () => {
         className="flex items-center space-x-2 cursor-pointer group"
         onClick={() => navigate('/competition')}
       >
-        <div className="w-10 h-10 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center border border-rose-pink/20 group-hover:scale-[1.03] transition-transform">
-          <img src={dclixLogo} alt="D-CLIX" className="w-7 h-7" />
+        <div className="w-12 h-12 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center border border-rose-pink/20 group-hover:scale-[1.03] transition-transform">
+          <img src={dclixLogo} alt="D-CLIX" className="w-8 h-8" />
         </div>
         <span className="font-bold text-xl tracking-tight dark:text-white text-dark-gray">
           D-CLIX Arena
