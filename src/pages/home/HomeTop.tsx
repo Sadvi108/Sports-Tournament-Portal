@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { Sparkles } from '@/components/ui/sparkles';
 import { Reveal } from '@/components/ui/reveal';
+import dclixLogo from '@/assets/dclix-logo.svg';
 
 function img(prompt: string, size: string) {
   return `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=${encodeURIComponent(prompt)}&image_size=${size}`;
@@ -90,17 +91,23 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div className="space-y-8">
             <Reveal>
+              <div className="flex items-center gap-4">
+                <img src={dclixLogo} alt="D-CLIX" className="w-14 h-14 rounded-full" />
+                <div className="text-xs font-black uppercase tracking-[0.22em] text-muted-gray">D-CLIX Sports Technology Platform</div>
+              </div>
+            </Reveal>
+            <Reveal delay={0.03}>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-pink/10 border border-rose-pink/20 text-rose-pink text-xs font-black uppercase tracking-[0.2em]">
                 <ShieldCheck className="w-4 h-4" />
                 D-Clix Club Management System
               </div>
             </Reveal>
-            <Reveal delay={0.05}>
+            <Reveal delay={0.06}>
               <h1 className="text-5xl md:text-6xl font-black tracking-tighter leading-[1.05] dark:text-white text-dark-gray">
                 Grow revenue and streamline your club with D-Clix club management system
               </h1>
             </Reveal>
-            <Reveal delay={0.1}>
+            <Reveal delay={0.11}>
               <p className="text-muted-gray text-lg md:text-xl font-medium">
                 Your club details at your fingertips manage it anytime anywhere
               </p>

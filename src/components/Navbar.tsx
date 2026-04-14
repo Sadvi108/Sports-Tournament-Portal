@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
       >
         <Trophy className="w-8 h-8 text-rose-pink group-hover:scale-110 transition-transform" />
         <span className="font-bold text-xl tracking-tight dark:text-white text-dark-gray">
-          Tournament Portal
+          D-CLIX Arena
         </span>
       </div>
 

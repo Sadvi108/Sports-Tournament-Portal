@@ -32,7 +32,7 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
             <Trophy className="h-6 w-6 text-primary" />
-            <span className="font-bold text-lg">Tournament Portal</span>
+            <span className="font-bold text-lg">D-CLIX Arena</span>
           </Link>
 
           {/* Desktop Navigation */}

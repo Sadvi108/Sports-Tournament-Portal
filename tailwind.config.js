@@ -13,8 +13,9 @@ export default {
         'warm-olive': '#1a1a0a',
       },
       fontFamily: {
-        orbitron: ['Orbitron', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
+        sans: ['Space Grotesk', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        space: ['Space Grotesk', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        inter: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'hero-gradient': 'linear-gradient(to bottom right, #000000, #1a1a0a)',

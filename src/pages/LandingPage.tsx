@@ -307,7 +307,7 @@ const LandingPage: React.FC = () => {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center space-x-2">
             <Trophy className="w-6 h-6 text-rose-pink" />
-            <span className="font-black text-lg tracking-tighter dark:text-white text-dark-gray uppercase italic">Tournament Portal</span>
+            <span className="font-black text-lg tracking-tighter dark:text-white text-dark-gray uppercase italic">D-CLIX Arena</span>
           </div>
           <div className="text-muted-gray text-[10px] font-orbitron uppercase tracking-[0.2em]">
             RAIG TECHNOLOGIES © 2026 • VISOFT SOLUTION
