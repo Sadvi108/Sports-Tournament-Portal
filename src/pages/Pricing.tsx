@@ -161,6 +161,74 @@ export default function Pricing() {
                 </Reveal>
               ))}
             </div>
+
+            {/* Tournament Add-ons & Bundles */}
+            <div className="mt-32 pt-20 border-t border-gray-100 dark:border-white/5">
+              <Reveal>
+                <div className="text-center space-y-4 mb-12">
+                  <div className="text-rose-pink text-xs font-black uppercase tracking-[0.2em]">Scale Your Event</div>
+                  <h2 className="text-4xl font-black tracking-tighter dark:text-white text-dark-gray">Tournament Add-ons & Bundles</h2>
+                  <p className="text-muted-gray text-lg font-medium max-w-2xl mx-auto">Enhance your tournament experience with our premium creative bundles. From custom posters to comprehensive PDFs, we've got you covered.</p>
+                </div>
+              </Reveal>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <Reveal delay={0.1} y={20}>
+                  <div className="dark-card bg-white dark:bg-white/5 p-8 flex flex-col h-full relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-rose-pink/5 rounded-bl-full -z-10 group-hover:bg-rose-pink/10 transition-colors" />
+                    <div className="text-sm font-black uppercase tracking-[0.2em] text-rose-pink mb-2">Creative Bundle</div>
+                    <div className="text-3xl font-black tracking-tighter dark:text-white text-dark-gray mb-4">Event Poster Pack</div>
+                    <p className="text-muted-gray font-medium mb-6">Professional graphic design for your upcoming tournament to attract maximum participation.</p>
+                    
+                    <ul className="space-y-3 mb-8 flex-grow">
+                      {[
+                        '1x Main Event Poster (A3/A4)',
+                        '3x Social Media Graphics (IG/FB)',
+                        '1x Web Banner',
+                        'Source files included'
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm font-bold text-muted-gray">
+                          <div className="w-5 h-5 rounded-full bg-rose-pink/10 text-rose-pink flex items-center justify-center shrink-0 mt-0.5">
+                            <Check className="w-3 h-3" />
+                          </div>
+                          <span className="dark:text-white text-dark-gray">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <button className="rose-btn-secondary w-full">Request Quote</button>
+                  </div>
+                </Reveal>
+
+                <Reveal delay={0.2} y={20}>
+                  <div className="dark-card bg-white dark:bg-white/5 p-8 flex flex-col h-full border-2 border-rose-pink/20 relative overflow-hidden group hover:border-rose-pink transition-colors">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-rose-pink/10 rounded-bl-full -z-10 group-hover:bg-rose-pink/20 transition-colors" />
+                    <div className="absolute top-4 right-4 bg-rose-pink text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full">Most Popular</div>
+                    
+                    <div className="text-sm font-black uppercase tracking-[0.2em] text-rose-pink mb-2">Complete Bundle</div>
+                    <div className="text-3xl font-black tracking-tighter dark:text-white text-dark-gray mb-4">Tournament PDF Guide</div>
+                    <p className="text-muted-gray font-medium mb-6">A complete digital booklet containing rules, schedules, and brackets for participants.</p>
+                    
+                    <ul className="space-y-3 mb-8 flex-grow">
+                      {[
+                        'Interactive PDF Booklet (Up to 15 pages)',
+                        'Embedded hyperlinks & QR codes',
+                        'Custom branding & typography',
+                        'Print-ready & Web-optimized versions',
+                        'Includes everything in Poster Pack'
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm font-bold text-muted-gray">
+                          <div className="w-5 h-5 rounded-full bg-rose-pink text-white flex items-center justify-center shrink-0 mt-0.5">
+                            <Check className="w-3 h-3" />
+                          </div>
+                          <span className="dark:text-white text-dark-gray">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <button className="rose-btn-primary w-full">Request Quote</button>
+                  </div>
+                </Reveal>
+              </div>
+            </div>
           </div>
         </section>
       </main>
