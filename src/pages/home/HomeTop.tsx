@@ -94,43 +94,82 @@ const JudoAnimation = () => (
   </svg>
 );
 
-const TaekwondoAnimation = () => (
+const MuayThaiAnimation = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(225,29,72,0.8)]">
+    <circle cx="35" cy="30" r="7" fill="none" stroke="#e11d48" strokeWidth="3" />
+    <path d="M35 37 L35 60" stroke="#e11d48" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Guard up high (Mongkhon/Pra Jiad style) */}
+    <path d="M35 45 L45 35 L40 25 M35 45 L25 35 L30 25" stroke="#e11d48" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Planted leg */}
+    <path d="M35 60 L30 90" stroke="#e11d48" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Knee strike */}
+    <motion.path 
+      animate={{ d: ["M35 60 L45 80 L55 90", "M35 60 L60 55 L55 80", "M35 60 L45 80 L55 90"] }}
+      transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+      stroke="#e11d48" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
+    />
+  </svg>
+);
+
+const WrestlingAnimation = () => (
   <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(234,179,8,0.8)]">
-    <circle cx="50" cy="30" r="7" fill="none" stroke="#eab308" strokeWidth="3" />
+    {/* Fighter 1 (Bottom/Defending) */}
+    <circle cx="40" cy="70" r="7" fill="none" stroke="#eab308" strokeWidth="3" />
+    <path d="M40 77 L40 85 M40 85 L25 90 M40 85 L55 90" stroke="#eab308" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M40 80 L25 75 M40 80 L55 75" stroke="#eab308" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    
+    {/* Fighter 2 (Top/Attacking - Suplex or Takedown) */}
     <motion.g
-      animate={{ rotateY: [0, 360] }}
-      transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-      style={{ transformOrigin: "50px 50px" }}
+      animate={{ rotate: [0, 45, 0], x: [0, 10, 0], y: [0, -10, 0] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      style={{ transformOrigin: "60px 60px" }}
     >
-      <path d="M50 37 L50 60 L40 90" stroke="#eab308" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      {/* Spinning Kick Leg */}
-      <motion.path 
-        animate={{ d: ["M50 60 L60 80", "M50 60 L80 40", "M50 60 L60 80"] }}
-        transition={{ duration: 0.75, repeat: Infinity, ease: "easeInOut" }}
-        stroke="#eab308" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
-      />
+      <circle cx="60" cy="50" r="7" fill="none" stroke="#eab308" strokeWidth="3" opacity="0.8" />
+      <path d="M60 57 L60 75 M60 75 L50 90 M60 75 L70 90" stroke="#eab308" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
+      <path d="M60 62 L45 70 M60 62 L75 70" stroke="#eab308" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
     </motion.g>
   </svg>
 );
 
-const SportOrbitNode = ({ children, color, orbitSize, duration, reverse = false }: { children: React.ReactNode, color: string, orbitSize: number, duration: number, reverse?: boolean }) => {
+const SilatAnimation = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]">
+    {/* Low stance (Kuda-kuda) */}
+    <circle cx="50" cy="40" r="7" fill="none" stroke="#10b981" strokeWidth="3" />
+    <path d="M50 47 L50 65" stroke="#10b981" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    
+    {/* Deep wide stance */}
+    <motion.path 
+      animate={{ d: ["M50 65 L30 80 L20 90 M50 65 L70 80 L80 90", "M50 65 L25 85 L15 90 M50 65 L75 85 L85 90", "M50 65 L30 80 L20 90 M50 65 L70 80 L80 90"] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      stroke="#10b981" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
+    />
+    
+    {/* Flowing hand movements */}
+    <motion.path 
+      animate={{ d: ["M50 55 L30 50 L25 35 M50 55 L70 50 L75 35", "M50 55 L35 45 L40 30 M50 55 L65 45 L60 30", "M50 55 L30 50 L25 35 M50 55 L70 50 L75 35"] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      stroke="#10b981" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
+    />
+  </svg>
+);
+
+const ActionBentoCard = ({ title, color, children, delay }: { title: string, color: string, children: React.ReactNode, delay: number }) => {
   return (
     <motion.div
-      className="absolute top-1/2 left-1/2 z-20"
-      style={{ width: orbitSize, height: orbitSize, marginLeft: -orbitSize / 2, marginTop: -orbitSize / 2 }}
-      animate={{ rotate: reverse ? -360 : 360 }}
-      transition={{ duration, repeat: Infinity, ease: "linear" }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay }}
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="relative overflow-hidden rounded-3xl border dark:bg-[#0A0A0A]/80 bg-white/80 backdrop-blur-xl shadow-2xl flex flex-col items-center justify-center p-6 group cursor-pointer"
+      style={{ borderColor: `${color}30` }}
     >
-      <motion.div
-        className="absolute top-0 left-1/2 w-24 h-24 -ml-12 -mt-12 rounded-full border border-white/10 dark:bg-[#0A0A0A]/90 bg-white/90 backdrop-blur-md overflow-hidden flex items-center justify-center shadow-2xl"
-        style={{ boxShadow: `0 0 30px ${color}40, inset 0 0 20px ${color}20` }}
-        animate={{ rotate: reverse ? 360 : -360 }} // Counter-rotate to keep upright
-        transition={{ duration, repeat: Infinity, ease: "linear" }}
-      >
-        <div className="w-16 h-16 relative flex items-center justify-center">
-          {children}
-        </div>
-      </motion.div>
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" style={{ background: `radial-gradient(circle at center, ${color} 0%, transparent 70%)` }} />
+      <div className="w-24 h-24 mb-4 relative z-10">
+        {children}
+      </div>
+      <div className="text-xs font-bold uppercase tracking-[0.2em] relative z-10" style={{ color }}>
+        {title}
+      </div>
     </motion.div>
   );
 };
@@ -241,99 +280,39 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
             </Reveal>
           </div>
 
-          {/* RIGHT: Advanced Animated Ecosystem */}
-          <div className="relative h-[650px] w-full flex items-center justify-center perspective-[1200px]">
+          {/* RIGHT: Bento Action Grid */}
+          <div className="relative h-[650px] w-full flex items-center justify-center">
             <Reveal delay={0.4} className="w-full h-full relative">
               
-              {/* Rotating Background Rings */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full border border-dashed border-[#06b6d4]/30 z-0"
-              />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-dotted border-[#a855f7]/30 z-0"
-              />
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full border border-solid border-[#d946ef]/10 z-0"
-              />
+              {/* Decorative Background Elements */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(225,29,72,0.05)_0%,transparent_70%)] pointer-events-none" />
+              
+              {/* Grid Layout */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 p-6 h-full w-full relative z-10">
+                <ActionBentoCard title="Boxing" color="#06b6d4" delay={0.5}>
+                  <BoxingAnimation />
+                </ActionBentoCard>
+                
+                <ActionBentoCard title="Karate" color="#d946ef" delay={0.6}>
+                  <KarateAnimation />
+                </ActionBentoCard>
+                
+                <ActionBentoCard title="MMA / Sparring" color="#14b8a6" delay={0.7}>
+                  <SparringAnimation />
+                </ActionBentoCard>
 
-              {/* Pulsing Aura Rings */}
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={`pulse-${i}`}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full border-2 border-rose-pink/40 z-10"
-                  animate={{ scale: [1, 4.5], opacity: [0.8, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, delay: i * 1.33, ease: "easeOut" }}
-                />
-              ))}
+                <ActionBentoCard title="Muay Thai" color="#e11d48" delay={0.8}>
+                  <MuayThaiAnimation />
+                </ActionBentoCard>
 
-              {/* Center Hub */}
-              <motion.div 
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 rounded-full bg-deep-black border-2 border-[#14b8a6] flex flex-col items-center justify-center z-30 shadow-[0_0_80px_rgba(20,184,166,0.4)]"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <img src={dclixLogo} alt="D-Clix" className="w-28 h-28 relative z-10" />
-                <motion.div 
-                  className="absolute inset-0 rounded-full border-4 border-t-transparent border-[#06b6d4] opacity-50"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                />
-              </motion.div>
+                <ActionBentoCard title="Wrestling" color="#eab308" delay={0.9}>
+                  <WrestlingAnimation />
+                </ActionBentoCard>
 
-              {/* Connecting Lines (Curved SVG) */}
-              <svg className="absolute inset-0 w-full h-full z-10" style={{ filter: 'drop-shadow(0 0 12px rgba(225,29,72,0.4))' }}>
-                <motion.path 
-                  d="M 50% 50% Q 20% 50% 20% 15%" 
-                  stroke="#06b6d4" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
-                  initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
-                />
-                <motion.path 
-                  d="M 50% 50% Q 80% 50% 80% 15%" 
-                  stroke="#a855f7" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
-                  initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 0.8, ease: "easeInOut" }}
-                />
-                <motion.path 
-                  d="M 50% 50% Q 20% 50% 20% 85%" 
-                  stroke="#d946ef" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
-                  initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 1.1, ease: "easeInOut" }}
-                />
-                <motion.path 
-                  d="M 50% 50% Q 80% 50% 80% 85%" 
-                  stroke="#14b8a6" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
-                  initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 1.4, ease: "easeInOut" }}
-                />
-              </svg>
-
-              {/* Orbiting Sports Characters */}
-              <SportOrbitNode color="#06b6d4" orbitSize={300} duration={18} reverse={true}>
-                <BoxingAnimation />
-              </SportOrbitNode>
-
-              <SportOrbitNode color="#d946ef" orbitSize={420} duration={22}>
-                <KarateAnimation />
-              </SportOrbitNode>
-
-              <SportOrbitNode color="#14b8a6" orbitSize={540} duration={26} reverse={true}>
-                <SparringAnimation />
-              </SportOrbitNode>
-
-              <SportOrbitNode color="#a855f7" orbitSize={660} duration={32}>
-                <KendoAnimation />
-              </SportOrbitNode>
-
-              <SportOrbitNode color="#f97316" orbitSize={780} duration={38} reverse={true}>
-                <JudoAnimation />
-              </SportOrbitNode>
-
-              <SportOrbitNode color="#eab308" orbitSize={900} duration={45}>
-                <TaekwondoAnimation />
-              </SportOrbitNode>
+                <ActionBentoCard title="Silat" color="#10b981" delay={1.0}>
+                  <SilatAnimation />
+                </ActionBentoCard>
+              </div>
 
             </Reveal>
           </div>
