@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import * as THREE from 'three';
 import {
   Bell,
   CalendarCheck,
@@ -18,188 +19,374 @@ import { Sparkles } from '@/components/ui/sparkles';
 import { Reveal } from '@/components/ui/reveal';
 
 // Tech-Forward Neon SVG Animations for Equipment
-const WrestlingEquipment = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">
-    <motion.g animate={{ rotate: [0, 15, -5, 0], x: [0, 5, -2, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.4, 1] }} style={{ transformOrigin: "75px 10px" }}>
-      <rect x="65" y="20" width="20" height="50" rx="10" fill="#06b6d4" fillOpacity="0.2" stroke="#06b6d4" strokeWidth="3" />
-      <line x1="75" y1="0" x2="75" y2="20" stroke="#06b6d4" strokeWidth="3" />
-    </motion.g>
-    <circle cx="30" cy="35" r="8" fill="none" stroke="#06b6d4" strokeWidth="3" />
-    <path d="M30 43 L30 70 M30 70 L20 90 M30 70 L40 90" stroke="#06b6d4" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M30 45 L40 45 L35 35" stroke="#06b6d4" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="35" cy="35" r="5" fill="#06b6d4" />
-    <motion.path animate={{ d: ["M30 45 L35 55 L40 50", "M30 45 L50 45 L65 45", "M30 45 L35 55 L40 50"] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", times: [0, 0.1, 0.5] }} stroke="#06b6d4" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <motion.circle r="6" fill="#06b6d4" animate={{ cx: [40, 65, 40], cy: [50, 45, 50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", times: [0, 0.1, 0.5] }} />
-  </svg>
-);
+const WrestlingCanvas = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    const canvas = canvasRef.current;
+    const W = 290, H = 255;
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(W, H);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
 
-const KarateAnimation = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]">
-    <motion.g animate={{ x: [0, 15, 0], opacity: [1, 0, 1], rotate: [0, 45, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", times: [0, 0.2, 1] }} style={{ transformOrigin: "70px 50px" }}>
-      <rect x="70" y="30" width="6" height="40" fill="#d946ef" rx="2" />
-      <rect x="78" y="30" width="6" height="40" fill="#d946ef" rx="2" />
-    </motion.g>
-    <circle cx="35" cy="25" r="8" fill="none" stroke="#d946ef" strokeWidth="3" />
-    <path d="M35 33 L35 60" stroke="#d946ef" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M25 55 L45 55 M35 55 L30 65 M35 55 L40 65" stroke="#d946ef" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M35 60 L35 90 L40 90" stroke="#d946ef" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <motion.path animate={{ d: ["M35 60 L45 75 L55 90", "M35 60 L50 45 L70 35", "M35 60 L45 75 L55 90"] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", times: [0, 0.2, 0.6] }} stroke="#d946ef" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M35 40 L25 45 L25 35 M35 40 L45 45 L50 35" stroke="#d946ef" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(46, W / H, 0.1, 100);
+    camera.position.z = 5.6;
 
-const SparringAnimation = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(20,184,166,0.8)]">
-    <circle cx="25" cy="35" r="7" fill="none" stroke="#14b8a6" strokeWidth="3" />
-    <path d="M25 42 L25 65 M25 65 L15 90 M25 65 L35 90" stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M25 45 L35 45 L30 35" stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <motion.path animate={{ d: ["M25 45 L30 55 L35 50", "M25 45 L45 40 L60 40", "M25 45 L30 55 L35 50"] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.5] }} stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <motion.g animate={{ x: [0, 10, 0], rotate: [0, 5, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.5] }} style={{ transformOrigin: "75px 90px" }}>
-      <circle cx="75" cy="35" r="7" fill="none" stroke="#14b8a6" strokeWidth="3" />
-      <path d="M75 42 L75 65 M75 65 L65 90 M75 65 L85 90" stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <motion.path animate={{ d: ["M75 45 L65 45 L60 55", "M75 45 L65 40 L60 35", "M75 45 L65 45 L60 55"] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.5] }} stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M75 45 L70 35 L75 25" stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    </motion.g>
-  </svg>
-);
-
-const KendoAnimation = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]">
-    <circle cx="35" cy="30" r="7" fill="none" stroke="#a855f7" strokeWidth="3" />
-    <path d="M35 37 L35 65 L25 90 M35 65 L45 90" stroke="#a855f7" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M35 45 L50 45" stroke="#a855f7" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    {/* Sword swinging */}
-    <motion.path 
-      animate={{ d: ["M50 45 L70 20", "M50 45 L80 60", "M50 45 L70 20"] }}
-      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-      stroke="#a855f7" strokeWidth="4" fill="none" strokeLinecap="round" 
-    />
-  </svg>
-);
-
-const JudoAnimation = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]">
-    {/* Thrower */}
-    <circle cx="45" cy="40" r="7" fill="none" stroke="#f97316" strokeWidth="3" />
-    <path d="M45 47 L45 70 L35 90 M45 70 L55 90" stroke="#f97316" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    {/* Thrown */}
-    <motion.g
-      animate={{ rotate: [0, 180, 0], x: [0, 20, 0], y: [0, 30, 0] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      style={{ transformOrigin: "45px 50px" }}
-    >
-      <circle cx="60" cy="30" r="7" fill="none" stroke="#f97316" strokeWidth="3" opacity="0.6" />
-      <path d="M60 37 L60 60 L50 80 M60 60 L70 80" stroke="#f97316" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
-    </motion.g>
-  </svg>
-);
-
-const MuayThaiAnimation = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(225,29,72,0.8)]">
-    <circle cx="35" cy="30" r="7" fill="none" stroke="#e11d48" strokeWidth="3" />
-    <path d="M35 37 L35 60" stroke="#e11d48" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    {/* Guard up high (Mongkhon/Pra Jiad style) */}
-    <path d="M35 45 L45 35 L40 25 M35 45 L25 35 L30 25" stroke="#e11d48" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    {/* Planted leg */}
-    <path d="M35 60 L30 90" stroke="#e11d48" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    {/* Knee strike */}
-    <motion.path 
-      animate={{ d: ["M35 60 L45 80 L55 90", "M35 60 L60 55 L55 80", "M35 60 L45 80 L55 90"] }}
-      transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-      stroke="#e11d48" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
-    />
-  </svg>
-);
-
-const WrestlingAnimation = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(234,179,8,0.8)]">
-    {/* Fighter 1 (Bottom/Defending) */}
-    <circle cx="40" cy="70" r="7" fill="none" stroke="#eab308" strokeWidth="3" />
-    <path d="M40 77 L40 85 M40 85 L25 90 M40 85 L55 90" stroke="#eab308" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M40 80 L25 75 M40 80 L55 75" stroke="#eab308" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    const group = new THREE.Group();
+    const gMat = new THREE.LineBasicMaterial({ color: 0x00BFFF, transparent: true, opacity: 0.88 });
+    const headgear = new THREE.LineSegments(
+      new THREE.WireframeGeometry(new THREE.TorusKnotGeometry(0.8, 0.2, 64, 8, 2, 3)), gMat
+    );
+    group.add(headgear);
     
-    {/* Fighter 2 (Top/Attacking - Suplex or Takedown) */}
-    <motion.g
-      animate={{ rotate: [0, 45, 0], x: [0, 10, 0], y: [0, -10, 0] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      style={{ transformOrigin: "60px 60px" }}
+    const belt = new THREE.LineSegments(
+      new THREE.WireframeGeometry(new THREE.TorusGeometry(1.2, 0.1, 8, 48)), gMat
+    );
+    belt.rotation.x = Math.PI / 2;
+    group.add(belt);
+
+    scene.add(group);
+
+    let animationFrameId: number;
+    const animate = (t: number) => {
+      animationFrameId = requestAnimationFrame(animate);
+      const s = t * 0.001;
+      group.rotation.x = s * 0.72;
+      group.rotation.y = s * 1.14;
+      renderer.render(scene, camera);
+    };
+    animate(0);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      renderer.dispose();
+      headgear.geometry.dispose();
+      belt.geometry.dispose();
+      gMat.dispose();
+    };
+  }, []);
+  return <canvas ref={canvasRef} className="w-full h-full block" />;
+};
+
+const BasketballCanvas = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    const canvas = canvasRef.current;
+    const W = 290, H = 255;
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(W, H);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(46, W / H, 0.1, 100);
+    camera.position.z = 5.6;
+
+    const ballGroup = new THREE.Group();
+    const ballMesh = new THREE.LineSegments(
+      new THREE.WireframeGeometry(new THREE.SphereGeometry(1.05, 26, 18)),
+      new THREE.LineBasicMaterial({ color: 0xE040FB, transparent: true, opacity: 0.85 })
+    );
+    ballGroup.add(ballMesh);
+
+    const seamOffsets = [[0, 0, 0], [Math.PI / 2, Math.PI / 4, 0], [Math.PI / 4, 0, Math.PI / 3]];
+    const seams: THREE.LineSegments[] = [];
+    for (const [rx, ry, rz] of seamOffsets) {
+      const s = new THREE.LineSegments(
+        new THREE.WireframeGeometry(new THREE.TorusGeometry(1.07, 0.008, 4, 72)),
+        new THREE.LineBasicMaterial({ color: 0xFF60FF, transparent: true, opacity: 0.55 })
+      );
+      s.rotation.set(rx, ry, rz);
+      ballGroup.add(s);
+      seams.push(s);
+    }
+    scene.add(ballGroup);
+
+    const trailMat = new THREE.LineBasicMaterial({ color: 0x00FFE0, transparent: true, opacity: 0.7 });
+    let trailLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3()]), trailMat);
+    scene.add(trailLine);
+
+    const floorRing = new THREE.LineSegments(
+      new THREE.WireframeGeometry(new THREE.TorusGeometry(0.92, 0.015, 4, 48)),
+      new THREE.LineBasicMaterial({ color: 0xE040FB, transparent: true, opacity: 0.3 })
+    );
+    floorRing.position.y = -1.75;
+    floorRing.rotation.x = Math.PI / 2;
+    scene.add(floorRing);
+
+    const ripples = Array.from({ length: 3 }, (_, i) => {
+      const r = new THREE.LineSegments(
+        new THREE.WireframeGeometry(new THREE.TorusGeometry(0.5, 0.01, 4, 40)),
+        new THREE.LineBasicMaterial({ color: 0x9F00FF, transparent: true, opacity: 0 })
+      );
+      r.position.y = -1.75;
+      r.rotation.x = Math.PI / 2;
+      r.userData = { phase: i * (Math.PI * 2 / 3), triggered: false };
+      scene.add(r);
+      return r;
+    });
+
+    const pts = new Float32Array(55 * 3);
+    for (let i = 0; i < 165; i++) pts[i] = (Math.random() - 0.5) * 7;
+    const pg = new THREE.BufferGeometry();
+    pg.setAttribute('position', new THREE.BufferAttribute(pts, 3));
+    const pointsMat = new THREE.PointsMaterial({ color: 0xE040FB, size: 0.04, transparent: true, opacity: 0.42 });
+    const pointsMesh = new THREE.Points(pg, pointsMat);
+    scene.add(pointsMesh);
+
+    const posHistory: THREE.Vector3[] = [];
+    let lastBounceY = 0;
+    let animationFrameId: number;
+
+    const animate = (t: number) => {
+      animationFrameId = requestAnimationFrame(animate);
+      const s = t * 0.001;
+
+      const bounce = Math.abs(Math.sin(s * 1.4));
+      const ballY = bounce * 2.0 - 1.6;
+      const driftX = Math.sin(s * 0.7) * 0.55;
+
+      const nearFloor = Math.max(0, 1 - (ballY + 1.6) / 1.0);
+      ballGroup.scale.set(1 + nearFloor * 0.30, 1 - nearFloor * 0.25, 1 + nearFloor * 0.30);
+      ballGroup.position.set(driftX, ballY, 0);
+      ballGroup.rotation.z = s * 0.9;
+      ballGroup.rotation.x = s * 0.5;
+
+      posHistory.unshift(new THREE.Vector3(driftX, ballY, 0));
+      if (posHistory.length > 32) posHistory.pop();
+      if (posHistory.length > 1) {
+        trailLine.geometry.dispose();
+        trailLine.geometry = new THREE.BufferGeometry().setFromPoints(posHistory);
+      }
+
+      floorRing.scale.set(1 + nearFloor * 0.5, 1 + nearFloor * 0.5, 1);
+      (floorRing.material as THREE.LineBasicMaterial).opacity = nearFloor * 0.65;
+
+      if (lastBounceY > ballY && ballY < -1.4) {
+        ripples.forEach((r, i) => {
+          r.scale.set(1, 1, 1);
+          (r.material as THREE.LineBasicMaterial).opacity = 0.7;
+          r.userData.rippleStart = s + i * 0.12;
+        });
+      }
+      ripples.forEach(r => {
+        if (r.userData.rippleStart) {
+          const age = s - r.userData.rippleStart;
+          if (age >= 0 && age < 1.2) {
+            const p = age / 1.2;
+            r.scale.set(1 + p * 2.5, 1 + p * 2.5, 1);
+            (r.material as THREE.LineBasicMaterial).opacity = 0.6 * (1 - p);
+          }
+        }
+      });
+      lastBounceY = ballY;
+
+      renderer.render(scene, camera);
+    };
+    animate(0);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      renderer.dispose();
+      ballMesh.geometry.dispose(); (ballMesh.material as THREE.Material).dispose();
+      seams.forEach(s => { s.geometry.dispose(); (s.material as THREE.Material).dispose(); });
+      trailLine.geometry.dispose(); trailMat.dispose();
+      floorRing.geometry.dispose(); (floorRing.material as THREE.Material).dispose();
+      ripples.forEach(r => { r.geometry.dispose(); (r.material as THREE.Material).dispose(); });
+      pg.dispose(); pointsMat.dispose();
+    };
+  }, []);
+  return <canvas ref={canvasRef} className="w-full h-full block" />;
+};
+
+const MartialArtsCanvas = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    const canvas = canvasRef.current;
+    const W = 290, H = 255;
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(W, H);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(46, W / H, 0.1, 100);
+    camera.position.z = 5.6;
+
+    const gMat = (op?: number) => new THREE.LineBasicMaterial({ color: 0xFFC845, transparent: true, opacity: op || 0.88 });
+
+    const knotMat = gMat();
+    const knot = new THREE.LineSegments(
+      new THREE.WireframeGeometry(new THREE.TorusKnotGeometry(0.68, 0.15, 90, 14, 2, 3)), knotMat
+    );
+    knot.position.y = 0.2;
+    scene.add(knot);
+
+    const beltMat = gMat(0.72);
+    const beltTorus = new THREE.LineSegments(
+      new THREE.WireframeGeometry(new THREE.TorusGeometry(1.38, 0.085, 8, 80)), beltMat
+    );
+    beltTorus.rotation.x = Math.PI / 3.8;
+    scene.add(beltTorus);
+
+    const stripPositions = [[-0.28, 0.14], [0.28, -0.14]];
+    const stripMat = gMat(0.55);
+    const strips = stripPositions.map(([x, rz]) => {
+      const strip = new THREE.LineSegments(
+        new THREE.WireframeGeometry(new THREE.BoxGeometry(0.20, 1.55, 0.04)),
+        stripMat
+      );
+      strip.position.set(x, -1.28, 0.22);
+      strip.rotation.z = rz;
+      scene.add(strip);
+      return strip;
+    });
+
+    const stripes: THREE.LineSegments[] = [];
+    const stripeMat = new THREE.LineBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.22 });
+    for (let i = 0; i < 4; i++) {
+      const stripe = new THREE.LineSegments(
+        new THREE.WireframeGeometry(new THREE.BoxGeometry(0.20, 0.035, 0.05)),
+        stripeMat
+      );
+      stripe.position.set(-0.28, -0.82 - i * 0.14, 0.24);
+      scene.add(stripe);
+      stripes.push(stripe);
+    }
+
+    const outerRingMat = gMat(0.16);
+    const outerRing = new THREE.LineSegments(
+      new THREE.WireframeGeometry(new THREE.TorusGeometry(1.95, 0.02, 5, 90)), outerRingMat
+    );
+    scene.add(outerRing);
+
+    const innerRingMat = gMat(0.25);
+    const innerRing = new THREE.LineSegments(
+      new THREE.WireframeGeometry(new THREE.TorusGeometry(0.90, 0.015, 5, 60)), innerRingMat
+    );
+    innerRing.position.y = 0.2;
+    scene.add(innerRing);
+
+    const pts = new Float32Array(55 * 3);
+    for (let i = 0; i < 165; i++) pts[i] = (Math.random() - 0.5) * 7;
+    const pg = new THREE.BufferGeometry();
+    pg.setAttribute('position', new THREE.BufferAttribute(pts, 3));
+    const pointsMat = new THREE.PointsMaterial({ color: 0xFFC845, size: 0.05, transparent: true, opacity: 0.38 });
+    const pointsMesh = new THREE.Points(pg, pointsMat);
+    scene.add(pointsMesh);
+
+    let animationFrameId: number;
+    const animate = (t: number) => {
+      animationFrameId = requestAnimationFrame(animate);
+      const s = t * 0.001;
+
+      knot.rotation.y = s * 0.82;
+      knot.rotation.x = s * 0.38;
+      knot.rotation.z = Math.sin(s * 0.26) * 0.18;
+
+      beltTorus.rotation.z = s * 0.28;
+      beltTorus.rotation.y = Math.sin(s * 0.35) * 0.38;
+
+      outerRing.rotation.z = -s * 0.18;
+      outerRing.rotation.x = Math.sin(s * 0.22) * 0.22;
+      innerRing.rotation.y = s * 0.55;
+
+      strips.forEach((strip, i) => {
+        strip.rotation.z = (i === 0 ? 0.14 : -0.14) + Math.sin(s * 0.5 + i) * 0.08;
+      });
+
+      renderer.render(scene, camera);
+    };
+    animate(0);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      renderer.dispose();
+      knot.geometry.dispose(); knotMat.dispose();
+      beltTorus.geometry.dispose(); beltMat.dispose();
+      strips.forEach(s => s.geometry.dispose()); stripMat.dispose();
+      stripes.forEach(s => s.geometry.dispose()); stripeMat.dispose();
+      outerRing.geometry.dispose(); outerRingMat.dispose();
+      innerRing.geometry.dispose(); innerRingMat.dispose();
+      pg.dispose(); pointsMat.dispose();
+    };
+  }, []);
+  return <canvas ref={canvasRef} className="w-full h-full block" />;
+};
+
+const HexCanvasCard = ({ 
+  type, 
+  title, 
+  desc, 
+  hudCode, 
+  delay, 
+  children 
+}: { 
+  type: 'wrestling' | 'basketball' | 'martialarts', 
+  title: string, 
+  desc: string, 
+  hudCode: string, 
+  delay: number, 
+  children: React.ReactNode 
+}) => {
+  const colors = {
+    wrestling: '#00BFFF',
+    basketball: '#E040FB',
+    martialarts: '#FFC845'
+  };
+  const color = colors[type];
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay }}
+      className={`flex flex-col items-center gap-[22px] ${type}`}
+      style={{ '--sc': color } as React.CSSProperties}
     >
-      <circle cx="60" cy="50" r="7" fill="none" stroke="#eab308" strokeWidth="3" opacity="0.8" />
-      <path d="M60 57 L60 75 M60 75 L50 90 M60 75 L70 90" stroke="#eab308" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
-      <path d="M60 62 L45 70 M60 62 L75 70" stroke="#eab308" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
-    </motion.g>
-  </svg>
-);
-
-const HexagonCard = ({ title, desc, color, delay, children, className }: { title: string, desc: string, color: string, delay: number, children: React.ReactNode, className?: string }) => (
-  <motion.div 
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.8, delay, type: "spring" }}
-    className={`absolute flex flex-col items-center gap-4 ${className}`}
-  >
-    {/* Hexagon Frame */}
-    <div className="relative w-[180px] h-[200px] flex items-center justify-center group">
-      {/* Background Glow */}
-      <div className="absolute inset-0 rounded-full blur-[40px] opacity-30 group-hover:opacity-50 transition-opacity duration-500" style={{ backgroundColor: color }} />
-      
-      {/* SVG Hex Border */}
-      <svg viewBox="0 0 100 115" className="absolute inset-0 w-full h-full">
-        <polygon 
-          points="50 5, 95 30, 95 85, 50 110, 5 85, 5 30" 
-          fill="rgba(10,10,10,0.6)" 
-          stroke={color} 
-          strokeWidth="1.5" 
-          strokeLinejoin="round"
-          className="drop-shadow-[0_0_8px_currentColor]"
-        />
-        <polygon 
-          points="50 10, 90 33, 90 82, 50 105, 10 82, 10 33" 
-          fill="none" 
-          stroke={color} 
-          strokeWidth="0.5" 
-          strokeLinejoin="round"
-          opacity="0.5"
-        />
-        {/* Nodes */}
-        <circle cx="50" cy="5" r="1.5" fill={color} />
-        <circle cx="95" cy="30" r="1.5" fill={color} />
-        <circle cx="95" cy="85" r="1.5" fill={color} />
-        <circle cx="50" cy="110" r="1.5" fill={color} />
-        <circle cx="5" cy="85" r="1.5" fill={color} />
-        <circle cx="5" cy="30" r="1.5" fill={color} />
-      </svg>
-
-      {/* Tech UI Elements outside hex */}
-      <div className="absolute top-[20%] -left-6 w-8 h-4 flex flex-col justify-between opacity-50">
-        <div className="h-[1px] w-full bg-white/50" />
-        <div className="h-[1px] w-1/2 bg-white/50" />
+      <div className="group cursor-pointer transition-all duration-300 drop-shadow-[0_0_16px_var(--sc)] hover:drop-shadow-[0_0_38px_var(--sc)]">
+        <div className="relative w-[300px] h-[260px] sm:w-[260px] sm:h-[225px] md:w-[300px] md:h-[260px]">
+          <div 
+            className="absolute inset-0"
+            style={{ 
+              background: 'var(--sc)', 
+              clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' 
+            }} 
+          />
+          <div 
+            className="absolute top-[2.5px] left-[5px] w-[290px] h-[255px] sm:top-[2px] sm:left-[4px] sm:w-[252px] sm:h-[221px] md:top-[2.5px] md:left-[5px] md:w-[290px] md:h-[255px] overflow-hidden bg-[#050811]"
+            style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}
+          >
+            {children}
+            
+            <div className="absolute inset-0 pointer-events-none z-10">
+              <div className="absolute left-0 right-0 h-[1px] opacity-10 bg-gradient-to-r from-transparent via-[var(--sc)] to-transparent animate-[scanline_3s_linear_infinite]" style={{ animationDelay: `${delay}s` }} />
+              <div className="absolute w-[14px] h-[14px] opacity-70 top-[50px] left-[75px] border-t-[1.5px] border-l-[1.5px] border-[var(--sc)]" />
+              <div className="absolute w-[14px] h-[14px] opacity-70 top-[50px] right-[75px] border-t-[1.5px] border-r-[1.5px] border-[var(--sc)]" />
+              <div className="absolute w-[14px] h-[14px] opacity-70 bottom-[50px] left-[75px] border-b-[1.5px] border-l-[1.5px] border-[var(--sc)]" />
+              <div className="absolute w-[14px] h-[14px] opacity-70 bottom-[50px] right-[75px] border-b-[1.5px] border-r-[1.5px] border-[var(--sc)]" />
+              <div className="absolute bottom-[58px] left-1/2 -translate-x-1/2 text-[7px] tracking-[0.9px] font-mono text-[var(--sc)] opacity-40 whitespace-nowrap">
+                {hudCode}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="absolute bottom-[20%] -right-6 w-8 h-4 flex flex-col justify-between items-end opacity-50">
-        <div className="h-[1px] w-full bg-white/50" />
-        <div className="h-[1px] w-2/3 bg-white/50" />
+      <div className="text-center">
+        <span className="font-bold text-[19px] uppercase tracking-[1.2px] block font-[Barlow_Condensed,sans-serif]" style={{ color: 'var(--sc)' }}>
+          {title}
+        </span>
+        <span className="text-[12.5px] text-[#8A9BC0] mt-1 block">
+          {desc}
+        </span>
       </div>
-
-      {/* Inner Animation Content */}
-      <div className="relative z-10 w-[85%] h-[85%] p-4 flex items-center justify-center">
-        {children}
-      </div>
-    </div>
-
-    {/* Tech Pill */}
-    <div 
-      className="px-5 py-2.5 rounded-xl border bg-[#050505]/90 backdrop-blur-md flex flex-col items-center justify-center text-center shadow-xl w-[220px]"
-      style={{ borderColor: `${color}40`, boxShadow: `0 4px 15px ${color}15` }}
-    >
-      <span className="text-[11px] font-bold uppercase tracking-widest mb-0.5" style={{ color, textShadow: `0 0 10px ${color}` }}>
-        {title}:
-      </span>
-      <span className="text-[10px] text-gray-300 font-medium tracking-wide">
-        {desc}
-      </span>
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
 
 export default function HomeTop({ onStartToday }: { onStartToday: () => void }) {
   const features = useMemo(
@@ -308,67 +495,68 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
           </div>
 
           {/* RIGHT: Tech-Forward Lab Hexagon Layout */}
-          <div className="relative h-[650px] w-full">
-            <Reveal delay={0.4} className="w-full h-full relative">
-              
-              {/* Background decorative elements */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-[20%] left-[20%] w-2 h-2 rounded-full bg-cyan-400/50 animate-ping" />
-                <div className="absolute bottom-[30%] right-[30%] w-1.5 h-1.5 rounded-full bg-magenta-400/50 animate-ping" style={{ animationDelay: '1s' }} />
-                <div className="absolute top-[60%] left-[40%] w-1 h-1 rounded-full bg-yellow-400/50 animate-ping" style={{ animationDelay: '2s' }} />
+          <div className="relative w-full py-10 lg:py-0">
+            <style>{`
+              @keyframes scanline {
+                0%   { top: 45px; opacity: 0; }
+                10%  { opacity: 0.18; }
+                90%  { opacity: 0.18; }
+                100% { top: 215px; opacity: 0; }
+              }
+            `}</style>
+            <Reveal delay={0.4} className="w-full h-full relative flex items-center justify-center lg:justify-end">
+              <div className="flex flex-wrap gap-6 justify-center lg:justify-start max-w-[650px] relative z-10">
+                <HexCanvasCard 
+                  type="wrestling" 
+                  title="Wrestling" 
+                  desc="Rotating 3D Headgear & Belt." 
+                  hudCode="ROT.X:0.72 | ROT.Y:1.14 | MESH:WF" 
+                  delay={0}
+                >
+                  <WrestlingCanvas />
+                </HexCanvasCard>
+
+                <HexCanvasCard 
+                  type="basketball" 
+                  title="Basketball" 
+                  desc="Dynamic 3D Bounce & Neon Trail." 
+                  hudCode="VEL:2.18 | BOUNCE:0.82 | TRAIL:ON" 
+                  delay={1.1}
+                >
+                  <BasketballCanvas />
+                </HexCanvasCard>
+
+                <HexCanvasCard 
+                  type="martialarts" 
+                  title="Martial Arts" 
+                  desc="Knot & Dan Stripes Swaying." 
+                  hudCode="KNOT:DAN-1 | TWIST:2.34π | WIRE:ON" 
+                  delay={2.2}
+                >
+                  <MartialArtsCanvas />
+                </HexCanvasCard>
               </div>
 
-              {/* Hexagon Cards Positioned Diagonally */}
-              <HexagonCard 
-                title="Equipment" 
-                desc="Rotating 3D Headgear & Belt." 
-                color="#06b6d4" 
-                delay={0.5}
-                className="top-[5%] left-[5%] z-20"
-              >
-                <WrestlingEquipment />
-              </HexagonCard>
-
-              <HexagonCard 
-                title="Karate" 
-                desc="Dynamic Strikes & Forms." 
-                color="#d946ef" 
-                delay={0.7}
-                className="top-[30%] right-[5%] z-10"
-              >
-                <KarateAnimation />
-              </HexagonCard>
-
-              <HexagonCard 
-                title="Grappling" 
-                desc="Takedowns & Mat Work." 
-                color="#eab308" 
-                delay={0.9}
-                className="bottom-[5%] left-[20%] z-30"
-              >
-                <WrestlingAnimation />
-              </HexagonCard>
-
               {/* Right Sidebar Decorative Badges */}
-              <div className="absolute top-1/2 -translate-y-1/2 right-0 hidden md:flex flex-col items-end gap-4 z-40 opacity-80 pr-4">
+              <div className="absolute top-1/2 -translate-y-1/2 -right-4 lg:-right-12 hidden xl:flex flex-col items-end gap-4 z-40 opacity-80 pr-4">
                 <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 text-right">Animation<br/>Execution</div>
                 
                 <motion.div whileHover={{ x: -5 }} className="flex flex-col items-center gap-2 cursor-default">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
+                  <div className="w-10 h-10 rounded-lg bg-[#050811] border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
                     <Box className="w-5 h-5" />
                   </div>
-                  <div className="text-[8px] font-bold text-gray-300 tracking-wider">SPLINE 3D</div>
+                  <div className="text-[8px] font-bold text-gray-300 tracking-wider">THREE.JS</div>
                 </motion.div>
                 
                 <motion.div whileHover={{ x: -5 }} className="flex flex-col items-center gap-2 cursor-default">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-magenta-500/20 to-pink-500/20 border border-magenta-500/30 flex items-center justify-center text-magenta-400 shadow-[0_0_10px_rgba(217,70,239,0.2)]">
+                  <div className="w-10 h-10 rounded-lg bg-[#050811] border border-magenta-500/30 flex items-center justify-center text-magenta-400 shadow-[0_0_10px_rgba(217,70,239,0.2)]">
                     <MonitorPlay className="w-5 h-5" />
                   </div>
-                  <div className="text-[8px] font-bold text-gray-300 tracking-wider">LOTTIE</div>
+                  <div className="text-[8px] font-bold text-gray-300 tracking-wider">REACT</div>
                 </motion.div>
 
                 <motion.div whileHover={{ x: -5 }} className="flex flex-col items-center gap-2 cursor-default">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 flex items-center justify-center text-yellow-400 shadow-[0_0_10px_rgba(234,179,8,0.2)]">
+                  <div className="w-10 h-10 rounded-lg bg-[#050811] border border-yellow-500/30 flex items-center justify-center text-yellow-400 shadow-[0_0_10px_rgba(234,179,8,0.2)]">
                     <Globe className="w-5 h-5" />
                   </div>
                   <div className="text-[8px] font-bold text-gray-300 tracking-wider">WEBGL</div>
