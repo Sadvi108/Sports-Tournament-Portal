@@ -173,23 +173,6 @@ const ActionBentoCard = ({ title, color, children, delay }: { title: string, col
 };
 
 export default function HomeTop({ onStartToday }: { onStartToday: () => void }) {
-  const [activeSportIndex, setActiveSportIndex] = useState(0);
-
-  const sportsShowcase = useMemo(() => [
-    { title: "Boxing", color: "#06b6d4", component: BoxingAnimation },
-    { title: "Karate", color: "#d946ef", component: KarateAnimation },
-    { title: "MMA / Sparring", color: "#14b8a6", component: SparringAnimation },
-    { title: "Muay Thai", color: "#e11d48", component: MuayThaiAnimation },
-    { title: "Wrestling", color: "#eab308", component: WrestlingAnimation },
-    { title: "Silat", color: "#10b981", component: SilatAnimation },
-  ], []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveSportIndex((prev) => (prev + 1) % sportsShowcase.length);
-    }, 4000); // Change sport every 4 seconds
-    return () => clearInterval(timer);
-  }, [sportsShowcase.length]);
   const features = useMemo(
     () => [
       {
@@ -265,14 +248,14 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-pink/10 border border-rose-pink/20 text-rose-pink text-[11px] font-bold uppercase tracking-[0.2em] mb-2"
               >
                 <Activity className="w-3.5 h-3.5 animate-pulse" />
-                D-Clix Club Ecosystem
+                Tech-Forward Animation Lab
               </motion.div>
             </Reveal>
 
             <Reveal delay={0.1}>
               <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-semibold tracking-tight leading-[1.05] dark:text-white text-dark-gray">
                 Grow Revenue.<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-pink to-rose-pink-light">Streamline Operations.</span><br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-pink to-rose-pink-light">Modern Sports Equipment.</span><br />
                 Cultivate your thriving club ecosystem with D-Clix.
               </h1>
             </Reveal>
@@ -295,60 +278,72 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
             </Reveal>
           </div>
 
-          {/* RIGHT: Spotlight Stage Layout */}
-          <div className="relative h-[650px] w-full flex items-center justify-center">
-            <Reveal delay={0.4} className="w-full h-full relative flex items-center justify-center">
+          {/* RIGHT: Tech-Forward Lab Hexagon Layout */}
+          <div className="relative h-[650px] w-full">
+            <Reveal delay={0.4} className="w-full h-full relative">
               
-              {/* Massive Stage Glow Background */}
-              <div 
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[100px] opacity-20 transition-colors duration-1000"
-                style={{ backgroundColor: sportsShowcase[activeSportIndex].color }}
-              />
-
-              {/* Central Pedestal/Stage */}
-              <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[400px] h-[100px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05)_0%,transparent_70%)] rounded-[100%] border border-b-0 border-white/10 blur-[1px]" />
-              <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 w-[300px] h-[80px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.08)_0%,transparent_70%)] rounded-[100%] border border-b-0 border-white/20 blur-[0.5px]" />
-
-              {/* The Active Sport Animation */}
-              <div className="relative z-20 w-[400px] h-[400px] flex items-center justify-center mb-10">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeSportIndex}
-                    initial={{ opacity: 0, scale: 0.5, y: 50, rotateY: 90 }}
-                    animate={{ opacity: 1, scale: 1, y: 0, rotateY: 0 }}
-                    exit={{ opacity: 0, scale: 1.5, y: -50, filter: "blur(10px)" }}
-                    transition={{ type: "spring", stiffness: 200, damping: 20, duration: 0.8 }}
-                    className="w-full h-full flex flex-col items-center justify-center gap-8"
-                  >
-                    {/* The SVG Component */}
-                    <div className="w-64 h-64 relative">
-                      {React.createElement(sportsShowcase[activeSportIndex].component)}
-                    </div>
-                    
-                    {/* Floating Title Label */}
-                    <motion.div 
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3, duration: 0.5 }}
-                      className="px-6 py-2 rounded-full backdrop-blur-xl border border-white/10 dark:bg-white/5 bg-white/50 shadow-2xl text-lg font-bold uppercase tracking-[0.3em]"
-                      style={{ color: sportsShowcase[activeSportIndex].color, textShadow: `0 0 20px ${sportsShowcase[activeSportIndex].color}80` }}
-                    >
-                      {sportsShowcase[activeSportIndex].title}
-                    </motion.div>
-                  </motion.div>
-                </AnimatePresence>
+              {/* Background decorative elements */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-[20%] left-[20%] w-2 h-2 rounded-full bg-cyan-400/50 animate-ping" />
+                <div className="absolute bottom-[30%] right-[30%] w-1.5 h-1.5 rounded-full bg-magenta-400/50 animate-ping" style={{ animationDelay: '1s' }} />
+                <div className="absolute top-[60%] left-[40%] w-1 h-1 rounded-full bg-yellow-400/50 animate-ping" style={{ animationDelay: '2s' }} />
               </div>
 
-              {/* Indicator Dots */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-3 z-30">
-                {sportsShowcase.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveSportIndex(idx)}
-                    className={`w-3 h-3 rounded-full transition-all duration-500 ${idx === activeSportIndex ? 'scale-150' : 'opacity-30 hover:opacity-100'}`}
-                    style={{ backgroundColor: idx === activeSportIndex ? sportsShowcase[activeSportIndex].color : '#666' }}
-                  />
-                ))}
+              {/* Hexagon Cards Positioned Diagonally */}
+              <HexagonCard 
+                title="Wrestling" 
+                desc="Rotating 3D Headgear & Belt." 
+                color="#06b6d4" 
+                delay={0.5}
+                className="top-[5%] left-[5%] z-20"
+              >
+                <WrestlingEquipment />
+              </HexagonCard>
+
+              <HexagonCard 
+                title="Basketball" 
+                desc="Dynamic 3D Bounce & Neon Trail." 
+                color="#d946ef" 
+                delay={0.7}
+                className="top-[30%] right-[5%] z-10"
+              >
+                <BasketballEquipment />
+              </HexagonCard>
+
+              <HexagonCard 
+                title="Martial Arts" 
+                desc="Dynamic Black Belt Tying." 
+                color="#eab308" 
+                delay={0.9}
+                className="bottom-[5%] left-[20%] z-30"
+              >
+                <MartialArtsEquipment />
+              </HexagonCard>
+
+              {/* Right Sidebar Decorative Badges */}
+              <div className="absolute top-1/2 -translate-y-1/2 right-0 hidden md:flex flex-col items-end gap-4 z-40 opacity-80 pr-4">
+                <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 text-right">Animation<br/>Execution</div>
+                
+                <motion.div whileHover={{ x: -5 }} className="flex flex-col items-center gap-2 cursor-default">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
+                    <Box className="w-5 h-5" />
+                  </div>
+                  <div className="text-[8px] font-bold text-gray-300 tracking-wider">SPLINE 3D</div>
+                </motion.div>
+                
+                <motion.div whileHover={{ x: -5 }} className="flex flex-col items-center gap-2 cursor-default">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-magenta-500/20 to-pink-500/20 border border-magenta-500/30 flex items-center justify-center text-magenta-400 shadow-[0_0_10px_rgba(217,70,239,0.2)]">
+                    <MonitorPlay className="w-5 h-5" />
+                  </div>
+                  <div className="text-[8px] font-bold text-gray-300 tracking-wider">LOTTIE</div>
+                </motion.div>
+
+                <motion.div whileHover={{ x: -5 }} className="flex flex-col items-center gap-2 cursor-default">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 flex items-center justify-center text-yellow-400 shadow-[0_0_10px_rgba(234,179,8,0.2)]">
+                    <Globe className="w-5 h-5" />
+                  </div>
+                  <div className="text-[8px] font-bold text-gray-300 tracking-wider">WEBGL</div>
+                </motion.div>
               </div>
 
             </Reveal>
