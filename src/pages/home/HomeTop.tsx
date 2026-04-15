@@ -22,14 +22,105 @@ import { Sparkles } from '@/components/ui/sparkles';
 import { Reveal } from '@/components/ui/reveal';
 import dclixLogo from '@/assets/dclix-logo.svg';
 
-function img(prompt: string, size: string) {
-  return `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=${encodeURIComponent(prompt)}&image_size=${size}`;
-}
+// Complex SVG Animations for Sports
+const BoxingAnimation = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">
+    {/* Heavy Bag */}
+    <motion.g
+      animate={{ rotate: [0, 15, -5, 0], x: [0, 5, -2, 0] }}
+      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.4, 1] }}
+      style={{ transformOrigin: "75px 10px" }}
+    >
+      <rect x="65" y="20" width="20" height="50" rx="10" fill="#06b6d4" fillOpacity="0.2" stroke="#06b6d4" strokeWidth="3" />
+      <line x1="75" y1="0" x2="75" y2="20" stroke="#06b6d4" strokeWidth="3" />
+    </motion.g>
 
-// Complex orbital components with AI-generated futuristic illustrations
-const CharacterNode = ({ prompt, color, orbitSize, duration, reverse = false, delay = 0 }: { prompt: string, color: string, orbitSize: number, duration: number, reverse?: boolean, delay?: number }) => {
-  const imageUrl = useMemo(() => img(prompt, 'square'), [prompt]);
-  
+    {/* Boxer Body */}
+    <circle cx="30" cy="35" r="8" fill="none" stroke="#06b6d4" strokeWidth="3" />
+    <path d="M30 43 L30 70 M30 70 L20 90 M30 70 L40 90" stroke="#06b6d4" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M30 45 L40 45 L35 35" stroke="#06b6d4" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="35" cy="35" r="5" fill="#06b6d4" />
+    
+    <motion.path 
+      animate={{ d: ["M30 45 L35 55 L40 50", "M30 45 L50 45 L65 45", "M30 45 L35 55 L40 50"] }}
+      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", times: [0, 0.1, 0.5] }}
+      stroke="#06b6d4" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
+    />
+    <motion.circle 
+      r="6" fill="#06b6d4"
+      animate={{ cx: [40, 65, 40], cy: [50, 45, 50] }}
+      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", times: [0, 0.1, 0.5] }}
+    />
+  </svg>
+);
+
+const KarateAnimation = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]">
+    {/* Target Board */}
+    <motion.g
+      animate={{ x: [0, 15, 0], opacity: [1, 0, 1], rotate: [0, 45, 0] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", times: [0, 0.2, 1] }}
+      style={{ transformOrigin: "70px 50px" }}
+    >
+      <rect x="70" y="30" width="6" height="40" fill="#d946ef" rx="2" />
+      <rect x="78" y="30" width="6" height="40" fill="#d946ef" rx="2" />
+    </motion.g>
+
+    {/* Fighter Body */}
+    <circle cx="35" cy="25" r="8" fill="none" stroke="#d946ef" strokeWidth="3" />
+    <path d="M35 33 L35 60" stroke="#d946ef" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+
+    {/* Black Belt */}
+    <path d="M25 55 L45 55 M35 55 L30 65 M35 55 L40 65" stroke="#d946ef" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+
+    {/* Planted Leg */}
+    <path d="M35 60 L35 90 L40 90" stroke="#d946ef" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+
+    {/* Kicking Leg */}
+    <motion.path 
+      animate={{ d: ["M35 60 L45 75 L55 90", "M35 60 L50 45 L70 35", "M35 60 L45 75 L55 90"] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", times: [0, 0.2, 0.6] }}
+      stroke="#d946ef" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
+    />
+    
+    {/* Arms */}
+    <path d="M35 40 L25 45 L25 35 M35 40 L45 45 L50 35" stroke="#d946ef" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const SparringAnimation = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(20,184,166,0.8)]">
+    {/* Fighter 1 (Left) */}
+    <circle cx="25" cy="35" r="7" fill="none" stroke="#14b8a6" strokeWidth="3" />
+    <path d="M25 42 L25 65 M25 65 L15 90 M25 65 L35 90" stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M25 45 L35 45 L30 35" stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    
+    <motion.path 
+      animate={{ d: ["M25 45 L30 55 L35 50", "M25 45 L45 40 L60 40", "M25 45 L30 55 L35 50"] }}
+      transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.5] }}
+      stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
+    />
+
+    {/* Fighter 2 (Right) */}
+    <motion.g
+      animate={{ x: [0, 10, 0], rotate: [0, 5, 0] }}
+      transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.5] }}
+      style={{ transformOrigin: "75px 90px" }}
+    >
+      <circle cx="75" cy="35" r="7" fill="none" stroke="#14b8a6" strokeWidth="3" />
+      <path d="M75 42 L75 65 M75 65 L65 90 M75 65 L85 90" stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      
+      <motion.path 
+        animate={{ d: ["M75 45 L65 45 L60 55", "M75 45 L65 40 L60 35", "M75 45 L65 45 L60 55"] }}
+        transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.5] }}
+        stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
+      />
+      <path d="M75 45 L70 35 L75 25" stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    </motion.g>
+  </svg>
+);
+
+const SportOrbitNode = ({ children, color, orbitSize, duration, reverse = false }: { children: React.ReactNode, color: string, orbitSize: number, duration: number, reverse?: boolean }) => {
   return (
     <motion.div
       className="absolute top-1/2 left-1/2 z-20"
@@ -38,12 +129,14 @@ const CharacterNode = ({ prompt, color, orbitSize, duration, reverse = false, de
       transition={{ duration, repeat: Infinity, ease: "linear" }}
     >
       <motion.div
-        className="absolute top-0 left-1/2 w-20 h-20 -ml-10 -mt-10 rounded-full border-2 bg-[#050505] overflow-hidden flex items-center justify-center shadow-2xl"
-        style={{ borderColor: color, boxShadow: `0 0 20px ${color}40` }}
+        className="absolute top-0 left-1/2 w-24 h-24 -ml-12 -mt-12 rounded-full border border-white/10 dark:bg-[#0A0A0A]/90 bg-white/90 backdrop-blur-md overflow-hidden flex items-center justify-center shadow-2xl"
+        style={{ boxShadow: `0 0 30px ${color}40, inset 0 0 20px ${color}20` }}
         animate={{ rotate: reverse ? 360 : -360 }} // Counter-rotate to keep upright
         transition={{ duration, repeat: Infinity, ease: "linear" }}
       >
-        <img src={imageUrl} alt="Character" className="w-full h-full object-cover mix-blend-screen opacity-90" />
+        <div className="w-16 h-16 relative flex items-center justify-center">
+          {children}
+        </div>
       </motion.div>
     </motion.div>
   );
@@ -309,27 +402,17 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
               </motion.div>
 
               {/* Orbiting Sports Characters */}
-              <CharacterNode 
-                prompt="Futuristic cybernetic martial artist doing a high kick, glowing neon magenta accents, dark background, highly detailed, cyberpunk style" 
-                color="#d946ef" 
-                orbitSize={350} 
-                duration={15} 
-              />
+              <SportOrbitNode color="#d946ef" orbitSize={350} duration={15}>
+                <KarateAnimation />
+              </SportOrbitNode>
               
-              <CharacterNode 
-                prompt="Futuristic cybernetic soccer player kicking a glowing ball, neon cyan accents, dark background, highly detailed, cyberpunk style" 
-                color="#06b6d4" 
-                orbitSize={500} 
-                duration={22} 
-                reverse={true}
-              />
+              <SportOrbitNode color="#06b6d4" orbitSize={500} duration={22} reverse={true}>
+                <BoxingAnimation />
+              </SportOrbitNode>
               
-              <CharacterNode 
-                prompt="Futuristic tennis player swinging a glowing racket, neon teal accents, dark background, highly detailed, cyberpunk style" 
-                color="#14b8a6" 
-                orbitSize={650} 
-                duration={30} 
-              />
+              <SportOrbitNode color="#14b8a6" orbitSize={650} duration={30}>
+                <SparringAnimation />
+              </SportOrbitNode>
 
             </Reveal>
           </div>
