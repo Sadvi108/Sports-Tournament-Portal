@@ -6,141 +6,14 @@ import {
   CreditCard,
   FileSpreadsheet,
   QrCode,
-  ShieldCheck,
   Trophy,
   Users,
   Zap,
-  Activity,
-  BarChart3,
-  Server,
-  Lock,
-  Swords,
-  Dumbbell,
-  Target
+  Activity
 } from 'lucide-react';
 import { Sparkles } from '@/components/ui/sparkles';
 import { Reveal } from '@/components/ui/reveal';
-import dclixLogo from '@/assets/dclix-logo.svg';
-
-// Complex SVG Animations for Sports
-const BoxingAnimation = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">
-    {/* Heavy Bag */}
-    <motion.g
-      animate={{ rotate: [0, 15, -5, 0], x: [0, 5, -2, 0] }}
-      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.4, 1] }}
-      style={{ transformOrigin: "75px 10px" }}
-    >
-      <rect x="65" y="20" width="20" height="50" rx="10" fill="#06b6d4" fillOpacity="0.2" stroke="#06b6d4" strokeWidth="3" />
-      <line x1="75" y1="0" x2="75" y2="20" stroke="#06b6d4" strokeWidth="3" />
-    </motion.g>
-
-    {/* Boxer Body */}
-    <circle cx="30" cy="35" r="8" fill="none" stroke="#06b6d4" strokeWidth="3" />
-    <path d="M30 43 L30 70 M30 70 L20 90 M30 70 L40 90" stroke="#06b6d4" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M30 45 L40 45 L35 35" stroke="#06b6d4" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="35" cy="35" r="5" fill="#06b6d4" />
-    
-    <motion.path 
-      animate={{ d: ["M30 45 L35 55 L40 50", "M30 45 L50 45 L65 45", "M30 45 L35 55 L40 50"] }}
-      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", times: [0, 0.1, 0.5] }}
-      stroke="#06b6d4" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
-    />
-    <motion.circle 
-      r="6" fill="#06b6d4"
-      animate={{ cx: [40, 65, 40], cy: [50, 45, 50] }}
-      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", times: [0, 0.1, 0.5] }}
-    />
-  </svg>
-);
-
-const KarateAnimation = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]">
-    {/* Target Board */}
-    <motion.g
-      animate={{ x: [0, 15, 0], opacity: [1, 0, 1], rotate: [0, 45, 0] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", times: [0, 0.2, 1] }}
-      style={{ transformOrigin: "70px 50px" }}
-    >
-      <rect x="70" y="30" width="6" height="40" fill="#d946ef" rx="2" />
-      <rect x="78" y="30" width="6" height="40" fill="#d946ef" rx="2" />
-    </motion.g>
-
-    {/* Fighter Body */}
-    <circle cx="35" cy="25" r="8" fill="none" stroke="#d946ef" strokeWidth="3" />
-    <path d="M35 33 L35 60" stroke="#d946ef" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-
-    {/* Black Belt */}
-    <path d="M25 55 L45 55 M35 55 L30 65 M35 55 L40 65" stroke="#d946ef" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-
-    {/* Planted Leg */}
-    <path d="M35 60 L35 90 L40 90" stroke="#d946ef" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-
-    {/* Kicking Leg */}
-    <motion.path 
-      animate={{ d: ["M35 60 L45 75 L55 90", "M35 60 L50 45 L70 35", "M35 60 L45 75 L55 90"] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", times: [0, 0.2, 0.6] }}
-      stroke="#d946ef" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
-    />
-    
-    {/* Arms */}
-    <path d="M35 40 L25 45 L25 35 M35 40 L45 45 L50 35" stroke="#d946ef" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-const SparringAnimation = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(20,184,166,0.8)]">
-    {/* Fighter 1 (Left) */}
-    <circle cx="25" cy="35" r="7" fill="none" stroke="#14b8a6" strokeWidth="3" />
-    <path d="M25 42 L25 65 M25 65 L15 90 M25 65 L35 90" stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M25 45 L35 45 L30 35" stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    
-    <motion.path 
-      animate={{ d: ["M25 45 L30 55 L35 50", "M25 45 L45 40 L60 40", "M25 45 L30 55 L35 50"] }}
-      transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.5] }}
-      stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
-    />
-
-    {/* Fighter 2 (Right) */}
-    <motion.g
-      animate={{ x: [0, 10, 0], rotate: [0, 5, 0] }}
-      transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.5] }}
-      style={{ transformOrigin: "75px 90px" }}
-    >
-      <circle cx="75" cy="35" r="7" fill="none" stroke="#14b8a6" strokeWidth="3" />
-      <path d="M75 42 L75 65 M75 65 L65 90 M75 65 L85 90" stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      
-      <motion.path 
-        animate={{ d: ["M75 45 L65 45 L60 55", "M75 45 L65 40 L60 35", "M75 45 L65 45 L60 55"] }}
-        transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.5] }}
-        stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
-      />
-      <path d="M75 45 L70 35 L75 25" stroke="#14b8a6" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    </motion.g>
-  </svg>
-);
-
-const SportOrbitNode = ({ children, color, orbitSize, duration, reverse = false }: { children: React.ReactNode, color: string, orbitSize: number, duration: number, reverse?: boolean }) => {
-  return (
-    <motion.div
-      className="absolute top-1/2 left-1/2 z-20"
-      style={{ width: orbitSize, height: orbitSize, marginLeft: -orbitSize / 2, marginTop: -orbitSize / 2 }}
-      animate={{ rotate: reverse ? -360 : 360 }}
-      transition={{ duration, repeat: Infinity, ease: "linear" }}
-    >
-      <motion.div
-        className="absolute top-0 left-1/2 w-24 h-24 -ml-12 -mt-12 rounded-full border border-white/10 dark:bg-[#0A0A0A]/90 bg-white/90 backdrop-blur-md overflow-hidden flex items-center justify-center shadow-2xl"
-        style={{ boxShadow: `0 0 30px ${color}40, inset 0 0 20px ${color}20` }}
-        animate={{ rotate: reverse ? 360 : -360 }} // Counter-rotate to keep upright
-        transition={{ duration, repeat: Infinity, ease: "linear" }}
-      >
-        <div className="w-16 h-16 relative flex items-center justify-center">
-          {children}
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-};
+import { sports } from '@/utils/sportsData';
 
 export default function HomeTop({ onStartToday }: { onStartToday: () => void }) {
   const features = useMemo(
@@ -248,173 +121,60 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
             </Reveal>
           </div>
 
-          {/* RIGHT: Advanced Animated Ecosystem */}
-          <div className="relative h-[650px] w-full flex items-center justify-center perspective-[1200px]">
-            <Reveal delay={0.4} className="w-full h-full relative">
-              
-              {/* Rotating Background Rings */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full border border-dashed border-[#06b6d4]/30 z-0"
-              />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-dotted border-[#a855f7]/30 z-0"
-              />
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full border border-solid border-[#d946ef]/10 z-0"
-              />
+          {/* RIGHT: Advanced 3D Scrolling Grid of All Sports */}
+          <div className="relative h-[650px] w-full overflow-hidden rounded-3xl flex items-center justify-center pointer-events-none" style={{ perspective: "1000px" }}>
+            
+            {/* Radial mask to fade out edges */}
+            <div className="absolute inset-0 z-20 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_30%,#ffffff_70%)] dark:bg-[radial-gradient(circle_at_center,transparent_30%,#050505_70%)]" />
 
-              {/* Pulsing Aura Rings */}
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={`pulse-${i}`}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full border-2 border-rose-pink/40 z-10"
-                  animate={{ scale: [1, 4.5], opacity: [0.8, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, delay: i * 1.33, ease: "easeOut" }}
-                />
-              ))}
-
-              {/* Center Hub */}
-              <motion.div 
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 rounded-full bg-deep-black border-2 border-[#14b8a6] flex flex-col items-center justify-center z-30 shadow-[0_0_80px_rgba(20,184,166,0.4)]"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <img src={dclixLogo} alt="D-Clix" className="w-28 h-28 relative z-10" />
-                <motion.div 
-                  className="absolute inset-0 rounded-full border-4 border-t-transparent border-[#06b6d4] opacity-50"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                />
-              </motion.div>
-
-              {/* Connecting Lines (Curved SVG) */}
-              <svg className="absolute inset-0 w-full h-full z-10" style={{ filter: 'drop-shadow(0 0 12px rgba(225,29,72,0.4))' }}>
-                <motion.path 
-                  d="M 50% 50% Q 20% 50% 20% 15%" 
-                  stroke="#06b6d4" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
-                  initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
-                />
-                <motion.path 
-                  d="M 50% 50% Q 80% 50% 80% 15%" 
-                  stroke="#a855f7" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
-                  initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 0.8, ease: "easeInOut" }}
-                />
-                <motion.path 
-                  d="M 50% 50% Q 20% 50% 20% 85%" 
-                  stroke="#d946ef" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
-                  initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 1.1, ease: "easeInOut" }}
-                />
-                <motion.path 
-                  d="M 50% 50% Q 80% 50% 80% 85%" 
-                  stroke="#14b8a6" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
-                  initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 1.4, ease: "easeInOut" }}
-                />
-              </svg>
-
-              {/* Floating Feature Node 1: Optimized Flow */}
-              <motion.div 
-                className="absolute top-[5%] left-[2%] dark-card bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl p-4 rounded-3xl border border-[#06b6d4]/20 shadow-[0_0_30px_rgba(6,182,212,0.15)] z-30 w-60 flex items-center gap-4"
-                initial={{ opacity: 0, scale: 0.8, x: 40 }}
-                animate={{ opacity: 1, scale: 1, x: 0, y: [0, -15, 0] }}
-                transition={{ 
-                  opacity: { duration: 0.8, delay: 0.8 },
-                  scale: { type: "spring", stiffness: 100, delay: 0.8 },
-                  y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0 }
-                }}
-                whileHover={{ scale: 1.05, rotateY: 10, rotateX: -10 }}
-              >
-                <div className="w-12 h-12 rounded-2xl bg-[#06b6d4]/20 text-[#06b6d4] flex items-center justify-center shrink-0">
-                  <Zap className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold text-[#06b6d4] uppercase tracking-widest mb-0.5">Optimized Flow</div>
-                  <div className="text-sm font-semibold dark:text-white text-dark-gray leading-tight">Streamlined Operations</div>
-                </div>
-              </motion.div>
-
-              {/* Floating Feature Node 2: Actionable Insights */}
-              <motion.div 
-                className="absolute top-[5%] right-[2%] dark-card bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl p-4 rounded-3xl border border-[#a855f7]/20 shadow-[0_0_30px_rgba(168,85,247,0.15)] z-30 w-60 flex items-center gap-4"
-                initial={{ opacity: 0, scale: 0.8, x: -40 }}
-                animate={{ opacity: 1, scale: 1, x: 0, y: [0, 15, 0] }}
-                transition={{ 
-                  opacity: { duration: 0.8, delay: 1.1 },
-                  scale: { type: "spring", stiffness: 100, delay: 1.1 },
-                  y: { duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1 }
-                }}
-                whileHover={{ scale: 1.05, rotateY: -10, rotateX: -10 }}
-              >
-                <div className="w-12 h-12 rounded-2xl bg-[#a855f7]/20 text-[#a855f7] flex items-center justify-center shrink-0">
-                  <BarChart3 className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold text-[#a855f7] uppercase tracking-widest mb-0.5">Actionable Insights</div>
-                  <div className="text-sm font-semibold dark:text-white text-dark-gray leading-tight">Data Management</div>
-                </div>
-              </motion.div>
-
-              {/* Floating Feature Node 3: Vibrant Community */}
-              <motion.div 
-                className="absolute bottom-[5%] left-[2%] dark-card bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl p-4 rounded-3xl border border-[#d946ef]/20 shadow-[0_0_30px_rgba(217,70,239,0.15)] z-30 w-60 flex items-center gap-4"
-                initial={{ opacity: 0, scale: 0.8, x: 40 }}
-                animate={{ opacity: 1, scale: 1, x: 0, y: [0, -12, 0] }}
-                transition={{ 
-                  opacity: { duration: 0.8, delay: 1.4 },
-                  scale: { type: "spring", stiffness: 100, delay: 1.4 },
-                  y: { duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
-                }}
-                whileHover={{ scale: 1.05, rotateY: 10, rotateX: 10 }}
-              >
-                <div className="w-12 h-12 rounded-2xl bg-[#d946ef]/20 text-[#d946ef] flex items-center justify-center shrink-0">
-                  <Users className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold text-[#d946ef] uppercase tracking-widest mb-0.5">Vibrant Community</div>
-                  <div className="text-sm font-semibold dark:text-white text-dark-gray leading-tight">Enhanced Experience</div>
-                </div>
-              </motion.div>
-
-              {/* Floating Feature Node 4: Seamless Growth */}
-              <motion.div 
-                className="absolute bottom-[5%] right-[2%] dark-card bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl p-4 rounded-3xl border border-[#14b8a6]/20 shadow-[0_0_30px_rgba(20,184,166,0.15)] z-30 w-60 flex items-center gap-4"
-                initial={{ opacity: 0, scale: 0.8, x: -40 }}
-                animate={{ opacity: 1, scale: 1, x: 0, y: [0, 18, 0] }}
-                transition={{ 
-                  opacity: { duration: 0.8, delay: 1.7 },
-                  scale: { type: "spring", stiffness: 100, delay: 1.7 },
-                  y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }
-                }}
-                whileHover={{ scale: 1.05, rotateY: -10, rotateX: 10 }}
-              >
-                <div className="w-12 h-12 rounded-2xl bg-[#14b8a6]/20 text-[#14b8a6] flex items-center justify-center shrink-0">
-                  <Server className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold text-[#14b8a6] uppercase tracking-widest mb-0.5">Seamless Growth</div>
-                  <div className="text-sm font-semibold dark:text-white text-dark-gray leading-tight">Scalability & Security</div>
-                </div>
-              </motion.div>
-
-              {/* Orbiting Sports Characters */}
-              <SportOrbitNode color="#d946ef" orbitSize={350} duration={15}>
-                <KarateAnimation />
-              </SportOrbitNode>
-              
-              <SportOrbitNode color="#06b6d4" orbitSize={500} duration={22} reverse={true}>
-                <BoxingAnimation />
-              </SportOrbitNode>
-              
-              <SportOrbitNode color="#14b8a6" orbitSize={650} duration={30}>
-                <SparringAnimation />
-              </SportOrbitNode>
-
-            </Reveal>
+            {/* Inner 3D Container */}
+            <div 
+              className="absolute flex gap-6"
+              style={{
+                transform: "rotateX(55deg) rotateZ(-40deg)",
+                transformStyle: "preserve-3d",
+                width: "150%",
+                height: "200%",
+                top: "-50%",
+                left: "-25%",
+              }}
+            >
+              {/* 3 Infinite Scrolling Columns */}
+              {[0, 1, 2].map((colIndex) => {
+                // Take 6 sports per column
+                const columnSports = sports.slice(colIndex * 6, (colIndex + 1) * 6);
+                // Duplicate multiple times for seamless scrolling
+                const infiniteSports = [...columnSports, ...columnSports, ...columnSports, ...columnSports];
+                const isReverse = colIndex % 2 !== 0;
+                
+                return (
+                  <motion.div 
+                    key={colIndex}
+                    className="flex flex-col gap-6"
+                    animate={{
+                      y: isReverse ? ["-50%", "0%"] : ["0%", "-50%"]
+                    }}
+                    transition={{
+                      duration: 25 + colIndex * 5, // different speeds
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                  >
+                    {infiniteSports.map((sport, i) => (
+                      <div 
+                        key={`${sport.id}-${i}`}
+                        className="w-40 h-40 shrink-0 bg-white dark:bg-[#121212] rounded-3xl border border-gray-100 dark:border-white/5 shadow-[0_20px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.8)] flex flex-col items-center justify-center gap-4 transition-all"
+                      >
+                        <div className="w-16 h-16 rounded-2xl bg-rose-pink/5 flex items-center justify-center text-rose-pink border border-rose-pink/10 shadow-[inset_0_0_20px_rgba(225,29,72,0.05)] dark:shadow-[inset_0_0_20px_rgba(225,29,72,0.1)]">
+                          <sport.icon className="w-8 h-8" />
+                        </div>
+                        <div className="text-dark-gray dark:text-white text-xs font-bold uppercase tracking-widest">{sport.name}</div>
+                      </div>
+                    ))}
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
