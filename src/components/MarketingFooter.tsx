@@ -7,7 +7,7 @@ export default function MarketingFooter() {
     <footer className="border-t border-gray-100 dark:border-white/5 bg-white dark:bg-deep-black transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div className="space-y-4">
-          <div className="text-2xl font-black tracking-tighter dark:text-white text-dark-gray">D-Clix</div>
+          <div className="text-2xl font-semibold tracking-tight dark:text-white text-dark-gray">D-Clix</div>
           <div className="text-sm text-muted-gray font-medium">
             Grow revenue and streamline your club with a modern, reliable club management system.
           </div>
@@ -25,7 +25,7 @@ export default function MarketingFooter() {
         </div>
 
         <div className="space-y-4">
-          <div className="text-sm font-black uppercase tracking-[0.2em] text-muted-gray">Contact</div>
+          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-gray">Contact</div>
           <div className="flex items-start gap-3 text-sm">
             <Phone className="w-5 h-5 text-rose-pink mt-0.5" />
             <div className="dark:text-white text-dark-gray font-bold">+603-7804 1412</div>
@@ -39,7 +39,7 @@ export default function MarketingFooter() {
         </div>
 
         <div className="space-y-4">
-          <div className="text-sm font-black uppercase tracking-[0.2em] text-muted-gray">Links</div>
+          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-gray">Links</div>
           <div className="grid grid-cols-2 gap-3">
             <Link className="text-sm font-bold text-muted-gray hover:text-rose-pink transition-colors" to="/">Home</Link>
             <Link className="text-sm font-bold text-muted-gray hover:text-rose-pink transition-colors" to="/about-dclix">About</Link>
@@ -58,7 +58,7 @@ export default function MarketingFooter() {
       <div className="border-t border-gray-100 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-6 py-6 text-xs text-muted-gray flex flex-col md:flex-row items-center justify-between gap-3">
           <div>© 2025 by Raig Technologies (M) Sdn Bhd</div>
-          <div className="font-black uppercase tracking-[0.2em]">D-Clix Club Management System</div>
+          <div className="font-semibold uppercase tracking-[0.2em]">D-Clix Club Management System</div>
         </div>
       </div>
     </footer>

@@ -67,8 +67,8 @@ export default function Referral() {
           <div className="max-w-6xl mx-auto space-y-10">
             <Reveal>
               <div className="text-center space-y-4">
-                <div className="text-rose-pink text-xs font-black uppercase tracking-[0.2em]">D-Clix Referral Program</div>
-                <h1 className="text-5xl font-black tracking-tighter dark:text-white text-dark-gray">Referral Program</h1>
+                <div className="text-rose-pink text-xs font-semibold uppercase tracking-[0.2em]">D-Clix Referral Program</div>
+                <h1 className="text-5xl font-semibold tracking-tight dark:text-white text-dark-gray">Referral Program</h1>
                 <p className="text-muted-gray text-lg font-medium max-w-3xl mx-auto">
                   Designed to onboard referral partners/agents with clear visuals that explain how rewards work.
                 </p>
@@ -79,7 +79,7 @@ export default function Referral() {
               <div className="dark-card bg-white dark:bg-white/5 overflow-hidden">
                 <div className="p-6 flex items-center justify-between gap-4 border-b border-gray-100 dark:border-white/5">
                   <div className="space-y-1">
-                    <div className="text-xl font-black tracking-tighter dark:text-white text-dark-gray">{current.title}</div>
+                    <div className="text-xl font-semibold tracking-tight dark:text-white text-dark-gray">{current.title}</div>
                     <div className="text-muted-gray font-medium">{current.subtitle}</div>
                   </div>
                   <div className="flex items-center gap-3">

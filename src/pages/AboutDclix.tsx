@@ -17,7 +17,7 @@ export default function AboutDclix() {
             {/* Left Content */}
             <div className="space-y-8 order-2 lg:order-1">
               <Reveal>
-                <h1 className="text-5xl md:text-6xl font-black tracking-tighter dark:text-white text-dark-gray">
+                <h1 className="text-5xl md:text-6xl font-semibold tracking-tight dark:text-white text-dark-gray">
                   About Us
                 </h1>
               </Reveal>
@@ -60,7 +60,7 @@ export default function AboutDclix() {
                     <div className="absolute bottom-0 w-full h-1/3 bg-white/5 backdrop-blur-md"></div>
                   </div>
 
-                  <h3 className="text-xl font-black dark:text-white text-dark-gray tracking-tight mb-3">
+                  <h3 className="text-xl font-semibold dark:text-white text-dark-gray tracking-tight mb-3">
                     Welcome to Martial Arts<br />Club App
                   </h3>
                   <p className="text-sm text-muted-gray mb-8 leading-relaxed">
@@ -91,8 +91,8 @@ export default function AboutDclix() {
             {/* Left Content */}
             <div className="space-y-8">
               <Reveal>
-                <div className="text-rose-pink font-black text-xl tracking-tight mb-4">In Depth</div>
-                <h2 className="text-5xl md:text-6xl font-black tracking-tighter dark:text-white text-dark-gray leading-[1.1]">
+                <div className="text-rose-pink font-semibold text-xl tracking-tight mb-4">In Depth</div>
+                <h2 className="text-5xl md:text-6xl font-semibold tracking-tight dark:text-white text-dark-gray leading-[1.1]">
                   Management<br />
                   Tools To Manage<br />
                   Your Club To Full<br />
@@ -193,14 +193,14 @@ export default function AboutDclix() {
                                 Total orders
                                 <span className="bg-rose-pink/10 text-rose-pink px-1 py-0.5 rounded text-[6px]">-6.8%</span>
                               </div>
-                              <div className="text-sm font-black dark:text-white text-dark-gray">16,247</div>
+                              <div className="text-sm font-semibold dark:text-white text-dark-gray">16,247</div>
                             </div>
                             <div className="flex-1 border border-gray-100 dark:border-white/5 rounded-lg p-3">
                               <div className="text-[9px] font-bold text-muted-gray mb-1 flex items-center gap-2">
                                 New customers
                                 <span className="bg-green-500/10 text-green-500 px-1 py-0.5 rounded text-[6px]">+26.5%</span>
                               </div>
-                              <div className="text-sm font-black dark:text-white text-dark-gray">3,492</div>
+                              <div className="text-sm font-semibold dark:text-white text-dark-gray">3,492</div>
                             </div>
                           </div>
                           

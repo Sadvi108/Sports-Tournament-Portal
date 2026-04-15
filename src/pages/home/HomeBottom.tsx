@@ -84,7 +84,7 @@ export default function HomeBottom({ onStartToday }: { onStartToday: () => void 
         <div className="max-w-7xl mx-auto space-y-10">
           <Reveal>
             <div className="text-center space-y-3">
-              <div className="text-4xl font-black tracking-tighter dark:text-white text-dark-gray">Dashboard Preview</div>
+              <div className="text-4xl font-semibold tracking-tight dark:text-white text-dark-gray">Dashboard Preview</div>
               <div className="text-muted-gray text-lg font-medium">A visual, data-rich web dashboard experience for modern club operations</div>
             </div>
           </Reveal>
@@ -110,7 +110,7 @@ export default function HomeBottom({ onStartToday }: { onStartToday: () => void 
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent dark:from-black/70 dark:via-black/30" />
                 </div>
                 <div className="p-12 lg:p-14 space-y-6">
-                  <div className="text-3xl font-black tracking-tighter dark:text-white text-dark-gray">Smarter Decisions, Better Results</div>
+                  <div className="text-3xl font-semibold tracking-tight dark:text-white text-dark-gray">Smarter Decisions, Better Results</div>
                   <div className="text-muted-gray text-lg font-medium leading-relaxed">
                     Track performance, retain members, and boost profits with simple, reliable reporting. Our user-friendly dashboard gives you a 360° view of schedules,
                     transactions, and performance—all in one place.
@@ -127,7 +127,7 @@ export default function HomeBottom({ onStartToday }: { onStartToday: () => void 
             <div className="dark-card bg-white dark:bg-white/5 overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="p-12 lg:p-14 space-y-6 order-2 lg:order-1">
-                  <div className="text-3xl font-black tracking-tighter dark:text-white text-dark-gray">
+                  <div className="text-3xl font-semibold tracking-tight dark:text-white text-dark-gray">
                     Get a system that's <span className="text-rose-pink">easy to use</span>
                   </div>
                   <div className="text-muted-gray text-lg font-medium leading-relaxed">
@@ -162,7 +162,7 @@ export default function HomeBottom({ onStartToday }: { onStartToday: () => void 
         <div className="max-w-7xl mx-auto space-y-12">
           <Reveal>
             <div className="text-center space-y-3">
-              <div className="text-4xl font-black tracking-tighter dark:text-white text-dark-gray">Trusted by Clubs</div>
+              <div className="text-4xl font-semibold tracking-tight dark:text-white text-dark-gray">Trusted by Clubs</div>
               <div className="text-muted-gray text-lg font-medium">What club leaders say about D-Clix</div>
             </div>
           </Reveal>
@@ -191,8 +191,8 @@ export default function HomeBottom({ onStartToday }: { onStartToday: () => void 
                       <img src={t.img} alt={`${t.name} avatar`} className="w-full h-full object-cover" />
                     </div>
                     <div>
-                      <div className="font-black dark:text-white text-dark-gray">{t.name}</div>
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-gray">Club Leader</div>
+                      <div className="font-semibold dark:text-white text-dark-gray">{t.name}</div>
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-gray">Club Leader</div>
                     </div>
                   </div>
                   <div className="text-muted-gray text-sm font-medium leading-relaxed">“{t.quote}”</div>
@@ -207,7 +207,7 @@ export default function HomeBottom({ onStartToday }: { onStartToday: () => void 
         <div className="max-w-5xl mx-auto space-y-10">
           <Reveal>
             <div className="text-center space-y-3">
-              <div className="text-4xl font-black tracking-tighter dark:text-white text-dark-gray">FAQ</div>
+              <div className="text-4xl font-semibold tracking-tight dark:text-white text-dark-gray">FAQ</div>
               <div className="text-muted-gray text-lg font-medium">Common questions about D-Clix</div>
             </div>
           </Reveal>
@@ -219,7 +219,7 @@ export default function HomeBottom({ onStartToday }: { onStartToday: () => void 
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           <Reveal>
             <div className="space-y-4">
-              <div className="text-4xl font-black tracking-tighter dark:text-white text-dark-gray">Fill in your details and let our expert reach you.</div>
+              <div className="text-4xl font-semibold tracking-tight dark:text-white text-dark-gray">Fill in your details and let our expert reach you.</div>
               <div className="text-muted-gray text-lg font-medium">Tell us about your club and your inquiries. We'll respond with the best setup path.</div>
             </div>
           </Reveal>

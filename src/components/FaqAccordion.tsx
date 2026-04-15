@@ -18,7 +18,7 @@ export default function FaqAccordion({ items }: { items: FaqItem[] }) {
               onClick={() => setOpen((v) => (v === idx ? null : idx))}
               className="w-full flex items-center justify-between gap-6 p-6 text-left"
             >
-              <div className="font-black dark:text-white text-dark-gray">{it.q}</div>
+              <div className="font-semibold dark:text-white text-dark-gray">{it.q}</div>
               <ChevronDown className={isOpen ? 'w-5 h-5 text-rose-pink rotate-180 transition-transform' : 'w-5 h-5 text-muted-gray transition-transform'} />
             </button>
             <AnimatePresence initial={false}>

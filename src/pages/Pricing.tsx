@@ -83,8 +83,8 @@ export default function Pricing() {
           <div className="max-w-6xl mx-auto space-y-10">
             <Reveal>
               <div className="text-center space-y-4">
-                  <div className="text-rose-pink text-xs font-black uppercase tracking-[0.2em]">D-CLIX Subscription Plan</div>
-                  <h1 className="text-5xl font-black tracking-tighter dark:text-white text-dark-gray">Tailored for Your Needs: Optimal Value with Every Plan</h1>
+                  <div className="text-rose-pink text-xs font-semibold uppercase tracking-[0.2em]">D-CLIX Subscription Plan</div>
+                  <h1 className="text-5xl font-semibold tracking-tight dark:text-white text-dark-gray">Tailored for Your Needs: Optimal Value with Every Plan</h1>
                 </div>
             </Reveal>
 
@@ -94,8 +94,8 @@ export default function Pricing() {
                   onClick={() => setBilling('monthly')}
                   className={
                     billing === 'monthly'
-                      ? 'px-5 py-2 rounded-full bg-rose-pink text-white font-black text-sm'
-                      : 'px-5 py-2 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-muted-gray font-black text-sm'
+                      ? 'px-5 py-2 rounded-full bg-rose-pink text-white font-semibold text-sm'
+                      : 'px-5 py-2 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-muted-gray font-semibold text-sm'
                   }
                 >
                   Monthly
@@ -104,8 +104,8 @@ export default function Pricing() {
                   onClick={() => setBilling('yearly')}
                   className={
                     billing === 'yearly'
-                      ? 'px-5 py-2 rounded-full bg-rose-pink text-white font-black text-sm'
-                      : 'px-5 py-2 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-muted-gray font-black text-sm'
+                      ? 'px-5 py-2 rounded-full bg-rose-pink text-white font-semibold text-sm'
+                      : 'px-5 py-2 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-muted-gray font-semibold text-sm'
                   }
                 >
                   Yearly
@@ -124,10 +124,10 @@ export default function Pricing() {
                     }
                   >
                     <div className="space-y-2">
-                      <div className="text-sm font-black uppercase tracking-[0.2em] text-rose-pink">{p.name}</div>
-                      <div className="text-4xl font-black tracking-tighter dark:text-white text-dark-gray flex items-baseline gap-1">
+                      <div className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-pink">{p.name}</div>
+                      <div className="text-4xl font-semibold tracking-tight dark:text-white text-dark-gray flex items-baseline gap-1">
                         {billing === 'monthly' ? p.priceMonthly : p.priceYearly}
-                        <span className="text-sm text-muted-gray font-black">/{billing === 'monthly' ? 'month' : 'Year'}</span>
+                        <span className="text-sm text-muted-gray font-semibold">/{billing === 'monthly' ? 'month' : 'Year'}</span>
                       </div>
                       
                       {billing === 'yearly' && (
@@ -152,8 +152,8 @@ export default function Pricing() {
 
                     <div className="mt-8 pt-6 border-t border-gray-100 dark:border-white/10 text-center space-y-1">
                       <div className="text-xs font-bold text-muted-gray uppercase tracking-wider">Monthly Subscription</div>
-                      <div className="text-sm font-black dark:text-white text-dark-gray">Gateway Payment Fee Per Online Payment</div>
-                      <div className="text-sm font-black text-rose-pink">RM 1.20</div>
+                      <div className="text-sm font-semibold dark:text-white text-dark-gray">Gateway Payment Fee Per Online Payment</div>
+                      <div className="text-sm font-semibold text-rose-pink">RM 1.20</div>
                     </div>
 
                     <button className="rose-btn-primary w-full mt-8">Select Plan</button>

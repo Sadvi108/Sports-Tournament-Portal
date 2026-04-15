@@ -13,8 +13,8 @@ export default {
         'warm-olive': '#1a1a0a',
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['Outfit', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['DM Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['DM Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'hero-gradient': 'linear-gradient(to bottom right, #000000, #1a1a0a)',

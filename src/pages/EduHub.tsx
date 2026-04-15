@@ -78,8 +78,8 @@ export default function EduHub() {
           <div className="max-w-6xl mx-auto space-y-12">
             <Reveal>
               <div className="space-y-4 text-center">
-                <div className="text-rose-pink text-xs font-black uppercase tracking-[0.2em]">D-Clix Edu-Hub</div>
-                <h1 className="text-5xl font-black tracking-tighter dark:text-white text-dark-gray">Learn and More</h1>
+                <div className="text-rose-pink text-xs font-semibold uppercase tracking-[0.2em]">D-Clix Edu-Hub</div>
+                <h1 className="text-5xl font-semibold tracking-tight dark:text-white text-dark-gray">Learn and More</h1>
                 <p className="text-muted-gray text-lg font-medium max-w-3xl mx-auto">
                   D-Clix Edu-Hub is a self-learning portal with on-demand access to guides, training, and best practices to help you run your club digitally.
                 </p>
@@ -93,7 +93,7 @@ export default function EduHub() {
                     <div className="w-12 h-12 rounded-2xl bg-rose-pink/10 border border-rose-pink/20 text-rose-pink flex items-center justify-center">
                       <c.icon className="w-6 h-6" />
                     </div>
-                    <div className="text-2xl font-black tracking-tighter dark:text-white text-dark-gray">{c.title}</div>
+                    <div className="text-2xl font-semibold tracking-tight dark:text-white text-dark-gray">{c.title}</div>
                     <div className="text-muted-gray font-medium leading-relaxed">{c.desc}</div>
                   </div>
                 </Reveal>
@@ -103,7 +103,7 @@ export default function EduHub() {
             <Reveal delay={0.06}>
               <div className="dark-card bg-white dark:bg-white/5 p-12 border-l-8 border-rose-pink flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
                 <div className="space-y-2">
-                  <div className="text-3xl font-black tracking-tighter dark:text-white text-dark-gray">Downloadable PDF Guide</div>
+                  <div className="text-3xl font-semibold tracking-tight dark:text-white text-dark-gray">Downloadable PDF Guide</div>
                   <div className="text-muted-gray font-medium">
                     “Elevate Your Club: A Comprehensive Guide to D-Clix” – a concise PDF you can share with your team.
                   </div>

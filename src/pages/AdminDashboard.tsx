@@ -29,7 +29,7 @@ const AdminDashboard: React.FC = () => {
         {/* Header Section */}
         <div className="flex justify-between items-start">
           <div className="space-y-2">
-            <h1 className="text-5xl font-black tracking-tighter dark:text-white text-dark-gray">
+            <h1 className="text-5xl font-semibold tracking-tight dark:text-white text-dark-gray">
               Welcome, <span className="text-rose-pink">callmesadvi</span>
             </h1>
             <p className="text-muted-gray text-lg font-medium">
@@ -54,7 +54,7 @@ const AdminDashboard: React.FC = () => {
             >
               <div className="space-y-1">
                 <p className="text-xs font-bold uppercase tracking-widest text-muted-gray">{card.label}</p>
-                <p className="text-3xl font-black dark:text-white text-dark-gray">{card.value}</p>
+                <p className="text-3xl font-semibold dark:text-white text-dark-gray">{card.value}</p>
               </div>
               <div className="p-3 rounded-xl bg-rose-pink/10 text-rose-pink">
                 <card.icon className="w-6 h-6" />
@@ -72,7 +72,7 @@ const AdminDashboard: React.FC = () => {
                   <Trophy className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black dark:text-white text-dark-gray uppercase tracking-tighter">Tournament Registrations</h3>
+                  <h3 className="text-2xl font-semibold dark:text-white text-dark-gray uppercase tracking-tight">Tournament Registrations</h3>
                   <p className="text-muted-gray text-sm">Your active tournament registrations</p>
                 </div>
               </div>
@@ -96,7 +96,7 @@ const AdminDashboard: React.FC = () => {
                 <div className="p-3 rounded-xl bg-rose-pink/10 text-rose-pink">
                   <User className="w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-black dark:text-white text-dark-gray uppercase tracking-tighter">Player Info</h3>
+                <h3 className="text-2xl font-semibold dark:text-white text-dark-gray uppercase tracking-tight">Player Info</h3>
               </div>
 
               <div className="space-y-8">
@@ -107,7 +107,7 @@ const AdminDashboard: React.FC = () => {
                   { label: 'Player ID', value: 'temp_1759206511443', icon: Hash },
                 ].map((info) => (
                   <div key={info.label} className="space-y-2">
-                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-muted-gray">
+                    <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-gray">
                       <info.icon className="w-3 h-3 text-rose-pink" />
                       {info.label}
                     </div>

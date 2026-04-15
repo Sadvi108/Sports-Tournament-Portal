@@ -159,7 +159,7 @@ const WatchLive: React.FC = () => {
               <sport.icon className="w-8 h-8" />
             </div>
             <div>
-              <h1 className="text-4xl font-black tracking-tighter dark:text-white text-dark-gray uppercase">
+              <h1 className="text-4xl font-semibold tracking-tight dark:text-white text-dark-gray uppercase">
                 {sport.name} <span className="text-rose-pink italic">Live</span>
               </h1>
               <p className="text-muted-gray font-medium uppercase text-xs tracking-widest">Tournament Watch Center</p>
@@ -171,7 +171,7 @@ const WatchLive: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center space-x-2 px-6 py-2.5 rounded-xl transition-all font-black text-[10px] uppercase tracking-widest ${
+                className={`flex items-center space-x-2 px-6 py-2.5 rounded-xl transition-all font-semibold text-[10px] uppercase tracking-widest ${
                   activeTab === tab.id 
                   ? 'bg-rose-pink text-white shadow-lg shadow-rose-pink/20' 
                   : 'text-muted-gray hover:text-rose-pink'
@@ -213,8 +213,8 @@ const WatchLive: React.FC = () => {
               className="space-y-6"
             >
               <div className="flex items-center justify-between px-2">
-                <h3 className="text-xl font-black uppercase tracking-tighter dark:text-white text-dark-gray">Upcoming Bouts</h3>
-                <div className="text-[10px] font-black uppercase tracking-widest text-muted-gray bg-white dark:bg-white/5 px-4 py-2 rounded-full border border-gray-200 dark:border-white/10">
+                <h3 className="text-xl font-semibold uppercase tracking-tight dark:text-white text-dark-gray">Upcoming Bouts</h3>
+                <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-gray bg-white dark:bg-white/5 px-4 py-2 rounded-full border border-gray-200 dark:border-white/10">
                   Today, {new Date().toLocaleDateString('en-MY', { day: 'numeric', month: 'long' })}
                 </div>
               </div>
@@ -225,11 +225,11 @@ const WatchLive: React.FC = () => {
                     <div className="flex items-center gap-6">
                       <div className="flex flex-col items-center justify-center w-20 h-20 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 group-hover:bg-rose-pink/5 transition-all">
                         <Clock className="w-5 h-5 text-rose-pink mb-1" />
-                        <span className="text-sm font-black dark:text-white text-dark-gray font-mono tracking-tighter">{match.startTime}</span>
+                        <span className="text-sm font-semibold dark:text-white text-dark-gray font-mono tracking-tight">{match.startTime}</span>
                       </div>
                       <div className="space-y-1">
-                        <div className="text-[10px] font-black text-rose-pink uppercase tracking-[0.2em]">{match.category}</div>
-                        <h4 className="text-lg font-black dark:text-white text-dark-gray leading-tight uppercase tracking-tighter">
+                        <div className="text-[10px] font-semibold text-rose-pink uppercase tracking-[0.2em]">{match.category}</div>
+                        <h4 className="text-lg font-semibold dark:text-white text-dark-gray leading-tight uppercase tracking-tight">
                           {match.player1.name} <span className="text-rose-pink/30 mx-1">VS</span> {match.player2.name}
                         </h4>
                         <div className="flex items-center gap-4 text-[10px] font-bold text-muted-gray uppercase tracking-widest">
@@ -259,13 +259,13 @@ const WatchLive: React.FC = () => {
                   {[1, 2, 3, 4].map(i => (
                     <div key={i} className="w-56 p-4 bg-gray-50 dark:bg-white/5 border-l-4 border-rose-pink rounded-xl shadow-md space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="text-[10px] font-black uppercase tracking-widest dark:text-white text-dark-gray">Player A{i}</span>
-                        <span className="text-sm font-black text-rose-pink">10</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-widest dark:text-white text-dark-gray">Player A{i}</span>
+                        <span className="text-sm font-semibold text-rose-pink">10</span>
                       </div>
                       <div className="h-px w-full bg-gray-200 dark:bg-white/10" />
                       <div className="flex justify-between items-center opacity-50">
-                        <span className="text-[10px] font-black uppercase tracking-widest dark:text-white text-dark-gray">Player B{i}</span>
-                        <span className="text-sm font-black">8</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-widest dark:text-white text-dark-gray">Player B{i}</span>
+                        <span className="text-sm font-semibold">8</span>
                       </div>
                     </div>
                   ))}
@@ -291,8 +291,8 @@ const WatchLive: React.FC = () => {
                   <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
                   <div className="relative z-10">
                     <Trophy className="w-16 h-16 text-white mx-auto mb-4 group-hover:scale-110 transition-transform duration-500" />
-                    <h4 className="text-white font-black text-2xl uppercase tracking-tighter">Grand Final</h4>
-                    <p className="text-white/60 text-[10px] font-black uppercase tracking-[0.2em] mt-2">Coming Soon</p>
+                    <h4 className="text-white font-semibold text-2xl uppercase tracking-tight">Grand Final</h4>
+                    <p className="text-white/60 text-[10px] font-semibold uppercase tracking-[0.2em] mt-2">Coming Soon</p>
                   </div>
                 </div>
               </div>
@@ -317,11 +317,11 @@ const WatchLive: React.FC = () => {
                     <Award className="w-10 h-10" />
                   </div>
                   <div className="space-y-2">
-                    <h4 className="text-[10px] font-black text-rose-pink uppercase tracking-[0.2em]">{win.name}</h4>
-                    <h3 className="text-3xl font-black dark:text-white text-dark-gray uppercase tracking-tighter">{win.winner}</h3>
+                    <h4 className="text-[10px] font-semibold text-rose-pink uppercase tracking-[0.2em]">{win.name}</h4>
+                    <h3 className="text-3xl font-semibold dark:text-white text-dark-gray uppercase tracking-tight">{win.winner}</h3>
                     <p className="text-xs font-bold text-muted-gray uppercase tracking-widest">{win.club}</p>
                   </div>
-                  <div className="flex items-center gap-2 text-rose-pink font-black text-xs uppercase tracking-widest">
+                  <div className="flex items-center gap-2 text-rose-pink font-semibold text-xs uppercase tracking-widest">
                     <Star className="w-4 h-4 fill-rose-pink" /> 1st PLACE GOLD <Star className="w-4 h-4 fill-rose-pink" />
                   </div>
                 </div>
@@ -337,35 +337,35 @@ const WatchLive: React.FC = () => {
 const MatchCard: React.FC<{ match: Match }> = ({ match }) => (
   <div className="dark-card overflow-hidden bg-white dark:bg-white/5 shadow-2xl dark:shadow-none">
     <div className="bg-gray-50 dark:bg-white/5 px-8 py-4 flex justify-between items-center border-b border-gray-100 dark:border-white/5">
-      <span className="text-[10px] font-black text-rose-pink tracking-[0.2em] uppercase">{match.category}</span>
-      <span className="text-[10px] font-black bg-rose-pink text-white px-4 py-1.5 rounded-full uppercase tracking-widest">{match.court}</span>
+      <span className="text-[10px] font-semibold text-rose-pink tracking-[0.2em] uppercase">{match.category}</span>
+      <span className="text-[10px] font-semibold bg-rose-pink text-white px-4 py-1.5 rounded-full uppercase tracking-widest">{match.court}</span>
     </div>
     
     <div className="p-10 flex items-center justify-between">
       <div className="flex flex-col items-center flex-1 space-y-4">
         <div className="w-24 h-24 rounded-full bg-rose-pink/5 border-2 border-rose-pink flex items-center justify-center relative shadow-lg shadow-rose-pink/10">
           <Users className="w-10 h-10 text-rose-pink" />
-          <div className="absolute -top-3 -right-3 bg-rose-pink text-white text-[10px] font-black px-3 py-1.5 rounded-lg shadow-md">RED</div>
+          <div className="absolute -top-3 -right-3 bg-rose-pink text-white text-[10px] font-semibold px-3 py-1.5 rounded-lg shadow-md">RED</div>
         </div>
         <div className="text-center">
-          <h3 className="font-black text-xl dark:text-white text-dark-gray leading-tight uppercase tracking-tighter">{match.player1.name}</h3>
+          <h3 className="font-semibold text-xl dark:text-white text-dark-gray leading-tight uppercase tracking-tight">{match.player1.name}</h3>
           <p className="text-[10px] font-bold text-muted-gray uppercase tracking-widest mt-1">{match.player1.club}</p>
         </div>
       </div>
 
       <div className="flex flex-col items-center px-12 space-y-6">
         <div className="flex items-center gap-6">
-          <span className="text-7xl font-black dark:text-white text-dark-gray tabular-nums tracking-tighter">{match.player1.score}</span>
-          <span className="text-3xl font-black text-rose-pink/20">:</span>
-          <span className="text-7xl font-black dark:text-white text-dark-gray tabular-nums tracking-tighter">{match.player2.score}</span>
+          <span className="text-7xl font-semibold dark:text-white text-dark-gray tabular-nums tracking-tight">{match.player1.score}</span>
+          <span className="text-3xl font-semibold text-rose-pink/20">:</span>
+          <span className="text-7xl font-semibold dark:text-white text-dark-gray tabular-nums tracking-tight">{match.player2.score}</span>
         </div>
         <div className="flex flex-col items-center space-y-2">
-          <div className="px-4 py-1 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-black uppercase tracking-[0.2em] animate-pulse">
+          <div className="px-4 py-1 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-semibold uppercase tracking-[0.2em] animate-pulse">
             {match.status}
           </div>
           <div className="flex items-center gap-2 text-muted-gray">
             <Timer className="w-4 h-4" />
-            <span className="text-lg font-black font-mono tracking-widest">{match.time}</span>
+            <span className="text-lg font-semibold font-mono tracking-widest">{match.time}</span>
           </div>
         </div>
       </div>
@@ -373,10 +373,10 @@ const MatchCard: React.FC<{ match: Match }> = ({ match }) => (
       <div className="flex flex-col items-center flex-1 space-y-4">
         <div className="w-24 h-24 rounded-full bg-blue-500/5 border-2 border-blue-500 flex items-center justify-center relative shadow-lg shadow-blue-500/10">
           <Users className="w-10 h-10 text-blue-500" />
-          <div className="absolute -top-3 -right-3 bg-blue-500 text-white text-[10px] font-black px-3 py-1.5 rounded-lg shadow-md">BLUE</div>
+          <div className="absolute -top-3 -right-3 bg-blue-500 text-white text-[10px] font-semibold px-3 py-1.5 rounded-lg shadow-md">BLUE</div>
         </div>
         <div className="text-center">
-          <h3 className="font-black text-xl dark:text-white text-dark-gray leading-tight uppercase tracking-tighter">{match.player2.name}</h3>
+          <h3 className="font-semibold text-xl dark:text-white text-dark-gray leading-tight uppercase tracking-tight">{match.player2.name}</h3>
           <p className="text-[10px] font-bold text-muted-gray uppercase tracking-widest mt-1">{match.player2.club}</p>
         </div>
       </div>

@@ -72,7 +72,7 @@ const PlayerRegister: React.FC = () => {
               className="space-y-12"
             >
               <div className="text-center space-y-4">
-                <h1 className="text-5xl font-black tracking-tighter dark:text-white text-dark-gray uppercase">
+                <h1 className="text-5xl font-semibold tracking-tight dark:text-white text-dark-gray uppercase">
                   Upcoming <span className="text-rose-pink">{sport.name}</span> Events
                 </h1>
                 <p className="text-muted-gray text-lg font-medium">Select an active tournament to proceed with athlete entry</p>
@@ -92,14 +92,14 @@ const PlayerRegister: React.FC = () => {
                     </div>
 
                     <div className="space-y-6 flex-grow">
-                      <h3 className="text-2xl font-black dark:text-white text-dark-gray leading-tight uppercase tracking-tighter group-hover:text-rose-pink transition-colors">
+                      <h3 className="text-2xl font-semibold dark:text-white text-dark-gray leading-tight uppercase tracking-tight group-hover:text-rose-pink transition-colors">
                         {t.name}
                       </h3>
 
                       <div className="space-y-4">
                         <div className="inline-flex items-center gap-3 bg-rose-pink/5 border border-rose-pink/20 px-4 py-2 rounded-full">
                           <Calendar className="w-4 h-4 text-rose-pink" />
-                          <span className="text-xs font-black text-rose-pink uppercase tracking-widest">{t.date}</span>
+                          <span className="text-xs font-semibold text-rose-pink uppercase tracking-widest">{t.date}</span>
                         </div>
 
                         <div className="flex items-start gap-3 text-muted-gray">
@@ -110,7 +110,7 @@ const PlayerRegister: React.FC = () => {
                     </div>
 
                     <div className="mt-10 pt-6 border-t border-gray-100 dark:border-white/5 flex items-center justify-between text-rose-pink">
-                      <span className="text-xs font-black uppercase tracking-[0.2em]">Select Tournament</span>
+                      <span className="text-xs font-semibold uppercase tracking-[0.2em]">Select Tournament</span>
                       <div className="w-8 h-8 rounded-full bg-rose-pink text-white flex items-center justify-center group-hover:translate-x-2 transition-transform">
                         <ArrowRight className="w-4 h-4" />
                       </div>
@@ -133,13 +133,13 @@ const PlayerRegister: React.FC = () => {
                     <Trophy className="w-8 h-8" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-black text-rose-pink uppercase tracking-[0.2em]">Tournament Entry</p>
-                    <h2 className="text-2xl font-black dark:text-white text-dark-gray uppercase tracking-tighter leading-tight">{selectedTournament.name}</h2>
+                    <p className="text-[10px] font-semibold text-rose-pink uppercase tracking-[0.2em]">Tournament Entry</p>
+                    <h2 className="text-2xl font-semibold dark:text-white text-dark-gray uppercase tracking-tight leading-tight">{selectedTournament.name}</h2>
                   </div>
                 </div>
                 <button 
                   onClick={() => setSelectedTournament(null)}
-                  className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-muted-gray hover:text-rose-pink transition-colors px-6 py-3 rounded-xl bg-gray-50 dark:bg-white/5"
+                  className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted-gray hover:text-rose-pink transition-colors px-6 py-3 rounded-xl bg-gray-50 dark:bg-white/5"
                 >
                   <ChevronLeft className="w-4 h-4" /> Back to List
                 </button>
@@ -159,7 +159,7 @@ const PlayerRegister: React.FC = () => {
                       }`}>
                         {step > s.id ? <Check className="w-5 h-5" /> : s.id}
                       </div>
-                      <span className={`absolute -bottom-8 whitespace-nowrap text-[10px] font-black uppercase tracking-widest ${
+                      <span className={`absolute -bottom-8 whitespace-nowrap text-[10px] font-semibold uppercase tracking-widest ${
                         step >= s.id ? 'text-rose-pink' : 'text-muted-gray'
                       }`}>
                         {s.name}
@@ -183,14 +183,14 @@ const PlayerRegister: React.FC = () => {
                     className="dark-card p-12 bg-white dark:bg-white/5 shadow-2xl dark:shadow-none space-y-10"
                   >
                     <div className="space-y-2">
-                      <h2 className="text-3xl font-black dark:text-white text-dark-gray uppercase tracking-tighter">Tournament Details</h2>
+                      <h2 className="text-3xl font-semibold dark:text-white text-dark-gray uppercase tracking-tight">Tournament Details</h2>
                       <p className="text-muted-gray font-medium">Select your tournament category and preferences</p>
                     </div>
 
                     <form className="space-y-8">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="space-y-3">
-                          <label className="text-xs font-black uppercase tracking-widest text-muted-gray px-1">Tournament Category *</label>
+                          <label className="text-xs font-semibold uppercase tracking-widest text-muted-gray px-1">Tournament Category *</label>
                           <select className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-rose-pink/50 transition-all appearance-none cursor-pointer">
                             <option className="bg-white dark:bg-dark-gray">Select category</option>
                             <option className="bg-white dark:bg-dark-gray">Kyorugi (Sparring)</option>
@@ -198,7 +198,7 @@ const PlayerRegister: React.FC = () => {
                           </select>
                         </div>
                         <div className="space-y-3">
-                          <label className="text-xs font-black uppercase tracking-widest text-muted-gray px-1">Skill Level *</label>
+                          <label className="text-xs font-semibold uppercase tracking-widest text-muted-gray px-1">Skill Level *</label>
                           <select className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-rose-pink/50 transition-all appearance-none cursor-pointer">
                             <option className="bg-white dark:bg-dark-gray">Select skill level</option>
                             <option className="bg-white dark:bg-dark-gray">Beginner</option>
@@ -209,7 +209,7 @@ const PlayerRegister: React.FC = () => {
                       </div>
 
                       <div className="space-y-3">
-                        <label className="text-xs font-black uppercase tracking-widest text-muted-gray px-1">T-Shirt Size *</label>
+                        <label className="text-xs font-semibold uppercase tracking-widest text-muted-gray px-1">T-Shirt Size *</label>
                         <select className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-rose-pink/50 transition-all appearance-none cursor-pointer">
                           <option className="bg-white dark:bg-dark-gray">Select size</option>
                           <option className="bg-white dark:bg-dark-gray">XS</option>
@@ -221,7 +221,7 @@ const PlayerRegister: React.FC = () => {
                       </div>
 
                       <div className="space-y-3">
-                        <label className="text-xs font-black uppercase tracking-widest text-muted-gray px-1">Medical Conditions</label>
+                        <label className="text-xs font-semibold uppercase tracking-widest text-muted-gray px-1">Medical Conditions</label>
                         <textarea 
                           rows={3}
                           placeholder="Any medical conditions we should be aware of..."
@@ -230,7 +230,7 @@ const PlayerRegister: React.FC = () => {
                       </div>
 
                       <div className="space-y-3">
-                        <label className="text-xs font-black uppercase tracking-widest text-muted-gray px-1">Dietary Restrictions</label>
+                        <label className="text-xs font-semibold uppercase tracking-widest text-muted-gray px-1">Dietary Restrictions</label>
                         <textarea 
                           rows={3}
                           placeholder="Vegetarian, vegan, allergies, etc..."
@@ -242,7 +242,7 @@ const PlayerRegister: React.FC = () => {
                         <button 
                           type="button"
                           onClick={() => setSelectedTournament(null)}
-                          className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-muted-gray hover:text-rose-pink transition-colors"
+                          className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted-gray hover:text-rose-pink transition-colors"
                         >
                           <ChevronLeft className="w-5 h-5" /> Back
                         </button>
@@ -265,7 +265,7 @@ const PlayerRegister: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     className="dark-card p-10 bg-white dark:bg-white/5 shadow-2xl dark:shadow-none space-y-10 sticky top-32"
                   >
-                    <h3 className="text-2xl font-black dark:text-white text-dark-gray uppercase tracking-tighter">Order Summary</h3>
+                    <h3 className="text-2xl font-semibold dark:text-white text-dark-gray uppercase tracking-tight">Order Summary</h3>
                     
                     <div className="space-y-6">
                       <div className="flex justify-between items-center text-sm font-medium">
@@ -278,13 +278,13 @@ const PlayerRegister: React.FC = () => {
                       </div>
                       <div className="h-px w-full bg-gray-100 dark:bg-white/10" />
                       <div className="flex justify-between items-center">
-                        <span className="text-lg font-black uppercase tracking-tighter dark:text-white text-dark-gray">Total</span>
-                        <span className="text-2xl font-black text-rose-pink">$150</span>
+                        <span className="text-lg font-semibold uppercase tracking-tight dark:text-white text-dark-gray">Total</span>
+                        <span className="text-2xl font-semibold text-rose-pink">$150</span>
                       </div>
                     </div>
 
                     <div className="space-y-6">
-                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-gray">After registration, you can:</p>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-gray">After registration, you can:</p>
                       <ul className="space-y-3">
                         {[
                           'Book hotel accommodation',

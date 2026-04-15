@@ -109,7 +109,7 @@ const LandingPage: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-dark-gray dark:text-white"
+                    className="text-6xl md:text-8xl font-semibold tracking-tight leading-[0.9] text-dark-gray dark:text-white"
                   >
                     Select Your<br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-pink to-rose-pink-light">Combat Sport</span>
@@ -139,7 +139,7 @@ const LandingPage: React.FC = () => {
                       <div className="w-16 h-16 rounded-2xl bg-rose-pink/5 dark:bg-rose-pink/10 flex items-center justify-center text-rose-pink mb-4 group-hover:bg-rose-pink group-hover:text-white transition-all shadow-lg shadow-rose-pink/5">
                         <sport.icon className="w-8 h-8" />
                       </div>
-                      <span className="text-sm font-black uppercase tracking-widest dark:text-white text-dark-gray group-hover:text-rose-pink transition-colors">
+                      <span className="text-sm font-semibold uppercase tracking-widest dark:text-white text-dark-gray group-hover:text-rose-pink transition-colors">
                         {sport.name}
                       </span>
                     </motion.div>
@@ -157,7 +157,7 @@ const LandingPage: React.FC = () => {
                 <div className="text-center space-y-6">
                   <button 
                     onClick={() => setSelectedSport(null)}
-                    className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-muted-gray hover:text-rose-pink transition-colors mx-auto"
+                    className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted-gray hover:text-rose-pink transition-colors mx-auto"
                   >
                     <ArrowLeft className="w-4 h-4" /> Change Sport
                   </button>
@@ -165,7 +165,7 @@ const LandingPage: React.FC = () => {
                     <div className="w-24 h-24 rounded-3xl bg-rose-pink/10 flex items-center justify-center text-rose-pink mb-6 shadow-2xl shadow-rose-pink/20">
                       <selectedSport.icon className="w-12 h-12" />
                     </div>
-                    <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter dark:text-white text-dark-gray leading-none" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.35)', WebkitTextStroke: '0.5px rgba(0,0,0,0.25)' }}>
+                    <h2 className="text-6xl md:text-8xl font-semibold uppercase tracking-tight dark:text-white text-dark-gray leading-none" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.35)', WebkitTextStroke: '0.5px rgba(0,0,0,0.25)' }}>
                       {selectedSport.name} <span className="text-rose-pink italic">PORTAL</span>
                     </h2>
                   </div>
@@ -187,7 +187,7 @@ const LandingPage: React.FC = () => {
                           <opt.icon className="w-8 h-8" />
                         </div>
                         <div className="space-y-1">
-                          <h3 className="text-2xl font-black uppercase tracking-tighter dark:text-white text-dark-gray group-hover:text-rose-pink transition-colors">
+                          <h3 className="text-2xl font-semibold uppercase tracking-tight dark:text-white text-dark-gray group-hover:text-rose-pink transition-colors">
                             {opt.label}
                           </h3>
                           <p className="text-muted-gray text-sm font-medium">{opt.desc}</p>
@@ -218,7 +218,7 @@ const LandingPage: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
             >
-              <div className="text-4xl font-black text-rose-pink mb-1">{stat.value}</div>
+              <div className="text-4xl font-semibold text-rose-pink mb-1">{stat.value}</div>
               <div className="text-xs font-orbitron uppercase tracking-widest text-muted-gray">{stat.label}</div>
             </motion.div>
           ))}
@@ -229,7 +229,7 @@ const LandingPage: React.FC = () => {
       <section className="py-32 px-6 dark:bg-deep-black bg-white" id="features">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20 space-y-4">
-            <h2 className="text-5xl font-black uppercase tracking-tighter dark:text-white text-dark-gray">Everything You Need</h2>
+            <h2 className="text-5xl font-semibold uppercase tracking-tight dark:text-white text-dark-gray">Everything You Need</h2>
             <p className="text-muted-gray max-w-2xl mx-auto text-lg font-medium">Our comprehensive platform handles every aspect of your tournament experience</p>
           </div>
 
@@ -258,7 +258,7 @@ const LandingPage: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-between items-end mb-16">
             <div className="space-y-4">
-              <h2 className="text-5xl font-black uppercase tracking-tighter dark:text-white text-dark-gray">Latest News</h2>
+              <h2 className="text-5xl font-semibold uppercase tracking-tight dark:text-white text-dark-gray">Latest News</h2>
               <p className="text-muted-gray text-lg font-medium">Stay updated with tournament announcements and highlights</p>
             </div>
             <button className="text-rose-pink font-bold flex items-center gap-2 hover:underline">
@@ -278,7 +278,7 @@ const LandingPage: React.FC = () => {
                 <div className="relative h-48 overflow-hidden">
                   <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                  <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white ${item.badgeColor}`}>
+                  <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-widest text-white ${item.badgeColor}`}>
                     {item.badge}
                   </div>
                 </div>
@@ -293,7 +293,7 @@ const LandingPage: React.FC = () => {
                   <p className="text-muted-gray text-sm leading-relaxed flex-grow">
                     {item.summary}
                   </p>
-                  <button className="text-xs font-black uppercase tracking-widest flex items-center gap-2 text-rose-pink group-hover:gap-4 transition-all">
+                  <button className="text-xs font-semibold uppercase tracking-widest flex items-center gap-2 text-rose-pink group-hover:gap-4 transition-all">
                     Read More <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -306,11 +306,11 @@ const LandingPage: React.FC = () => {
       {/* Footer Strip */}
       <footer className="py-12 px-6 dark:bg-deep-black bg-white border-t border-gray-100 dark:border-white/5 transition-colors duration-300">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center space-x-2">
-            <div className="w-12 h-12 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center border border-rose-pink/20">
-              <img src={dclixLogo} alt="D-CLIX" className="w-8 h-8" />
+          <div className="flex items-center space-x-3">
+            <div className="w-16 h-16 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center border border-rose-pink/20">
+              <img src={dclixLogo} alt="D-CLIX" className="w-12 h-12" />
             </div>
-            <span className="font-black text-lg tracking-tighter dark:text-white text-dark-gray uppercase italic">D-CLIX Arena</span>
+            <span className="font-semibold text-xl tracking-tight dark:text-white text-dark-gray uppercase italic">D-CLIX Arena</span>
           </div>
           <div className="text-muted-gray text-[10px] font-orbitron uppercase tracking-[0.2em]">
             RAIG TECHNOLOGIES © 2026 • VISOFT SOLUTION
