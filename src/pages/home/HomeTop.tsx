@@ -13,7 +13,10 @@ import {
   Activity,
   BarChart3,
   Server,
-  Lock
+  Lock,
+  Swords,
+  Dumbbell,
+  Target
 } from 'lucide-react';
 import { Sparkles } from '@/components/ui/sparkles';
 import { Reveal } from '@/components/ui/reveal';
@@ -22,6 +25,29 @@ import dclixLogo from '@/assets/dclix-logo.svg';
 function img(prompt: string, size: string) {
   return `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=${encodeURIComponent(prompt)}&image_size=${size}`;
 }
+
+// Complex orbital components with AI-generated futuristic illustrations
+const CharacterNode = ({ prompt, color, orbitSize, duration, reverse = false, delay = 0 }: { prompt: string, color: string, orbitSize: number, duration: number, reverse?: boolean, delay?: number }) => {
+  const imageUrl = useMemo(() => img(prompt, 'square'), [prompt]);
+  
+  return (
+    <motion.div
+      className="absolute top-1/2 left-1/2 z-20"
+      style={{ width: orbitSize, height: orbitSize, marginLeft: -orbitSize / 2, marginTop: -orbitSize / 2 }}
+      animate={{ rotate: reverse ? -360 : 360 }}
+      transition={{ duration, repeat: Infinity, ease: "linear" }}
+    >
+      <motion.div
+        className="absolute top-0 left-1/2 w-20 h-20 -ml-10 -mt-10 rounded-full border-2 bg-[#050505] overflow-hidden flex items-center justify-center shadow-2xl"
+        style={{ borderColor: color, boxShadow: `0 0 20px ${color}40` }}
+        animate={{ rotate: reverse ? 360 : -360 }} // Counter-rotate to keep upright
+        transition={{ duration, repeat: Infinity, ease: "linear" }}
+      >
+        <img src={imageUrl} alt="Character" className="w-full h-full object-cover mix-blend-screen opacity-90" />
+      </motion.div>
+    </motion.div>
+  );
+};
 
 export default function HomeTop({ onStartToday }: { onStartToday: () => void }) {
   const features = useMemo(
@@ -137,12 +163,17 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full border border-dashed border-rose-pink/30 z-0"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full border border-dashed border-[#06b6d4]/30 z-0"
               />
               <motion.div
                 animate={{ rotate: -360 }}
                 transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-dotted border-rose-pink/20 z-0"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-dotted border-[#a855f7]/30 z-0"
+              />
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full border border-solid border-[#d946ef]/10 z-0"
               />
 
               {/* Pulsing Aura Rings */}
@@ -157,40 +188,45 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
 
               {/* Center Hub */}
               <motion.div 
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 rounded-full bg-deep-black border-2 border-rose-pink flex flex-col items-center justify-center z-30 shadow-[0_0_80px_rgba(225,29,72,0.4)]"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 rounded-full bg-deep-black border-2 border-[#14b8a6] flex flex-col items-center justify-center z-30 shadow-[0_0_80px_rgba(20,184,166,0.4)]"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <img src={dclixLogo} alt="D-Clix" className="w-28 h-28 relative z-10" />
+                <motion.div 
+                  className="absolute inset-0 rounded-full border-4 border-t-transparent border-[#06b6d4] opacity-50"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                />
               </motion.div>
 
               {/* Connecting Lines (Curved SVG) */}
               <svg className="absolute inset-0 w-full h-full z-10" style={{ filter: 'drop-shadow(0 0 12px rgba(225,29,72,0.4))' }}>
                 <motion.path 
                   d="M 50% 50% Q 20% 50% 20% 15%" 
-                  stroke="#e11d48" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
+                  stroke="#06b6d4" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
                   initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
                 />
                 <motion.path 
                   d="M 50% 50% Q 80% 50% 80% 15%" 
-                  stroke="#e11d48" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
+                  stroke="#a855f7" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
                   initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 0.8, ease: "easeInOut" }}
                 />
                 <motion.path 
                   d="M 50% 50% Q 20% 50% 20% 85%" 
-                  stroke="#e11d48" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
+                  stroke="#d946ef" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
                   initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 1.1, ease: "easeInOut" }}
                 />
                 <motion.path 
                   d="M 50% 50% Q 80% 50% 80% 85%" 
-                  stroke="#e11d48" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
+                  stroke="#14b8a6" strokeWidth="2.5" strokeDasharray="8 8" fill="none" opacity="0.6"
                   initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 1.4, ease: "easeInOut" }}
                 />
               </svg>
 
               {/* Floating Feature Node 1: Optimized Flow */}
               <motion.div 
-                className="absolute top-[5%] left-[2%] dark-card bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl p-5 rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl z-20 w-56"
+                className="absolute top-[5%] left-[2%] dark-card bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl p-4 rounded-3xl border border-[#06b6d4]/20 shadow-[0_0_30px_rgba(6,182,212,0.15)] z-30 w-60 flex items-center gap-4"
                 initial={{ opacity: 0, scale: 0.8, x: 40 }}
                 animate={{ opacity: 1, scale: 1, x: 0, y: [0, -15, 0] }}
                 transition={{ 
@@ -200,16 +236,18 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                 }}
                 whileHover={{ scale: 1.05, rotateY: 10, rotateX: -10 }}
               >
-                <div className="w-10 h-10 rounded-2xl bg-rose-pink/20 text-rose-pink flex items-center justify-center mb-3">
-                  <Zap className="w-5 h-5" />
+                <div className="w-12 h-12 rounded-2xl bg-[#06b6d4]/20 text-[#06b6d4] flex items-center justify-center shrink-0">
+                  <Zap className="w-6 h-6" />
                 </div>
-                <div className="text-[10px] font-bold text-rose-pink uppercase tracking-widest mb-1.5">Optimized Flow</div>
-                <div className="text-[15px] font-semibold dark:text-white text-dark-gray leading-tight">Streamlined Operations</div>
+                <div>
+                  <div className="text-[10px] font-bold text-[#06b6d4] uppercase tracking-widest mb-0.5">Optimized Flow</div>
+                  <div className="text-sm font-semibold dark:text-white text-dark-gray leading-tight">Streamlined Operations</div>
+                </div>
               </motion.div>
 
               {/* Floating Feature Node 2: Actionable Insights */}
               <motion.div 
-                className="absolute top-[5%] right-[2%] dark-card bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl p-5 rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl z-20 w-56"
+                className="absolute top-[5%] right-[2%] dark-card bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl p-4 rounded-3xl border border-[#a855f7]/20 shadow-[0_0_30px_rgba(168,85,247,0.15)] z-30 w-60 flex items-center gap-4"
                 initial={{ opacity: 0, scale: 0.8, x: -40 }}
                 animate={{ opacity: 1, scale: 1, x: 0, y: [0, 15, 0] }}
                 transition={{ 
@@ -219,16 +257,18 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                 }}
                 whileHover={{ scale: 1.05, rotateY: -10, rotateX: -10 }}
               >
-                <div className="w-10 h-10 rounded-2xl bg-rose-pink/20 text-rose-pink flex items-center justify-center mb-3">
-                  <BarChart3 className="w-5 h-5" />
+                <div className="w-12 h-12 rounded-2xl bg-[#a855f7]/20 text-[#a855f7] flex items-center justify-center shrink-0">
+                  <BarChart3 className="w-6 h-6" />
                 </div>
-                <div className="text-[10px] font-bold text-rose-pink uppercase tracking-widest mb-1.5">Actionable Insights</div>
-                <div className="text-[15px] font-semibold dark:text-white text-dark-gray leading-tight">Data Management & Insights</div>
+                <div>
+                  <div className="text-[10px] font-bold text-[#a855f7] uppercase tracking-widest mb-0.5">Actionable Insights</div>
+                  <div className="text-sm font-semibold dark:text-white text-dark-gray leading-tight">Data Management</div>
+                </div>
               </motion.div>
 
               {/* Floating Feature Node 3: Vibrant Community */}
               <motion.div 
-                className="absolute bottom-[5%] left-[2%] dark-card bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl p-5 rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl z-20 w-56"
+                className="absolute bottom-[5%] left-[2%] dark-card bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl p-4 rounded-3xl border border-[#d946ef]/20 shadow-[0_0_30px_rgba(217,70,239,0.15)] z-30 w-60 flex items-center gap-4"
                 initial={{ opacity: 0, scale: 0.8, x: 40 }}
                 animate={{ opacity: 1, scale: 1, x: 0, y: [0, -12, 0] }}
                 transition={{ 
@@ -238,16 +278,18 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                 }}
                 whileHover={{ scale: 1.05, rotateY: 10, rotateX: 10 }}
               >
-                <div className="w-10 h-10 rounded-2xl bg-rose-pink/20 text-rose-pink flex items-center justify-center mb-3">
-                  <Users className="w-5 h-5" />
+                <div className="w-12 h-12 rounded-2xl bg-[#d946ef]/20 text-[#d946ef] flex items-center justify-center shrink-0">
+                  <Users className="w-6 h-6" />
                 </div>
-                <div className="text-[10px] font-bold text-rose-pink uppercase tracking-widest mb-1.5">Vibrant Community</div>
-                <div className="text-[15px] font-semibold dark:text-white text-dark-gray leading-tight">Enhanced Member Experience</div>
+                <div>
+                  <div className="text-[10px] font-bold text-[#d946ef] uppercase tracking-widest mb-0.5">Vibrant Community</div>
+                  <div className="text-sm font-semibold dark:text-white text-dark-gray leading-tight">Enhanced Experience</div>
+                </div>
               </motion.div>
 
               {/* Floating Feature Node 4: Seamless Growth */}
               <motion.div 
-                className="absolute bottom-[5%] right-[2%] dark-card bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl p-5 rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl z-20 w-56"
+                className="absolute bottom-[5%] right-[2%] dark-card bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl p-4 rounded-3xl border border-[#14b8a6]/20 shadow-[0_0_30px_rgba(20,184,166,0.15)] z-30 w-60 flex items-center gap-4"
                 initial={{ opacity: 0, scale: 0.8, x: -40 }}
                 animate={{ opacity: 1, scale: 1, x: 0, y: [0, 18, 0] }}
                 transition={{ 
@@ -257,12 +299,37 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                 }}
                 whileHover={{ scale: 1.05, rotateY: -10, rotateX: 10 }}
               >
-                <div className="w-10 h-10 rounded-2xl bg-rose-pink/20 text-rose-pink flex items-center justify-center mb-3">
-                  <Server className="w-5 h-5" />
+                <div className="w-12 h-12 rounded-2xl bg-[#14b8a6]/20 text-[#14b8a6] flex items-center justify-center shrink-0">
+                  <Server className="w-6 h-6" />
                 </div>
-                <div className="text-[10px] font-bold text-rose-pink uppercase tracking-widest mb-1.5">Seamless Growth</div>
-                <div className="text-[15px] font-semibold dark:text-white text-dark-gray leading-tight">Scalability & Security</div>
+                <div>
+                  <div className="text-[10px] font-bold text-[#14b8a6] uppercase tracking-widest mb-0.5">Seamless Growth</div>
+                  <div className="text-sm font-semibold dark:text-white text-dark-gray leading-tight">Scalability & Security</div>
+                </div>
               </motion.div>
+
+              {/* Orbiting Sports Characters */}
+              <CharacterNode 
+                prompt="Futuristic cybernetic martial artist doing a high kick, glowing neon magenta accents, dark background, highly detailed, cyberpunk style" 
+                color="#d946ef" 
+                orbitSize={350} 
+                duration={15} 
+              />
+              
+              <CharacterNode 
+                prompt="Futuristic cybernetic soccer player kicking a glowing ball, neon cyan accents, dark background, highly detailed, cyberpunk style" 
+                color="#06b6d4" 
+                orbitSize={500} 
+                duration={22} 
+                reverse={true}
+              />
+              
+              <CharacterNode 
+                prompt="Futuristic tennis player swinging a glowing racket, neon teal accents, dark background, highly detailed, cyberpunk style" 
+                color="#14b8a6" 
+                orbitSize={650} 
+                duration={30} 
+              />
 
             </Reveal>
           </div>
