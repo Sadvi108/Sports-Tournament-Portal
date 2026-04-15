@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { motion } from 'framer-motion';
+import React, { useMemo, useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Bell,
   CalendarCheck,
@@ -9,9 +9,7 @@ import {
   Trophy,
   Users,
   Zap,
-  Activity,
-  BarChart3,
-  Server
+  Activity
 } from 'lucide-react';
 import { Sparkles } from '@/components/ui/sparkles';
 import { Reveal } from '@/components/ui/reveal';
@@ -175,6 +173,23 @@ const ActionBentoCard = ({ title, color, children, delay }: { title: string, col
 };
 
 export default function HomeTop({ onStartToday }: { onStartToday: () => void }) {
+  const [activeSportIndex, setActiveSportIndex] = useState(0);
+
+  const sportsShowcase = useMemo(() => [
+    { title: "Boxing", color: "#06b6d4", component: BoxingAnimation },
+    { title: "Karate", color: "#d946ef", component: KarateAnimation },
+    { title: "MMA / Sparring", color: "#14b8a6", component: SparringAnimation },
+    { title: "Muay Thai", color: "#e11d48", component: MuayThaiAnimation },
+    { title: "Wrestling", color: "#eab308", component: WrestlingAnimation },
+    { title: "Silat", color: "#10b981", component: SilatAnimation },
+  ], []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSportIndex((prev) => (prev + 1) % sportsShowcase.length);
+    }, 4000); // Change sport every 4 seconds
+    return () => clearInterval(timer);
+  }, [sportsShowcase.length]);
   const features = useMemo(
     () => [
       {
@@ -280,38 +295,60 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
             </Reveal>
           </div>
 
-          {/* RIGHT: Bento Action Grid */}
+          {/* RIGHT: Spotlight Stage Layout */}
           <div className="relative h-[650px] w-full flex items-center justify-center">
-            <Reveal delay={0.4} className="w-full h-full relative">
+            <Reveal delay={0.4} className="w-full h-full relative flex items-center justify-center">
               
-              {/* Decorative Background Elements */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(225,29,72,0.05)_0%,transparent_70%)] pointer-events-none" />
-              
-              {/* Grid Layout */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 p-6 h-full w-full relative z-10">
-                <ActionBentoCard title="Boxing" color="#06b6d4" delay={0.5}>
-                  <BoxingAnimation />
-                </ActionBentoCard>
-                
-                <ActionBentoCard title="Karate" color="#d946ef" delay={0.6}>
-                  <KarateAnimation />
-                </ActionBentoCard>
-                
-                <ActionBentoCard title="MMA / Sparring" color="#14b8a6" delay={0.7}>
-                  <SparringAnimation />
-                </ActionBentoCard>
+              {/* Massive Stage Glow Background */}
+              <div 
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[100px] opacity-20 transition-colors duration-1000"
+                style={{ backgroundColor: sportsShowcase[activeSportIndex].color }}
+              />
 
-                <ActionBentoCard title="Muay Thai" color="#e11d48" delay={0.8}>
-                  <MuayThaiAnimation />
-                </ActionBentoCard>
+              {/* Central Pedestal/Stage */}
+              <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[400px] h-[100px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05)_0%,transparent_70%)] rounded-[100%] border border-b-0 border-white/10 blur-[1px]" />
+              <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 w-[300px] h-[80px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.08)_0%,transparent_70%)] rounded-[100%] border border-b-0 border-white/20 blur-[0.5px]" />
 
-                <ActionBentoCard title="Wrestling" color="#eab308" delay={0.9}>
-                  <WrestlingAnimation />
-                </ActionBentoCard>
+              {/* The Active Sport Animation */}
+              <div className="relative z-20 w-[400px] h-[400px] flex items-center justify-center mb-10">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeSportIndex}
+                    initial={{ opacity: 0, scale: 0.5, y: 50, rotateY: 90 }}
+                    animate={{ opacity: 1, scale: 1, y: 0, rotateY: 0 }}
+                    exit={{ opacity: 0, scale: 1.5, y: -50, filter: "blur(10px)" }}
+                    transition={{ type: "spring", stiffness: 200, damping: 20, duration: 0.8 }}
+                    className="w-full h-full flex flex-col items-center justify-center gap-8"
+                  >
+                    {/* The SVG Component */}
+                    <div className="w-64 h-64 relative">
+                      {React.createElement(sportsShowcase[activeSportIndex].component)}
+                    </div>
+                    
+                    {/* Floating Title Label */}
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3, duration: 0.5 }}
+                      className="px-6 py-2 rounded-full backdrop-blur-xl border border-white/10 dark:bg-white/5 bg-white/50 shadow-2xl text-lg font-bold uppercase tracking-[0.3em]"
+                      style={{ color: sportsShowcase[activeSportIndex].color, textShadow: `0 0 20px ${sportsShowcase[activeSportIndex].color}80` }}
+                    >
+                      {sportsShowcase[activeSportIndex].title}
+                    </motion.div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
 
-                <ActionBentoCard title="Silat" color="#10b981" delay={1.0}>
-                  <SilatAnimation />
-                </ActionBentoCard>
+              {/* Indicator Dots */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-3 z-30">
+                {sportsShowcase.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveSportIndex(idx)}
+                    className={`w-3 h-3 rounded-full transition-all duration-500 ${idx === activeSportIndex ? 'scale-150' : 'opacity-30 hover:opacity-100'}`}
+                    style={{ backgroundColor: idx === activeSportIndex ? sportsShowcase[activeSportIndex].color : '#666' }}
+                  />
+                ))}
               </div>
 
             </Reveal>
