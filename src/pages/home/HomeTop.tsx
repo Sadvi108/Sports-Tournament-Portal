@@ -5,12 +5,15 @@ import {
   CalendarCheck,
   CreditCard,
   FileSpreadsheet,
-  Fingerprint,
   QrCode,
   ShieldCheck,
   Trophy,
   Users,
   Zap,
+  Activity,
+  BarChart3,
+  Server,
+  Lock
 } from 'lucide-react';
 import { Sparkles } from '@/components/ui/sparkles';
 import { Reveal } from '@/components/ui/reveal';
@@ -67,80 +70,156 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
     [],
   );
 
-  const heroMock1 = img(
-    'modern SaaS dashboard UI for martial arts club management, dark theme with rose accent, analytics cards, attendance chart, payments summary, clean typography, product screenshot style, high fidelity',
-    'landscape_16_9',
-  );
-  const heroMock2 = img(
-    'mobile app screens for club management, attendance QR scan, payments, schedule, dark theme with rose accent, product mockup, high fidelity',
-    'portrait_4_3',
-  );
-
   return (
     <>
-      <section className="px-6 pt-16 pb-24 relative overflow-hidden">
+      <section className="px-6 pt-24 pb-32 relative overflow-hidden bg-white dark:bg-[#050505]">
+        {/* Background Gradients */}
+        <div className="absolute top-[-10%] right-[-10%] w-[800px] h-[800px] rounded-full bg-rose-pink/5 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-rose-pink/5 blur-[100px] pointer-events-none" />
+        
         <Sparkles
-          className="absolute inset-0 pointer-events-none opacity-50"
-          density={500}
-          size={1.2}
-          speed={0.6}
-          opacity={0.6}
-          opacitySpeed={1.5}
-          color="#FFFFFF"
+          className="absolute inset-0 pointer-events-none opacity-40 dark:opacity-60"
+          density={400}
+          size={1.5}
+          speed={0.8}
+          opacity={0.4}
+          opacitySpeed={2}
+          color="#e11d48"
         />
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+          
+          {/* LEFT: Copy & CTAs */}
           <div className="space-y-8">
             <Reveal>
-              <div className="flex items-center gap-4">
-                <img src={dclixLogo} alt="D-CLIX" className="w-14 h-14 rounded-full" />
-                <div className="text-xs font-black uppercase tracking-[0.22em] text-muted-gray">D-CLIX Sports Technology Platform</div>
-              </div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-pink/10 border border-rose-pink/20 text-rose-pink text-xs font-black uppercase tracking-[0.2em] mb-4"
+              >
+                <Activity className="w-4 h-4 animate-pulse" />
+                D-Clix Club Ecosystem
+              </motion.div>
             </Reveal>
-            <Reveal delay={0.03}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-pink/10 border border-rose-pink/20 text-rose-pink text-xs font-black uppercase tracking-[0.2em]">
-                <ShieldCheck className="w-4 h-4" />
-                D-Clix Club Management System
-              </div>
-            </Reveal>
-            <Reveal delay={0.06}>
-              <h1 className="text-5xl md:text-6xl font-black tracking-tighter leading-[1.05] dark:text-white text-dark-gray">
-                Grow revenue and streamline your club with D-Clix club management system
+
+            <Reveal delay={0.1}>
+              <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] font-black tracking-tighter leading-[1.05] dark:text-white text-dark-gray">
+                Grow Revenue.<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-pink to-rose-pink-light">Streamline Operations.</span><br />
+                Cultivate your thriving club ecosystem with D-Clix.
               </h1>
             </Reveal>
-            <Reveal delay={0.11}>
-              <p className="text-muted-gray text-lg md:text-xl font-medium">
-                Your club details at your fingertips manage it anytime anywhere
+
+            <Reveal delay={0.2}>
+              <p className="text-muted-gray text-lg md:text-xl font-medium leading-relaxed max-w-lg">
+                Your dynamic club ecosystem, managed effortlessly. <span className="text-rose-pink font-bold">Anytime. Anywhere.</span>
               </p>
             </Reveal>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                'Streamlined Operations and Cost Efficiency',
-                'Enhanced Member Experience',
-                'Data Management and Insights',
-                'Scalability, Security, and Customization',
-              ].map((b, i) => (
-                <Reveal key={b} delay={0.12 + i * 0.05} y={18}>
-                  <div className="dark-card bg-white dark:bg-white/5 p-4 flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-2xl bg-rose-pink/10 border border-rose-pink/20 text-rose-pink flex items-center justify-center">
-                      <Fingerprint className="w-5 h-5" />
-                    </div>
-                    <div className="font-bold dark:text-white text-dark-gray">{b}</div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+
+            <Reveal delay={0.3}>
+              <div className="flex flex-wrap gap-4 pt-4">
+                <button onClick={onStartToday} className="rose-btn-primary text-base px-8 py-4 shadow-xl shadow-rose-pink/20 hover:-translate-y-1 transition-transform">
+                  Start Your Journey
+                </button>
+                <button className="px-8 py-4 rounded-full border-2 border-gray-200 dark:border-white/10 font-bold dark:text-white text-dark-gray hover:border-rose-pink hover:text-rose-pink transition-colors">
+                  Watch Demo
+                </button>
+              </div>
+            </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Reveal delay={0.12}>
-              <motion.div whileHover={{ y: -6 }} className="dark-card bg-white dark:bg-white/5 overflow-hidden">
-                <img src={heroMock1} alt="D-Clix dashboard preview" className="w-full h-[260px] object-cover" />
+          {/* RIGHT: Animated Ecosystem / Dashboard Visualization */}
+          <div className="relative h-[600px] w-full flex items-center justify-center">
+            <Reveal delay={0.4} className="w-full h-full relative">
+              
+              {/* Center Hub */}
+              <motion.div 
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-deep-black border-4 border-rose-pink flex flex-col items-center justify-center z-30 shadow-[0_0_60px_rgba(225,29,72,0.4)]"
+                animate={{ 
+                  boxShadow: ['0 0 40px rgba(225,29,72,0.3)', '0 0 80px rgba(225,29,72,0.6)', '0 0 40px rgba(225,29,72,0.3)']
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <img src={dclixLogo} alt="D-Clix" className="w-16 h-16 relative z-10" />
               </motion.div>
-            </Reveal>
-            <Reveal delay={0.18}>
-              <motion.div whileHover={{ y: -6 }} className="dark-card bg-white dark:bg-white/5 overflow-hidden">
-                <img src={heroMock2} alt="D-Clix mobile preview" className="w-full h-[260px] object-cover" />
+
+              {/* Connecting Lines (SVG) */}
+              <svg className="absolute inset-0 w-full h-full z-10" style={{ filter: 'drop-shadow(0 0 10px rgba(225,29,72,0.3))' }}>
+                <motion.path 
+                  d="M 50% 50% L 20% 20%" 
+                  stroke="#e11d48" strokeWidth="2" strokeDasharray="5 5" fill="none" opacity="0.5"
+                  initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.5 }}
+                />
+                <motion.path 
+                  d="M 50% 50% L 80% 20%" 
+                  stroke="#e11d48" strokeWidth="2" strokeDasharray="5 5" fill="none" opacity="0.5"
+                  initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.7 }}
+                />
+                <motion.path 
+                  d="M 50% 50% L 20% 80%" 
+                  stroke="#e11d48" strokeWidth="2" strokeDasharray="5 5" fill="none" opacity="0.5"
+                  initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.9 }}
+                />
+                <motion.path 
+                  d="M 50% 50% L 80% 80%" 
+                  stroke="#e11d48" strokeWidth="2" strokeDasharray="5 5" fill="none" opacity="0.5"
+                  initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 1.1 }}
+                />
+              </svg>
+
+              {/* Floating Feature 1: Optimized Flow */}
+              <motion.div 
+                className="absolute top-[10%] left-[5%] dark-card bg-white/90 dark:bg-deep-black/90 backdrop-blur-md p-4 rounded-2xl border border-rose-pink/30 shadow-2xl z-20 w-48"
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0 }}
+              >
+                <div className="w-8 h-8 rounded-full bg-rose-pink/20 text-rose-pink flex items-center justify-center mb-2">
+                  <Zap className="w-4 h-4" />
+                </div>
+                <div className="text-[10px] font-black text-rose-pink uppercase tracking-wider mb-1">Optimized Flow</div>
+                <div className="text-sm font-bold dark:text-white text-dark-gray leading-tight">Streamlined Operations</div>
               </motion.div>
+
+              {/* Floating Feature 2: Actionable Insights */}
+              <motion.div 
+                className="absolute top-[10%] right-[5%] dark-card bg-white/90 dark:bg-deep-black/90 backdrop-blur-md p-4 rounded-2xl border border-rose-pink/30 shadow-2xl z-20 w-48"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              >
+                <div className="w-8 h-8 rounded-full bg-rose-pink/20 text-rose-pink flex items-center justify-center mb-2">
+                  <BarChart3 className="w-4 h-4" />
+                </div>
+                <div className="text-[10px] font-black text-rose-pink uppercase tracking-wider mb-1">Actionable Insights</div>
+                <div className="text-sm font-bold dark:text-white text-dark-gray leading-tight">Data Management & Insights</div>
+              </motion.div>
+
+              {/* Floating Feature 3: Vibrant Community */}
+              <motion.div 
+                className="absolute bottom-[10%] left-[5%] dark-card bg-white/90 dark:bg-deep-black/90 backdrop-blur-md p-4 rounded-2xl border border-rose-pink/30 shadow-2xl z-20 w-48"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              >
+                <div className="w-8 h-8 rounded-full bg-rose-pink/20 text-rose-pink flex items-center justify-center mb-2">
+                  <Users className="w-4 h-4" />
+                </div>
+                <div className="text-[10px] font-black text-rose-pink uppercase tracking-wider mb-1">Vibrant Community</div>
+                <div className="text-sm font-bold dark:text-white text-dark-gray leading-tight">Enhanced Member Experience</div>
+              </motion.div>
+
+              {/* Floating Feature 4: Seamless Growth */}
+              <motion.div 
+                className="absolute bottom-[10%] right-[5%] dark-card bg-white/90 dark:bg-deep-black/90 backdrop-blur-md p-4 rounded-2xl border border-rose-pink/30 shadow-2xl z-20 w-48"
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+              >
+                <div className="w-8 h-8 rounded-full bg-rose-pink/20 text-rose-pink flex items-center justify-center mb-2">
+                  <Server className="w-4 h-4" />
+                </div>
+                <div className="text-[10px] font-black text-rose-pink uppercase tracking-wider mb-1">Seamless Growth</div>
+                <div className="text-sm font-bold dark:text-white text-dark-gray leading-tight">Scalability & Security</div>
+              </motion.div>
+
             </Reveal>
           </div>
         </div>
@@ -184,8 +263,8 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                   Simple and Effective digital solutions for club management for accurate, up to date tracking of student/member's attendance, payments, and registration.
                 </div>
               </div>
-              <button onClick={onStartToday} className="rose-btn-primary text-lg">
-                Starts Today
+              <button onClick={onStartToday} className="rose-btn-primary text-lg whitespace-nowrap">
+                Start Today
               </button>
             </div>
           </Reveal>
