@@ -1,5 +1,5 @@
-import React, { useMemo, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useMemo } from 'react';
+import { motion } from 'framer-motion';
 import {
   Bell,
   CalendarCheck,
@@ -9,14 +9,16 @@ import {
   Trophy,
   Users,
   Zap,
-  Activity
+  Activity,
+  Box,
+  MonitorPlay,
+  Globe
 } from 'lucide-react';
 import { Sparkles } from '@/components/ui/sparkles';
 import { Reveal } from '@/components/ui/reveal';
-import dclixLogo from '@/assets/dclix-logo.svg';
 
-// Complex SVG Animations for Sports
-const BoxingAnimation = () => (
+// Tech-Forward Neon SVG Animations for Equipment
+const WrestlingEquipment = () => (
   <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">
     <motion.g animate={{ rotate: [0, 15, -5, 0], x: [0, 5, -2, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", times: [0, 0.15, 0.4, 1] }} style={{ transformOrigin: "75px 10px" }}>
       <rect x="65" y="20" width="20" height="50" rx="10" fill="#06b6d4" fillOpacity="0.2" stroke="#06b6d4" strokeWidth="3" />
@@ -129,48 +131,75 @@ const WrestlingAnimation = () => (
   </svg>
 );
 
-const SilatAnimation = () => (
-  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]">
-    {/* Low stance (Kuda-kuda) */}
-    <circle cx="50" cy="40" r="7" fill="none" stroke="#10b981" strokeWidth="3" />
-    <path d="M50 47 L50 65" stroke="#10b981" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    
-    {/* Deep wide stance */}
-    <motion.path 
-      animate={{ d: ["M50 65 L30 80 L20 90 M50 65 L70 80 L80 90", "M50 65 L25 85 L15 90 M50 65 L75 85 L85 90", "M50 65 L30 80 L20 90 M50 65 L70 80 L80 90"] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      stroke="#10b981" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
-    />
-    
-    {/* Flowing hand movements */}
-    <motion.path 
-      animate={{ d: ["M50 55 L30 50 L25 35 M50 55 L70 50 L75 35", "M50 55 L35 45 L40 30 M50 55 L65 45 L60 30", "M50 55 L30 50 L25 35 M50 55 L70 50 L75 35"] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      stroke="#10b981" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" 
-    />
-  </svg>
-);
+const HexagonCard = ({ title, desc, color, delay, children, className }: { title: string, desc: string, color: string, delay: number, children: React.ReactNode, className?: string }) => (
+  <motion.div 
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.8, delay, type: "spring" }}
+    className={`absolute flex flex-col items-center gap-4 ${className}`}
+  >
+    {/* Hexagon Frame */}
+    <div className="relative w-[180px] h-[200px] flex items-center justify-center group">
+      {/* Background Glow */}
+      <div className="absolute inset-0 rounded-full blur-[40px] opacity-30 group-hover:opacity-50 transition-opacity duration-500" style={{ backgroundColor: color }} />
+      
+      {/* SVG Hex Border */}
+      <svg viewBox="0 0 100 115" className="absolute inset-0 w-full h-full">
+        <polygon 
+          points="50 5, 95 30, 95 85, 50 110, 5 85, 5 30" 
+          fill="rgba(10,10,10,0.6)" 
+          stroke={color} 
+          strokeWidth="1.5" 
+          strokeLinejoin="round"
+          className="drop-shadow-[0_0_8px_currentColor]"
+        />
+        <polygon 
+          points="50 10, 90 33, 90 82, 50 105, 10 82, 10 33" 
+          fill="none" 
+          stroke={color} 
+          strokeWidth="0.5" 
+          strokeLinejoin="round"
+          opacity="0.5"
+        />
+        {/* Nodes */}
+        <circle cx="50" cy="5" r="1.5" fill={color} />
+        <circle cx="95" cy="30" r="1.5" fill={color} />
+        <circle cx="95" cy="85" r="1.5" fill={color} />
+        <circle cx="50" cy="110" r="1.5" fill={color} />
+        <circle cx="5" cy="85" r="1.5" fill={color} />
+        <circle cx="5" cy="30" r="1.5" fill={color} />
+      </svg>
 
-const ActionBentoCard = ({ title, color, children, delay }: { title: string, color: string, children: React.ReactNode, delay: number }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
-      whileHover={{ y: -5, scale: 1.02 }}
-      className="relative overflow-hidden rounded-3xl border dark:bg-[#0A0A0A]/80 bg-white/80 backdrop-blur-xl shadow-2xl flex flex-col items-center justify-center p-6 group cursor-pointer"
-      style={{ borderColor: `${color}30` }}
-    >
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" style={{ background: `radial-gradient(circle at center, ${color} 0%, transparent 70%)` }} />
-      <div className="w-24 h-24 mb-4 relative z-10">
+      {/* Tech UI Elements outside hex */}
+      <div className="absolute top-[20%] -left-6 w-8 h-4 flex flex-col justify-between opacity-50">
+        <div className="h-[1px] w-full bg-white/50" />
+        <div className="h-[1px] w-1/2 bg-white/50" />
+      </div>
+      <div className="absolute bottom-[20%] -right-6 w-8 h-4 flex flex-col justify-between items-end opacity-50">
+        <div className="h-[1px] w-full bg-white/50" />
+        <div className="h-[1px] w-2/3 bg-white/50" />
+      </div>
+
+      {/* Inner Animation Content */}
+      <div className="relative z-10 w-[85%] h-[85%] p-4 flex items-center justify-center">
         {children}
       </div>
-      <div className="text-xs font-bold uppercase tracking-[0.2em] relative z-10" style={{ color }}>
-        {title}
-      </div>
-    </motion.div>
-  );
-};
+    </div>
+
+    {/* Tech Pill */}
+    <div 
+      className="px-5 py-2.5 rounded-xl border bg-[#050505]/90 backdrop-blur-md flex flex-col items-center justify-center text-center shadow-xl w-[220px]"
+      style={{ borderColor: `${color}40`, boxShadow: `0 4px 15px ${color}15` }}
+    >
+      <span className="text-[11px] font-bold uppercase tracking-widest mb-0.5" style={{ color, textShadow: `0 0 10px ${color}` }}>
+        {title}:
+      </span>
+      <span className="text-[10px] text-gray-300 font-medium tracking-wide">
+        {desc}
+      </span>
+    </div>
+  </motion.div>
+);
 
 export default function HomeTop({ onStartToday }: { onStartToday: () => void }) {
   const features = useMemo(
@@ -291,7 +320,7 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
 
               {/* Hexagon Cards Positioned Diagonally */}
               <HexagonCard 
-                title="Wrestling" 
+                title="Equipment" 
                 desc="Rotating 3D Headgear & Belt." 
                 color="#06b6d4" 
                 delay={0.5}
@@ -301,23 +330,23 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
               </HexagonCard>
 
               <HexagonCard 
-                title="Basketball" 
-                desc="Dynamic 3D Bounce & Neon Trail." 
+                title="Karate" 
+                desc="Dynamic Strikes & Forms." 
                 color="#d946ef" 
                 delay={0.7}
                 className="top-[30%] right-[5%] z-10"
               >
-                <BasketballEquipment />
+                <KarateAnimation />
               </HexagonCard>
 
               <HexagonCard 
-                title="Martial Arts" 
-                desc="Dynamic Black Belt Tying." 
+                title="Grappling" 
+                desc="Takedowns & Mat Work." 
                 color="#eab308" 
                 delay={0.9}
                 className="bottom-[5%] left-[20%] z-30"
               >
-                <MartialArtsEquipment />
+                <WrestlingAnimation />
               </HexagonCard>
 
               {/* Right Sidebar Decorative Badges */}
