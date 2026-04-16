@@ -477,9 +477,6 @@ const HexCanvasCard = ({
         <span className="font-bold text-[19px] uppercase tracking-[1.2px] block font-[Barlow_Condensed,sans-serif]" style={{ color: 'var(--sc)' }}>
           {title}
         </span>
-        <span className="text-[12.5px] text-[#8A9BC0] mt-1 block">
-          {desc}
-        </span>
       </div>
     </motion.div>
   );
