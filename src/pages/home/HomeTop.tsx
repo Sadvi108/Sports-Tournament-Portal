@@ -11,9 +11,6 @@ import {
   Users,
   Zap,
   Activity,
-  Box,
-  MonitorPlay,
-  Globe
 } from 'lucide-react';
 import { Sparkles } from '@/components/ui/sparkles';
 import { Reveal } from '@/components/ui/reveal';
@@ -651,32 +648,6 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                 >
                   <MartialArtsCanvas />
                 </HexCanvasCard>
-              </div>
-
-              {/* Right Sidebar Decorative Badges */}
-              <div className="absolute top-1/2 -translate-y-1/2 -right-4 lg:-right-12 hidden xl:flex flex-col items-end gap-4 z-40 opacity-80 pr-4">
-                <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 text-right">Animation<br/>Execution</div>
-                
-                <motion.div whileHover={{ x: -5 }} className="flex flex-col items-center gap-2 cursor-default">
-                  <div className="w-10 h-10 rounded-lg bg-[#050811] border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
-                    <Box className="w-5 h-5" />
-                  </div>
-                  <div className="text-[8px] font-bold text-gray-300 tracking-wider">THREE.JS</div>
-                </motion.div>
-                
-                <motion.div whileHover={{ x: -5 }} className="flex flex-col items-center gap-2 cursor-default">
-                  <div className="w-10 h-10 rounded-lg bg-[#050811] border border-magenta-500/30 flex items-center justify-center text-magenta-400 shadow-[0_0_10px_rgba(217,70,239,0.2)]">
-                    <MonitorPlay className="w-5 h-5" />
-                  </div>
-                  <div className="text-[8px] font-bold text-gray-300 tracking-wider">REACT</div>
-                </motion.div>
-
-                <motion.div whileHover={{ x: -5 }} className="flex flex-col items-center gap-2 cursor-default">
-                  <div className="w-10 h-10 rounded-lg bg-[#050811] border border-yellow-500/30 flex items-center justify-center text-yellow-400 shadow-[0_0_10px_rgba(234,179,8,0.2)]">
-                    <Globe className="w-5 h-5" />
-                  </div>
-                  <div className="text-[8px] font-bold text-gray-300 tracking-wider">WEBGL</div>
-                </motion.div>
               </div>
 
             </Reveal>
