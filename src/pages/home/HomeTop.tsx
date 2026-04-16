@@ -1,5 +1,5 @@
 import React, { useMemo, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import * as THREE from 'three';
 import {
   Bell,
@@ -49,18 +49,44 @@ const WrestlingCanvas = () => {
 
     scene.add(group);
 
-    let animationFrameId: number;
-    const animate = (t: number) => {
-      animationFrameId = requestAnimationFrame(animate);
+    let animationFrameId = 0;
+    let running = true;
+    let isIntersecting = true;
+
+    const setRunning = (next: boolean) => {
+      if (running === next) return;
+      running = next;
+      if (running) animationFrameId = requestAnimationFrame(animate);
+    };
+
+    const onVisibility = () => {
+      setRunning(isIntersecting && document.visibilityState === 'visible');
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        isIntersecting = !!entry?.isIntersecting;
+        onVisibility();
+      },
+      { threshold: 0.12 },
+    );
+    io.observe(canvas);
+
+    function animate(t: number) {
+      if (!running) return;
       const s = t * 0.001;
       group.rotation.x = s * 0.72;
       group.rotation.y = s * 1.14;
       renderer.render(scene, camera);
-    };
-    animate(0);
+      animationFrameId = requestAnimationFrame(animate);
+    }
+    animationFrameId = requestAnimationFrame(animate);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      io.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
       renderer.dispose();
       headgear.geometry.dispose();
       belt.geometry.dispose();
@@ -139,10 +165,32 @@ const BasketballCanvas = () => {
 
     const posHistory: THREE.Vector3[] = [];
     let lastBounceY = 0;
-    let animationFrameId: number;
+    let animationFrameId = 0;
+    let running = true;
+    let isIntersecting = true;
 
-    const animate = (t: number) => {
-      animationFrameId = requestAnimationFrame(animate);
+    const setRunning = (next: boolean) => {
+      if (running === next) return;
+      running = next;
+      if (running) animationFrameId = requestAnimationFrame(animate);
+    };
+
+    const onVisibility = () => {
+      setRunning(isIntersecting && document.visibilityState === 'visible');
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        isIntersecting = !!entry?.isIntersecting;
+        onVisibility();
+      },
+      { threshold: 0.12 },
+    );
+    io.observe(canvas);
+
+    function animate(t: number) {
+      if (!running) return;
       const s = t * 0.001;
 
       const bounce = Math.abs(Math.sin(s * 1.4));
@@ -185,11 +233,14 @@ const BasketballCanvas = () => {
       lastBounceY = ballY;
 
       renderer.render(scene, camera);
-    };
-    animate(0);
+      animationFrameId = requestAnimationFrame(animate);
+    }
+    animationFrameId = requestAnimationFrame(animate);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      io.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
       renderer.dispose();
       ballMesh.geometry.dispose(); (ballMesh.material as THREE.Material).dispose();
       seams.forEach(s => { s.geometry.dispose(); (s.material as THREE.Material).dispose(); });
@@ -279,9 +330,32 @@ const MartialArtsCanvas = () => {
     const pointsMesh = new THREE.Points(pg, pointsMat);
     scene.add(pointsMesh);
 
-    let animationFrameId: number;
-    const animate = (t: number) => {
-      animationFrameId = requestAnimationFrame(animate);
+    let animationFrameId = 0;
+    let running = true;
+    let isIntersecting = true;
+
+    const setRunning = (next: boolean) => {
+      if (running === next) return;
+      running = next;
+      if (running) animationFrameId = requestAnimationFrame(animate);
+    };
+
+    const onVisibility = () => {
+      setRunning(isIntersecting && document.visibilityState === 'visible');
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        isIntersecting = !!entry?.isIntersecting;
+        onVisibility();
+      },
+      { threshold: 0.12 },
+    );
+    io.observe(canvas);
+
+    function animate(t: number) {
+      if (!running) return;
       const s = t * 0.001;
 
       knot.rotation.y = s * 0.82;
@@ -300,11 +374,14 @@ const MartialArtsCanvas = () => {
       });
 
       renderer.render(scene, camera);
-    };
-    animate(0);
+      animationFrameId = requestAnimationFrame(animate);
+    }
+    animationFrameId = requestAnimationFrame(animate);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      io.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
       renderer.dispose();
       knot.geometry.dispose(); knotMat.dispose();
       beltTorus.geometry.dispose(); beltMat.dispose();
@@ -339,6 +416,23 @@ const HexCanvasCard = ({
     martialarts: '#FFC845'
   };
   const color = colors[type];
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
+  const tiltXSpring = useSpring(tiltX, { stiffness: 220, damping: 22, mass: 0.35 });
+  const tiltYSpring = useSpring(tiltY, { stiffness: 220, damping: 22, mass: 0.35 });
+
+  const onTiltMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    tiltX.set(-py * 7);
+    tiltY.set(px * 7);
+  };
+
+  const onTiltLeave = () => {
+    tiltX.set(0);
+    tiltY.set(0);
+  };
 
   return (
     <motion.div 
@@ -348,7 +442,12 @@ const HexCanvasCard = ({
       className={`flex flex-col items-center gap-[22px] ${type}`}
       style={{ '--sc': color } as React.CSSProperties}
     >
-      <div className="group cursor-pointer transition-all duration-300 drop-shadow-[0_0_16px_var(--sc)] hover:drop-shadow-[0_0_38px_var(--sc)]">
+      <motion.div
+        onMouseMove={onTiltMove}
+        onMouseLeave={onTiltLeave}
+        style={{ rotateX: tiltXSpring, rotateY: tiltYSpring, transformPerspective: 900 }}
+        className="group cursor-pointer transition-all duration-300 drop-shadow-[0_0_16px_var(--sc)] hover:drop-shadow-[0_0_38px_var(--sc)] animate-[hexBreath_6s_ease-in-out_infinite]"
+      >
         <div className="relative w-[300px] h-[260px] sm:w-[260px] sm:h-[225px] md:w-[300px] md:h-[260px]">
           <div 
             className="absolute inset-0"
@@ -361,6 +460,7 @@ const HexCanvasCard = ({
             className="absolute top-[2.5px] left-[5px] w-[290px] h-[255px] sm:top-[2px] sm:left-[4px] sm:w-[252px] sm:h-[221px] md:top-[2.5px] md:left-[5px] md:w-[290px] md:h-[255px] overflow-hidden bg-[#050811]"
             style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}
           >
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br from-white/5 via-transparent to-transparent" />
             {children}
             
             <div className="absolute inset-0 pointer-events-none z-10">
@@ -375,7 +475,7 @@ const HexCanvasCard = ({
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       <div className="text-center">
         <span className="font-bold text-[19px] uppercase tracking-[1.2px] block font-[Barlow_Condensed,sans-serif]" style={{ color: 'var(--sc)' }}>
           {title}
@@ -484,9 +584,16 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
 
             <Reveal delay={0.3}>
               <div className="flex flex-wrap gap-4 pt-4">
-                <button onClick={onStartToday} className="rose-btn-primary text-base px-8 py-4 shadow-xl shadow-rose-pink/20 hover:-translate-y-1 transition-transform font-semibold">
+                <motion.button
+                  onClick={onStartToday}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+                  className="rose-btn-primary text-base px-8 py-4 shadow-xl shadow-rose-pink/20 font-semibold relative overflow-hidden group"
+                >
+                  <span className="absolute -inset-y-8 -left-28 w-24 rotate-12 bg-white/25 blur-md opacity-0 group-hover:opacity-100 animate-[ctaShine_1.2s_ease-in-out_infinite]" />
                   Start Your Journey
-                </button>
+                </motion.button>
                 <button className="px-8 py-4 rounded-full border-2 border-gray-200 dark:border-white/10 font-semibold dark:text-white text-dark-gray hover:border-rose-pink hover:text-rose-pink transition-colors">
                   Watch Demo
                 </button>
@@ -502,6 +609,15 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                 10%  { opacity: 0.18; }
                 90%  { opacity: 0.18; }
                 100% { top: 215px; opacity: 0; }
+              }
+              @keyframes hexBreath {
+                0%, 100% { filter: drop-shadow(0 0 14px var(--sc)) drop-shadow(0 0 3px var(--sc)); }
+                50%      { filter: drop-shadow(0 0 26px var(--sc)) drop-shadow(0 0 7px var(--sc)); }
+              }
+              @keyframes ctaShine {
+                0%   { transform: translateX(0) rotate(12deg); opacity: 0; }
+                10%  { opacity: 1; }
+                100% { transform: translateX(360px) rotate(12deg); opacity: 0; }
               }
             `}</style>
             <Reveal delay={0.4} className="w-full h-full relative flex items-center justify-center lg:justify-end">

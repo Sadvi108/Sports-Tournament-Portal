@@ -16,6 +16,7 @@ export type SparklesProps = {
   minOpacity?: number | null
   color?: string
   background?: string
+  fpsLimit?: number
   options?: Record<string, unknown>
 }
 
@@ -31,9 +32,11 @@ export function Sparkles({
   minOpacity = null,
   color = "#FFFFFF",
   background = "transparent",
+  fpsLimit = 60,
   options = {},
 }: SparklesProps) {
   const [isReady, setIsReady] = useState(false)
+  const [reduceMotion, setReduceMotion] = useState(false)
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -41,6 +44,15 @@ export function Sparkles({
     }).then(() => {
       setIsReady(true)
     })
+  }, [])
+
+  useEffect(() => {
+    const mq = window.matchMedia?.("(prefers-reduced-motion: reduce)")
+    if (!mq) return
+    const onChange = () => setReduceMotion(!!mq.matches)
+    onChange()
+    mq.addEventListener?.("change", onChange)
+    return () => mq.removeEventListener?.("change", onChange)
   }, [])
 
   const id = useId()
@@ -55,17 +67,17 @@ export function Sparkles({
       enable: false,
       zIndex: 1,
     },
-    fpsLimit: 120,
+    fpsLimit: reduceMotion ? Math.min(30, fpsLimit) : fpsLimit,
     particles: {
       color: {
         value: color,
       },
       move: {
-        enable: true,
+        enable: !reduceMotion,
         direction: "none",
         speed: {
-          min: minSpeed || speed / 10,
-          max: speed,
+          min: reduceMotion ? 0 : minSpeed || speed / 10,
+          max: reduceMotion ? 0 : speed,
         },
         straight: false,
       },
@@ -78,7 +90,7 @@ export function Sparkles({
           max: opacity,
         },
         animation: {
-          enable: true,
+          enable: !reduceMotion,
           sync: false,
           speed: opacitySpeed,
         },

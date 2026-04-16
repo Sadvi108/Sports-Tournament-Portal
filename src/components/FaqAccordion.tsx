@@ -16,10 +16,16 @@ export default function FaqAccordion({ items }: { items: FaqItem[] }) {
             <button
               type="button"
               onClick={() => setOpen((v) => (v === idx ? null : idx))}
-              className="w-full flex items-center justify-between gap-6 p-6 text-left"
+              className={isOpen ? "w-full flex items-center justify-between gap-6 p-6 text-left bg-rose-pink/5" : "w-full flex items-center justify-between gap-6 p-6 text-left"}
             >
               <div className="font-semibold dark:text-white text-dark-gray">{it.q}</div>
-              <ChevronDown className={isOpen ? 'w-5 h-5 text-rose-pink rotate-180 transition-transform' : 'w-5 h-5 text-muted-gray transition-transform'} />
+              <motion.div
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+                className={isOpen ? 'text-rose-pink' : 'text-muted-gray'}
+              >
+                <ChevronDown className="w-5 h-5" />
+              </motion.div>
             </button>
             <AnimatePresence initial={false}>
               {isOpen && (

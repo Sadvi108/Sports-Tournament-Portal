@@ -33,9 +33,14 @@ export default function MarketingNavbar() {
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-deep-black/80 backdrop-blur-md border-b border-gray-200 dark:border-white/5 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <div className="w-16 h-16 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center border border-rose-pink/20">
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: 'spring', stiffness: 280, damping: 18 }}
+            className="w-16 h-16 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center border border-rose-pink/20"
+          >
             <img src={dclixLogo} alt="D-CLIX" className="w-12 h-12" />
-          </div>
+          </motion.div>
           <div className="leading-tight">
             <div className="font-semibold tracking-tight text-lg dark:text-white text-dark-gray">D-Clix</div>
             <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-gray">Club Management</div>
@@ -51,11 +56,20 @@ export default function MarketingNavbar() {
                 to={it.to}
                 className={
                   active
-                    ? 'text-sm font-semibold text-rose-pink'
-                    : 'text-sm font-bold text-muted-gray hover:text-rose-pink transition-colors'
+                    ? 'relative text-sm font-semibold text-rose-pink'
+                    : 'relative text-sm font-bold text-muted-gray hover:text-rose-pink transition-colors'
                 }
               >
-                {it.label}
+                <span className="relative">
+                  {it.label}
+                  {active && (
+                    <motion.span
+                      layoutId="mk-nav-underline"
+                      transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+                      className="absolute left-0 -bottom-2 h-[2px] w-full bg-rose-pink rounded-full"
+                    />
+                  )}
+                </span>
               </Link>
             );
           })}
