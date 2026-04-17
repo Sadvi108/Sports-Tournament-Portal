@@ -16,7 +16,7 @@ import { Sparkles } from '@/components/ui/sparkles';
 import { Reveal } from '@/components/ui/reveal';
 
 // Tech-Forward Neon SVG Animations for Equipment
-const WrestlingCanvas = () => {
+const BoxingCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -29,42 +29,6 @@ const WrestlingCanvas = () => {
     const camera = new THREE.PerspectiveCamera(46, 1, 0.1, 100);
     camera.position.z = 5.6;
 
-    const group = new THREE.Group();
-    const gMat = new THREE.LineBasicMaterial({ color: 0x00BFFF, transparent: true, opacity: 0.88 });
-  
-    const headband = new THREE.LineSegments(
-      new THREE.WireframeGeometry(new THREE.TorusGeometry(1.0, 0.08, 10, 72)),
-      gMat,
-    );
-    headband.rotation.x = Math.PI / 2;
-    group.add(headband);
-  
-    const earGeo = new THREE.SphereGeometry(0.23, 12, 10);
-    const leftEar = new THREE.LineSegments(new THREE.WireframeGeometry(earGeo), gMat);
-    const rightEar = new THREE.LineSegments(new THREE.WireframeGeometry(earGeo), gMat);
-    leftEar.position.set(-0.92, 0, 0);
-    rightEar.position.set(0.92, 0, 0);
-    group.add(leftEar);
-    group.add(rightEar);
-  
-    const strapGeo = new THREE.CylinderGeometry(0.03, 0.03, 1.35, 10, 1, true);
-    const strap = new THREE.LineSegments(new THREE.WireframeGeometry(strapGeo), gMat);
-    strap.rotation.z = Math.PI / 2;
-    strap.rotation.x = Math.PI / 2.6;
-    strap.position.y = -0.25;
-    group.add(strap);
-  
-    const belt = new THREE.LineSegments(
-      new THREE.WireframeGeometry(new THREE.TorusGeometry(1.25, 0.07, 10, 72)),
-      gMat,
-    );
-    belt.rotation.x = Math.PI / 1.85;
-    belt.position.y = -0.85;
-    belt.position.z = -0.25;
-    group.add(belt);
-
-    scene.add(group);
-  
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       const w = Math.max(1, Math.floor(rect.width));
@@ -76,6 +40,66 @@ const WrestlingCanvas = () => {
     resize();
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
+
+    const group = new THREE.Group();
+    const gMat = new THREE.LineBasicMaterial({ color: 0xE11D48, transparent: true, opacity: 0.9 });
+
+    const wireframes: THREE.BufferGeometry[] = [];
+    const solids: THREE.BufferGeometry[] = [];
+    const makeWire = (geo: THREE.BufferGeometry) => {
+      solids.push(geo);
+      const wf = new THREE.WireframeGeometry(geo);
+      wireframes.push(wf);
+      return new THREE.LineSegments(wf, gMat);
+    };
+
+    const head = makeWire(new THREE.SphereGeometry(0.26, 14, 12));
+    head.position.y = 0.9;
+    group.add(head);
+
+    const torso = makeWire(new THREE.CylinderGeometry(0.22, 0.28, 0.78, 12, 1, true));
+    torso.position.y = 0.35;
+    group.add(torso);
+
+    const hips = makeWire(new THREE.SphereGeometry(0.22, 12, 10));
+    hips.position.y = -0.15;
+    group.add(hips);
+
+    const guardRing = makeWire(new THREE.TorusGeometry(0.82, 0.018, 6, 64));
+    guardRing.rotation.x = Math.PI / 2;
+    guardRing.position.y = 0.38;
+    group.add(guardRing);
+
+    const leftArm = new THREE.Group();
+    leftArm.position.set(-0.35, 0.55, 0);
+    group.add(leftArm);
+    const leftUpper = makeWire(new THREE.CylinderGeometry(0.055, 0.055, 0.55, 10, 1, true));
+    leftUpper.rotation.z = Math.PI / 2.2;
+    leftUpper.position.x = -0.16;
+    leftArm.add(leftUpper);
+    const leftGlove = makeWire(new THREE.SphereGeometry(0.18, 12, 10));
+    leftGlove.position.set(-0.43, -0.08, 0.15);
+    leftArm.add(leftGlove);
+
+    const rightArm = new THREE.Group();
+    rightArm.position.set(0.35, 0.55, 0);
+    group.add(rightArm);
+    const rightUpper = makeWire(new THREE.CylinderGeometry(0.055, 0.055, 0.58, 10, 1, true));
+    rightUpper.rotation.z = -Math.PI / 2.2;
+    rightUpper.position.x = 0.16;
+    rightArm.add(rightUpper);
+    const rightGlove = makeWire(new THREE.SphereGeometry(0.18, 12, 10));
+    rightGlove.position.set(0.43, -0.08, 0.15);
+    rightArm.add(rightGlove);
+
+    const leftLeg = makeWire(new THREE.CylinderGeometry(0.07, 0.07, 0.78, 10, 1, true));
+    leftLeg.position.set(-0.18, -0.92, 0);
+    group.add(leftLeg);
+    const rightLeg = makeWire(new THREE.CylinderGeometry(0.07, 0.07, 0.78, 10, 1, true));
+    rightLeg.position.set(0.18, -0.92, 0);
+    group.add(rightLeg);
+
+    scene.add(group);
 
     let animationFrameId = 0;
     let running = true;
@@ -104,8 +128,12 @@ const WrestlingCanvas = () => {
     function animate(t: number) {
       if (!running) return;
       const s = t * 0.001;
-      group.rotation.x = s * 0.72;
-      group.rotation.y = s * 1.14;
+      const jab = (Math.sin(s * 2.2) + 1) * 0.5;
+      rightGlove.position.z = 0.15 + jab * 0.8;
+      rightArm.rotation.y = -0.25 - jab * 0.35;
+      leftArm.rotation.y = 0.18 + Math.sin(s * 1.8) * 0.12;
+      group.rotation.y = Math.sin(s * 0.9) * 0.25;
+      group.rotation.x = Math.sin(s * 0.6) * 0.12;
       renderer.render(scene, camera);
       animationFrameId = requestAnimationFrame(animate);
     }
@@ -117,20 +145,15 @@ const WrestlingCanvas = () => {
       io.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
       renderer.dispose();
-      headband.geometry.dispose();
-      leftEar.geometry.dispose();
-      rightEar.geometry.dispose();
-      strap.geometry.dispose();
-      belt.geometry.dispose();
-      earGeo.dispose();
-      strapGeo.dispose();
+      wireframes.forEach(g => g.dispose());
+      solids.forEach(g => g.dispose());
       gMat.dispose();
     };
   }, []);
   return <canvas ref={canvasRef} className="w-full h-full block" />;
 };
 
-const BasketballCanvas = () => {
+const KarateCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -155,63 +178,72 @@ const BasketballCanvas = () => {
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
 
-    const ballGroup = new THREE.Group();
-    const ballMesh = new THREE.LineSegments(
-      new THREE.WireframeGeometry(new THREE.SphereGeometry(1.05, 26, 18)),
-      new THREE.LineBasicMaterial({ color: 0xE040FB, transparent: true, opacity: 0.85 })
-    );
-    ballGroup.add(ballMesh);
+    const group = new THREE.Group();
+    const gMat = new THREE.LineBasicMaterial({ color: 0x00BFFF, transparent: true, opacity: 0.88 });
 
-    const seamOffsets = [[0, 0, 0], [Math.PI / 2, Math.PI / 4, 0], [Math.PI / 4, 0, Math.PI / 3]];
-    const seams: THREE.LineSegments[] = [];
-    for (const [rx, ry, rz] of seamOffsets) {
-      const s = new THREE.LineSegments(
-        new THREE.WireframeGeometry(new THREE.TorusGeometry(1.07, 0.008, 4, 72)),
-        new THREE.LineBasicMaterial({ color: 0xFF60FF, transparent: true, opacity: 0.55 })
-      );
-      s.rotation.set(rx, ry, rz);
-      ballGroup.add(s);
-      seams.push(s);
-    }
-    scene.add(ballGroup);
+    const wireframes: THREE.BufferGeometry[] = [];
+    const solids: THREE.BufferGeometry[] = [];
+    const makeWire = (geo: THREE.BufferGeometry) => {
+      solids.push(geo);
+      const wf = new THREE.WireframeGeometry(geo);
+      wireframes.push(wf);
+      return new THREE.LineSegments(wf, gMat);
+    };
 
-    const trailMat = new THREE.LineBasicMaterial({ color: 0x00FFE0, transparent: true, opacity: 0.7 });
-    let trailLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3()]), trailMat);
-    scene.add(trailLine);
+    const head = makeWire(new THREE.SphereGeometry(0.24, 14, 12));
+    head.position.y = 0.92;
+    group.add(head);
 
-    const floorRing = new THREE.LineSegments(
-      new THREE.WireframeGeometry(new THREE.TorusGeometry(0.92, 0.015, 4, 48)),
-      new THREE.LineBasicMaterial({ color: 0xE040FB, transparent: true, opacity: 0.3 })
-    );
-    floorRing.position.y = -1.75;
-    floorRing.rotation.x = Math.PI / 2;
-    scene.add(floorRing);
+    const torso = makeWire(new THREE.CylinderGeometry(0.22, 0.28, 0.8, 12, 1, true));
+    torso.position.y = 0.35;
+    group.add(torso);
 
-    const ripples = Array.from({ length: 3 }, (_, i) => {
-      const r = new THREE.LineSegments(
-        new THREE.WireframeGeometry(new THREE.TorusGeometry(0.5, 0.01, 4, 40)),
-        new THREE.LineBasicMaterial({ color: 0x9F00FF, transparent: true, opacity: 0 })
-      );
-      r.position.y = -1.75;
-      r.rotation.x = Math.PI / 2;
-      r.userData = { phase: i * (Math.PI * 2 / 3), triggered: false };
-      scene.add(r);
-      return r;
-    });
+    const belt = makeWire(new THREE.TorusGeometry(0.36, 0.03, 8, 48));
+    belt.position.y = 0.05;
+    belt.rotation.x = Math.PI / 2;
+    group.add(belt);
 
-    const pts = new Float32Array(55 * 3);
-    for (let i = 0; i < 165; i++) pts[i] = (Math.random() - 0.5) * 7;
-    const pg = new THREE.BufferGeometry();
-    pg.setAttribute('position', new THREE.BufferAttribute(pts, 3));
-    const pointsMat = new THREE.PointsMaterial({ color: 0xE040FB, size: 0.04, transparent: true, opacity: 0.42 });
-    const pointsMesh = new THREE.Points(pg, pointsMat);
-    scene.add(pointsMesh);
+    const leftArm = makeWire(new THREE.CylinderGeometry(0.055, 0.055, 0.62, 10, 1, true));
+    leftArm.position.set(-0.38, 0.55, 0.08);
+    leftArm.rotation.z = Math.PI / 2.25;
+    group.add(leftArm);
 
-    const posHistory: THREE.Vector3[] = [];
-    let lastBounceY = 0;
+    const rightArm = makeWire(new THREE.CylinderGeometry(0.055, 0.055, 0.62, 10, 1, true));
+    rightArm.position.set(0.38, 0.55, 0.08);
+    rightArm.rotation.z = -Math.PI / 2.25;
+    group.add(rightArm);
+
+    const standingLeg = makeWire(new THREE.CylinderGeometry(0.07, 0.07, 0.9, 10, 1, true));
+    standingLeg.position.set(-0.18, -0.95, 0);
+    group.add(standingLeg);
+
+    const kick = new THREE.Group();
+    kick.position.set(0.12, -0.55, 0);
+    group.add(kick);
+
+    const kickingLeg = makeWire(new THREE.CylinderGeometry(0.07, 0.07, 0.95, 10, 1, true));
+    kickingLeg.position.set(0.5, 0.05, 0);
+    kickingLeg.rotation.z = -Math.PI / 2.9;
+    kick.add(kickingLeg);
+
+    const foot = makeWire(new THREE.BoxGeometry(0.22, 0.1, 0.14));
+    foot.position.set(0.88, -0.24, 0.05);
+    kick.add(foot);
+
+    const arcMat = new THREE.LineBasicMaterial({ color: 0x00FFE0, transparent: true, opacity: 0.0 });
+    const arcWf = new THREE.WireframeGeometry(new THREE.TorusGeometry(0.95, 0.012, 6, 80));
+    wireframes.push(arcWf);
+    const arc = new THREE.LineSegments(arcWf, arcMat);
+    arc.rotation.x = Math.PI / 2;
+    arc.rotation.z = Math.PI / 6;
+    arc.position.set(0.1, -0.05, 0.05);
+    group.add(arc);
+
+    scene.add(group);
     let animationFrameId = 0;
     let running = true;
     let isIntersecting = true;
+
 
     const setRunning = (next: boolean) => {
       if (running === next) return;
@@ -236,45 +268,13 @@ const BasketballCanvas = () => {
     function animate(t: number) {
       if (!running) return;
       const s = t * 0.001;
-
-      const bounce = Math.abs(Math.sin(s * 1.4));
-      const ballY = bounce * 2.0 - 1.6;
-      const driftX = Math.sin(s * 0.7) * 0.55;
-
-      const nearFloor = Math.max(0, 1 - (ballY + 1.6) / 1.0);
-      ballGroup.scale.set(1 + nearFloor * 0.30, 1 - nearFloor * 0.25, 1 + nearFloor * 0.30);
-      ballGroup.position.set(driftX, ballY, 0);
-      ballGroup.rotation.z = s * 0.9;
-      ballGroup.rotation.x = s * 0.5;
-
-      posHistory.unshift(new THREE.Vector3(driftX, ballY, 0));
-      if (posHistory.length > 32) posHistory.pop();
-      if (posHistory.length > 1) {
-        trailLine.geometry.dispose();
-        trailLine.geometry = new THREE.BufferGeometry().setFromPoints(posHistory);
-      }
-
-      floorRing.scale.set(1 + nearFloor * 0.5, 1 + nearFloor * 0.5, 1);
-      (floorRing.material as THREE.LineBasicMaterial).opacity = nearFloor * 0.65;
-
-      if (lastBounceY > ballY && ballY < -1.4) {
-        ripples.forEach((r, i) => {
-          r.scale.set(1, 1, 1);
-          (r.material as THREE.LineBasicMaterial).opacity = 0.7;
-          r.userData.rippleStart = s + i * 0.12;
-        });
-      }
-      ripples.forEach(r => {
-        if (r.userData.rippleStart) {
-          const age = s - r.userData.rippleStart;
-          if (age >= 0 && age < 1.2) {
-            const p = age / 1.2;
-            r.scale.set(1 + p * 2.5, 1 + p * 2.5, 1);
-            (r.material as THREE.LineBasicMaterial).opacity = 0.6 * (1 - p);
-          }
-        }
-      });
-      lastBounceY = ballY;
+      const phase = (Math.sin(s * 1.6) + 1) * 0.5;
+      kick.rotation.z = -0.55 - phase * 1.05;
+      group.rotation.y = Math.sin(s * 0.9) * 0.35;
+      group.rotation.x = Math.sin(s * 0.6) * 0.12;
+      group.position.y = Math.sin(s * 1.2) * 0.08;
+      arc.scale.set(1 + phase * 0.55, 1 + phase * 0.55, 1);
+      arcMat.opacity = 0.55 * (1 - phase);
 
       renderer.render(scene, camera);
       animationFrameId = requestAnimationFrame(animate);
@@ -287,12 +287,10 @@ const BasketballCanvas = () => {
       io.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
       renderer.dispose();
-      ballMesh.geometry.dispose(); (ballMesh.material as THREE.Material).dispose();
-      seams.forEach(s => { s.geometry.dispose(); (s.material as THREE.Material).dispose(); });
-      trailLine.geometry.dispose(); trailMat.dispose();
-      floorRing.geometry.dispose(); (floorRing.material as THREE.Material).dispose();
-      ripples.forEach(r => { r.geometry.dispose(); (r.material as THREE.Material).dispose(); });
-      pg.dispose(); pointsMat.dispose();
+      wireframes.forEach(g => g.dispose());
+      solids.forEach(g => g.dispose());
+      arcMat.dispose();
+      gMat.dispose();
     };
   }, []);
   return <canvas ref={canvasRef} className="w-full h-full block" />;
@@ -459,7 +457,7 @@ const HexCanvasCard = ({
   delay, 
   children 
 }: { 
-  type: 'wrestling' | 'basketball' | 'martialarts', 
+  type: 'boxing' | 'karate' | 'martialarts', 
   title: string, 
   desc: string, 
   hudCode: string, 
@@ -467,8 +465,8 @@ const HexCanvasCard = ({
   children: React.ReactNode 
 }) => {
   const colors = {
-    wrestling: '#00BFFF',
-    basketball: '#E040FB',
+    boxing: '#E11D48',
+    karate: '#00BFFF',
     martialarts: '#FFC845'
   };
   const color = colors[type];
@@ -676,23 +674,23 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
             <Reveal delay={0.4} className="w-full h-full relative flex items-center justify-center">
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 place-items-center w-full max-w-[1200px] relative z-10">
                 <HexCanvasCard 
-                  type="wrestling" 
-                  title="Wrestling" 
-                  desc="Rotating 3D Headgear & Belt." 
-                  hudCode="ROT.X:0.72 | ROT.Y:1.14 | MESH:WF" 
+                  type="boxing" 
+                  title="Boxing" 
+                  desc="Jab • Guard • Footwork" 
+                  hudCode="JAB:ON | GUARD:HIGH | WIREFRAME:ON" 
                   delay={0}
                 >
-                  <WrestlingCanvas />
+                  <BoxingCanvas />
                 </HexCanvasCard>
 
                 <HexCanvasCard 
-                  type="basketball" 
-                  title="Basketball" 
-                  desc="Dynamic 3D Bounce & Neon Trail." 
-                  hudCode="VEL:2.18 | BOUNCE:0.82 | TRAIL:ON" 
+                  type="karate" 
+                  title="Karate" 
+                  desc="Roundhouse Kick • Strike Arc" 
+                  hudCode="KICK:ROUND | ARC:ON | FORM:KATA" 
                   delay={1.1}
                 >
-                  <BasketballCanvas />
+                  <KarateCanvas />
                 </HexCanvasCard>
 
                 <HexCanvasCard 
