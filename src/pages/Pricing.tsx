@@ -37,7 +37,6 @@ export default function Pricing() {
           'Reimbursement',
           'Web and mobile app',
           '3 Basic class, 1 advanced class a week',
-          'Student class booking via app',
           'Dedicated WhatsApp group support'
         ],
       },
@@ -54,7 +53,6 @@ export default function Pricing() {
           '5 Basic class, 2 advanced class a week',
           'Prepaid account management',
           'WhatsApp template customize',
-          'Student class booking via app',
           'Dedicated WhatsApp group support'
         ],
         featured: true,
