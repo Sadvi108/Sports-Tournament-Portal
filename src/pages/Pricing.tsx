@@ -144,7 +144,9 @@ export default function Pricing() {
                     </div>
 
                     <div className="mt-8 space-y-4 flex-grow">
-                      {p.highlights.map((h) => (
+                      {p.highlights
+                        .filter((h) => p.name === 'Premium Plan' || h !== 'Student class booking via app')
+                        .map((h) => (
                         <div key={h} className="flex items-start gap-3 text-sm font-bold text-muted-gray">
                           <div className="w-5 h-5 rounded-full bg-rose-pink text-white flex items-center justify-center shrink-0 mt-0.5">
                             <Check className="w-3 h-3" />
