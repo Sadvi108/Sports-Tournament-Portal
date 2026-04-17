@@ -156,16 +156,14 @@ export default function Pricing() {
                       ))}
                     </div>
 
-                    <div className="mt-8 pt-6 border-t border-gray-100 dark:border-white/10 text-center space-y-1">
-                      <div className="text-xs font-bold text-muted-gray uppercase tracking-wider">Monthly Subscription</div>
-                      <div className="text-sm font-semibold dark:text-white text-dark-gray">Gateway Payment Fee Per Online Payment</div>
-                      <div className="text-sm font-semibold text-rose-pink">RM 1.20</div>
-                    </div>
-
                     <button className="rose-btn-primary w-full mt-8">Select Plan</button>
                   </div>
                 </Reveal>
               ))}
+            </div>
+
+            <div className="mt-6 text-center text-xs font-semibold text-muted-gray">
+              * Gateway payment fee per online payment: <span className="text-rose-pink">RM 1.20</span>
             </div>
           </div>
         </section>
