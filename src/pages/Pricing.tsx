@@ -52,7 +52,6 @@ export default function Pricing() {
           'Inventory stock management',
           '5 Basic classes, 2 advanced classes a week',
           'Prepaid account management',
-          'WhatsApp template customize',
           'Dedicated WhatsApp group support'
         ],
         featured: true,
