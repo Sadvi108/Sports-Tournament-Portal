@@ -36,7 +36,9 @@ export default function Pricing() {
           'Push notification',
           'Reimbursement',
           'Web and mobile app',
-          '3 Basic class, 1 advanced class a week'
+          '3 Basic class, 1 advanced class a week',
+          'Student class booking via app',
+          'Dedicated WhatsApp group support'
         ],
       },
       {
@@ -51,7 +53,9 @@ export default function Pricing() {
           'Inventory stock management',
           '5 Basic class, 2 advanced class a week',
           'Prepaid account management',
-          'WhatsApp template customize'
+          'WhatsApp template customize',
+          'Student class booking via app',
+          'Dedicated WhatsApp group support'
         ],
         featured: true,
       },
@@ -68,7 +72,9 @@ export default function Pricing() {
           'Tournament participations, scores, results& history',
           'Financial reports customizations',
           'Payroll module',
-          'HQ approval on manual payment'
+          'HQ approval on manual payment',
+          'Student class booking via app',
+          'Dedicated WhatsApp group support'
         ],
       },
     ],
