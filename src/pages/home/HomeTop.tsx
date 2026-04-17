@@ -21,30 +21,61 @@ const WrestlingCanvas = () => {
   useEffect(() => {
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
-    const W = 290, H = 255;
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setSize(W, H);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(46, W / H, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(46, 1, 0.1, 100);
     camera.position.z = 5.6;
 
     const group = new THREE.Group();
     const gMat = new THREE.LineBasicMaterial({ color: 0x00BFFF, transparent: true, opacity: 0.88 });
-    const headgear = new THREE.LineSegments(
-      new THREE.WireframeGeometry(new THREE.TorusKnotGeometry(0.8, 0.2, 64, 8, 2, 3)), gMat
+  
+    const headband = new THREE.LineSegments(
+      new THREE.WireframeGeometry(new THREE.TorusGeometry(1.0, 0.08, 10, 72)),
+      gMat,
     );
-    group.add(headgear);
-    
+    headband.rotation.x = Math.PI / 2;
+    group.add(headband);
+  
+    const earGeo = new THREE.SphereGeometry(0.23, 12, 10);
+    const leftEar = new THREE.LineSegments(new THREE.WireframeGeometry(earGeo), gMat);
+    const rightEar = new THREE.LineSegments(new THREE.WireframeGeometry(earGeo), gMat);
+    leftEar.position.set(-0.92, 0, 0);
+    rightEar.position.set(0.92, 0, 0);
+    group.add(leftEar);
+    group.add(rightEar);
+  
+    const strapGeo = new THREE.CylinderGeometry(0.03, 0.03, 1.35, 10, 1, true);
+    const strap = new THREE.LineSegments(new THREE.WireframeGeometry(strapGeo), gMat);
+    strap.rotation.z = Math.PI / 2;
+    strap.rotation.x = Math.PI / 2.6;
+    strap.position.y = -0.25;
+    group.add(strap);
+  
     const belt = new THREE.LineSegments(
-      new THREE.WireframeGeometry(new THREE.TorusGeometry(1.2, 0.1, 8, 48)), gMat
+      new THREE.WireframeGeometry(new THREE.TorusGeometry(1.25, 0.07, 10, 72)),
+      gMat,
     );
-    belt.rotation.x = Math.PI / 2;
+    belt.rotation.x = Math.PI / 1.85;
+    belt.position.y = -0.85;
+    belt.position.z = -0.25;
     group.add(belt);
 
     scene.add(group);
+  
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.max(1, Math.floor(rect.width));
+      const h = Math.max(1, Math.floor(rect.height));
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    };
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
 
     let animationFrameId = 0;
     let running = true;
@@ -82,11 +113,17 @@ const WrestlingCanvas = () => {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      ro.disconnect();
       io.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
       renderer.dispose();
-      headgear.geometry.dispose();
+      headband.geometry.dispose();
+      leftEar.geometry.dispose();
+      rightEar.geometry.dispose();
+      strap.geometry.dispose();
       belt.geometry.dispose();
+      earGeo.dispose();
+      strapGeo.dispose();
       gMat.dispose();
     };
   }, []);
@@ -98,15 +135,25 @@ const BasketballCanvas = () => {
   useEffect(() => {
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
-    const W = 290, H = 255;
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setSize(W, H);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(46, W / H, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(46, 1, 0.1, 100);
     camera.position.z = 5.6;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.max(1, Math.floor(rect.width));
+      const h = Math.max(1, Math.floor(rect.height));
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    };
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
 
     const ballGroup = new THREE.Group();
     const ballMesh = new THREE.LineSegments(
@@ -236,6 +283,7 @@ const BasketballCanvas = () => {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      ro.disconnect();
       io.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
       renderer.dispose();
@@ -255,15 +303,25 @@ const MartialArtsCanvas = () => {
   useEffect(() => {
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
-    const W = 290, H = 255;
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setSize(W, H);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(46, W / H, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(46, 1, 0.1, 100);
     camera.position.z = 5.6;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.max(1, Math.floor(rect.width));
+      const h = Math.max(1, Math.floor(rect.height));
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    };
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
 
     const gMat = (op?: number) => new THREE.LineBasicMaterial({ color: 0xFFC845, transparent: true, opacity: op || 0.88 });
 
@@ -377,6 +435,7 @@ const MartialArtsCanvas = () => {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      ro.disconnect();
       io.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
       renderer.dispose();
@@ -445,7 +504,7 @@ const HexCanvasCard = ({
         style={{ rotateX: tiltXSpring, rotateY: tiltYSpring, transformPerspective: 900 }}
         className="group cursor-pointer transition-all duration-300 drop-shadow-[0_0_16px_var(--sc)] hover:drop-shadow-[0_0_38px_var(--sc)] animate-[hexBreath_6s_ease-in-out_infinite]"
       >
-        <div className="relative w-[300px] h-[260px] sm:w-[260px] sm:h-[225px] md:w-[300px] md:h-[260px]">
+        <div className="relative w-[300px] h-[260px] sm:w-[320px] sm:h-[278px] lg:w-[360px] lg:h-[312px]">
           <div 
             className="absolute inset-0"
             style={{ 
@@ -454,7 +513,7 @@ const HexCanvasCard = ({
             }} 
           />
           <div 
-            className="absolute top-[2.5px] left-[5px] w-[290px] h-[255px] sm:top-[2px] sm:left-[4px] sm:w-[252px] sm:h-[221px] md:top-[2.5px] md:left-[5px] md:w-[290px] md:h-[255px] overflow-hidden bg-[#050811]"
+            className="absolute top-[2.5px] left-[5px] w-[290px] h-[255px] sm:top-[3px] sm:left-[6px] sm:w-[308px] sm:h-[272px] lg:top-[3px] lg:left-[6px] lg:w-[348px] lg:h-[306px] overflow-hidden bg-[#050811]"
             style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}
           >
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br from-white/5 via-transparent to-transparent" />
@@ -602,7 +661,7 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                 0%   { top: 45px; opacity: 0; }
                 10%  { opacity: 0.18; }
                 90%  { opacity: 0.18; }
-                100% { top: 215px; opacity: 0; }
+                100% { top: calc(100% - 40px); opacity: 0; }
               }
               @keyframes hexBreath {
                 0%, 100% { filter: drop-shadow(0 0 14px var(--sc)) drop-shadow(0 0 3px var(--sc)); }
@@ -614,8 +673,8 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                 100% { transform: translateX(360px) rotate(12deg); opacity: 0; }
               }
             `}</style>
-            <Reveal delay={0.4} className="w-full h-full relative flex items-center justify-center lg:justify-end">
-              <div className="flex flex-wrap gap-6 justify-center lg:justify-start max-w-[650px] relative z-10">
+            <Reveal delay={0.4} className="w-full h-full relative flex items-center justify-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 place-items-center w-full max-w-[1200px] relative z-10">
                 <HexCanvasCard 
                   type="wrestling" 
                   title="Wrestling" 
