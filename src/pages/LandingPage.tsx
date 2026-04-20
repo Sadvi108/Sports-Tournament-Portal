@@ -80,13 +80,14 @@ const LandingPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-deep-black transition-colors duration-300">
       <Navbar />
       
       {/* Hero Section / Sport Selection Area */}
-      <section className="relative pt-40 pb-32 px-6 bg-hero-gradient dark:bg-deep-black overflow-hidden border-b border-gray-100 dark:border-white/5">
-        <div className="absolute inset-0 bg-hero-gradient opacity-40 pointer-events-none" />
-        <div className="absolute top-[20%] right-[-5%] w-[40%] h-[40%] bg-rose-pink/5 rounded-full blur-[150px] animate-pulse-slow" />
+      <section className="relative pt-40 pb-32 px-6 bg-white dark:bg-hero-gradient overflow-hidden border-b border-gray-100 dark:border-white/5">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-rose-pink/5 pointer-events-none dark:hidden" />
+        <div className="absolute inset-0 bg-hero-gradient opacity-40 pointer-events-none hidden dark:block" />
+        <div className="absolute top-[20%] right-[-5%] w-[40%] h-[40%] bg-rose-pink/10 dark:bg-rose-pink/5 rounded-full blur-[150px] animate-pulse-slow" />
         
         <div className="relative z-10 max-w-7xl mx-auto">
           <AnimatePresence mode="wait">
@@ -166,7 +167,7 @@ const LandingPage: React.FC = () => {
                     <div className="w-24 h-24 rounded-3xl bg-rose-pink/10 flex items-center justify-center text-rose-pink mb-6 shadow-2xl shadow-rose-pink/20">
                       <selectedSport.icon className="w-12 h-12" />
                     </div>
-                    <h2 className="text-6xl md:text-8xl font-semibold uppercase tracking-tight text-white leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.45)', WebkitTextStroke: '0.5px rgba(0,0,0,0.25)' }}>
+                    <h2 className="text-6xl md:text-8xl font-semibold uppercase tracking-tight text-dark-gray dark:text-white leading-none" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.25)', WebkitTextStroke: '0.5px rgba(0,0,0,0.25)' }}>
                       {selectedSport.name} <span className="text-rose-pink italic">PORTAL</span>
                     </h2>
                   </div>
