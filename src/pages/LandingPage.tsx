@@ -24,6 +24,7 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import dclixLogo from '@/assets/dclix-logo.svg';
+import LiveScoreTicker from '../components/LiveScoreTicker';
 
 const LandingPage: React.FC = () => {
   const [selectedSport, setSelectedSport] = useState<Sport | null>(null);
@@ -169,6 +170,10 @@ const LandingPage: React.FC = () => {
                       {selectedSport.name} <span className="text-rose-pink italic">PORTAL</span>
                     </h2>
                   </div>
+                </div>
+
+                <div className="-mx-6 w-[calc(100%+3rem)] xl:mx-0 xl:w-full relative z-20">
+                  <LiveScoreTicker />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
