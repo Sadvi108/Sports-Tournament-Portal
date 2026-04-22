@@ -453,7 +453,7 @@ const KarateImage = () => (
   <div className="relative overflow-hidden aspect-square flex items-center justify-center">
     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
     <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-rose-pink/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
-      <img alt="Karate Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(225,29,72,0.6)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy7xtJRShI42f_6v22GUCDrBJ6QXv2-yXYesHKKd6DwaAbjkeVZH_xfEPHcHQFp0lxyXhZNjeVQwihqtwvztxrVdTDpK5BfojSTeDnw5glMOoj5K3xZnzGz_-ZkVX1wj1rqTxb_Adaz37qX2Qpu4o-e5vJBGZ6YRFFuf1Mz7qvIJAwlLxzGQOlBeOgJB4WMNpBHfSwzPm5h1u-qy1q9L36gqZCl5D9o-2s5hiBWeXpicVJo6ids_OAeuwoklG_YrkWjiMlRbsa0A" />
+      <img alt="Karate Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(225,29,72,0.6)] translate-y-6 scale-[1.18]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy7xtJRShI42f_6v22GUCDrBJ6QXv2-yXYesHKKd6DwaAbjkeVZH_xfEPHcHQFp0lxyXhZNjeVQwihqtwvztxrVdTDpK5BfojSTeDnw5glMOoj5K3xZnzGz_-ZkVX1wj1rqTxb_Adaz37qX2Qpu4o-e5vJBGZ6YRFFuf1Mz7qvIJAwlLxzGQOlBeOgJB4WMNpBHfSwzPm5h1u-qy1q9L36gqZCl5D9o-2s5hiBWeXpicVJo6ids_OAeuwoklG_YrkWjiMlRbsa0A" />
     </div>
   </div>
 );
@@ -462,7 +462,7 @@ const BoxingImage = () => (
   <div className="relative overflow-hidden aspect-square flex items-center justify-center">
     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
     <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-rose-pink/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
-      <img alt="Boxing Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(225,29,72,0.6)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2O1SCGPsM7aIoESkgxW5XPFlSPtoIPfBjjiIXrHWMYNNW0YJCy2Sj7VLj8_hCl7ojmQVtrrHbn5Ik0OYmEbpcgcL5ntzMj7H1QQd2L_hezPxhR_u0AXhcBsELOJ8oli8DRzYbnbKX4wTPACh4uUuu8LorIVy9L7p0GOUNPQ4wzoTwJrrG4MOI0VEKixekEYzuJd79d6KGF-rp232k6gERN95tVwqQ-4IaaycexeDEIN1QDufKgdP61fcKYt37lB8ZO5p43IjYBg" />
+      <img alt="Boxing Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(225,29,72,0.6)] translate-y-6 scale-[1.18]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2O1SCGPsM7aIoESkgxW5XPFlSPtoIPfBjjiIXrHWMYNNW0YJCy2Sj7VLj8_hCl7ojmQVtrrHbn5Ik0OYmEbpcgcL5ntzMj7H1QQd2L_hezPxhR_u0AXhcBsELOJ8oli8DRzYbnbKX4wTPACh4uUuu8LorIVy9L7p0GOUNPQ4wzoTwJrrG4MOI0VEKixekEYzuJd79d6KGF-rp232k6gERN95tVwqQ-4IaaycexeDEIN1QDufKgdP61fcKYt37lB8ZO5p43IjYBg" />
     </div>
   </div>
 );
@@ -471,7 +471,7 @@ const MMAImage = () => (
   <div className="relative overflow-hidden aspect-square flex items-center justify-center">
     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
     <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-rose-pink/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
-      <img alt="MMA Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(225,29,72,0.6)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOdZIM6lFhPkB4qV6Pn_eAU8ASveBASj5fSxCuVRDMcxB2LB-raEaHQFGqoPaYkiwve4kfCPWAg4oL8MMvmnaryhrp83FcI5TTAjBx4QShwZxVoXoyECla9yo9G1Be_x7FVsEB5VXhthzJ6xKcl9H79EkIUqp_vd4xZRRTnJXaRMVKqnyQuJDW6tFMxvuic-KjcFekdRbE_Hb7WFamrSqYP7jIvtZqAE7x2ygbNl7uiyVwHT7OhxCBbFcUZqWSYQoCJRUEjZ_4cQ" />
+      <img alt="MMA Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(225,29,72,0.6)] translate-y-6 scale-[1.18]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOdZIM6lFhPkB4qV6Pn_eAU8ASveBASj5fSxCuVRDMcxB2LB-raEaHQFGqoPaYkiwve4kfCPWAg4oL8MMvmnaryhrp83FcI5TTAjBx4QShwZxVoXoyECla9yo9G1Be_x7FVsEB5VXhthzJ6xKcl9H79EkIUqp_vd4xZRRTnJXaRMVKqnyQuJDW6tFMxvuic-KjcFekdRbE_Hb7WFamrSqYP7jIvtZqAE7x2ygbNl7uiyVwHT7OhxCBbFcUZqWSYQoCJRUEjZ_4cQ" />
     </div>
   </div>
 );
