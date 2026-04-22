@@ -449,6 +449,45 @@ const MartialArtsCanvas = () => {
   return <canvas ref={canvasRef} className="w-full h-full block" />;
 };
 
+const KarateImage = () => (
+  <div className="relative overflow-hidden aspect-square flex items-center justify-center">
+    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
+    <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-rose-pink/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
+      <img alt="Karate Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(225,29,72,0.6)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy7xtJRShI42f_6v22GUCDrBJ6QXv2-yXYesHKKd6DwaAbjkeVZH_xfEPHcHQFp0lxyXhZNjeVQwihqtwvztxrVdTDpK5BfojSTeDnw5glMOoj5K3xZnzGz_-ZkVX1wj1rqTxb_Adaz37qX2Qpu4o-e5vJBGZ6YRFFuf1Mz7qvIJAwlLxzGQOlBeOgJB4WMNpBHfSwzPm5h1u-qy1q9L36gqZCl5D9o-2s5hiBWeXpicVJo6ids_OAeuwoklG_YrkWjiMlRbsa0A" />
+    </div>
+    <div className="absolute top-4 left-4 font-bold text-[10px] text-rose-pink space-y-1 tracking-widest uppercase">
+      <p>STRIKE_VELOCITY: 42M/S</p>
+      <p>MODULE_ID: KRT-09</p>
+    </div>
+  </div>
+);
+
+const BoxingImage = () => (
+  <div className="relative overflow-hidden aspect-square flex items-center justify-center">
+    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
+    <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-rose-pink/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
+      <img alt="Boxing Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(225,29,72,0.6)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2O1SCGPsM7aIoESkgxW5XPFlSPtoIPfBjjiIXrHWMYNNW0YJCy2Sj7VLj8_hCl7ojmQVtrrHbn5Ik0OYmEbpcgcL5ntzMj7H1QQd2L_hezPxhR_u0AXhcBsELOJ8oli8DRzYbnbKX4wTPACh4uUuu8LorIVy9L7p0GOUNPQ4wzoTwJrrG4MOI0VEKixekEYzuJd79d6KGF-rp232k6gERN95tVwqQ-4IaaycexeDEIN1QDufKgdP61fcKYt37lB8ZO5p43IjYBg" />
+    </div>
+    <div className="absolute top-4 left-4 font-bold text-[10px] text-rose-pink space-y-1 tracking-widest uppercase">
+      <p>IMPACT_FORCE: 820KG</p>
+      <p>MODULE_ID: BX-22</p>
+    </div>
+  </div>
+);
+
+const MMAImage = () => (
+  <div className="relative overflow-hidden aspect-square flex items-center justify-center">
+    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
+    <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-rose-pink/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
+      <img alt="MMA Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(225,29,72,0.6)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOdZIM6lFhPkB4qV6Pn_eAU8ASveBASj5fSxCuVRDMcxB2LB-raEaHQFGqoPaYkiwve4kfCPWAg4oL8MMvmnaryhrp83FcI5TTAjBx4QShwZxVoXoyECla9yo9G1Be_x7FVsEB5VXhthzJ6xKcl9H79EkIUqp_vd4xZRRTnJXaRMVKqnyQuJDW6tFMxvuic-KjcFekdRbE_Hb7WFamrSqYP7jIvtZqAE7x2ygbNl7uiyVwHT7OhxCBbFcUZqWSYQoCJRUEjZ_4cQ" />
+    </div>
+    <div className="absolute top-4 left-4 font-bold text-[10px] text-rose-pink space-y-1 tracking-widest uppercase">
+      <p>TRANSITION_RATE: 0.8S</p>
+      <p>MODULE_ID: MMA-01</p>
+    </div>
+  </div>
+);
+
 const HexCanvasCard = ({ 
   type, 
   title, 
@@ -591,8 +630,11 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
 
   return (
     <>
-      <section className="px-6 pt-24 pb-32 relative overflow-hidden bg-white dark:bg-[#050505]">
+      <section className="px-6 pt-24 pb-32 relative overflow-hidden bg-white dark:bg-[#0B0F16]">
         {/* Background Gradients */}
+        <div className="absolute inset-0 z-0">
+          <img alt="Shadow Structure" className="w-full h-full object-cover opacity-[0.03] dark:opacity-[0.05] filter grayscale pointer-events-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk6MEos6fIgdlm2510JueBWCk7dw876IO_BgqajLkXPRlbivqSqOi7Lj7VXjKNiZREqpslNlEjLcZSrN-WOH9g0xFkdBs_1bsx4O7gec__0_k3prGlxg5HfrvzC4eiZiG0vLNLajtp73jXWqJR6Rluago0y8vgMyz1ygqfqTMV-aXlB18LyADyyzFatlaNIPhlQQrnzQ_BsUBSpPe_ZCu8nFKqWL3iL6_K4JSvs902JXQbfmsybRckhFGg0BWNl0Q_kQfj8j7BkQ" />
+        </div>
         <div className="absolute top-[-10%] right-[-10%] w-[800px] h-[800px] rounded-full bg-rose-pink/5 blur-[120px] pointer-events-none" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-rose-pink/5 blur-[100px] pointer-events-none" />
         
@@ -673,33 +715,33 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
             <Reveal delay={0.4} className="w-full h-full relative flex items-center justify-center">
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 place-items-center w-full max-w-[1200px] relative z-10">
                 <HexCanvasCard 
-                  type="boxing" 
-                  title="Boxing" 
-                  desc="Jab • Guard • Footwork" 
-                  hudCode="JAB:ON | GUARD:HIGH | WIREFRAME:ON" 
+                  type="karate" 
+                  title="Karate" 
+                  desc="Precision point striking and linear energy management. Focused on maximum structural integrity." 
+                  hudCode="STRIKE_VELOCITY: 42M/S | KRT-09" 
                   delay={0}
                 >
-                  <BoxingCanvas />
+                  <KarateImage />
                 </HexCanvasCard>
 
                 <HexCanvasCard 
-                  type="karate" 
-                  title="Karate" 
-                  desc="Roundhouse Kick • Strike Arc" 
-                  hudCode="KICK:ROUND | ARC:ON | FORM:KATA" 
+                  type="boxing" 
+                  title="Boxing" 
+                  desc="Elite hand-to-eye coordination and kinetic chain power generation for high-impact striking." 
+                  hudCode="IMPACT_FORCE: 820KG | BX-22" 
                   delay={1.1}
                 >
-                  <KarateCanvas />
+                  <BoxingImage />
                 </HexCanvasCard>
 
                 <HexCanvasCard 
                   type="martialarts" 
-                  title="Black Belt" 
-                  desc="Belt Knot • Rank Stripes" 
-                  hudCode="BELT:BLACK | RANK:ON | WIRE:ON" 
+                  title="Mixed Arts" 
+                  desc="Comprehensive combat engineering combining striking, clinching, and technical ground maneuvers." 
+                  hudCode="TRANSITION_RATE: 0.8S | MMA-01" 
                   delay={2.2}
                 >
-                  <MartialArtsCanvas />
+                  <MMAImage />
                 </HexCanvasCard>
               </div>
 
