@@ -128,12 +128,12 @@ const BoxingCanvas = () => {
     function animate(t: number) {
       if (!running) return;
       const s = t * 0.001;
-      const jab = (Math.sin(s * 2.2) + 1) * 0.5;
-      rightGlove.position.z = 0.15 + jab * 0.8;
-      rightArm.rotation.y = -0.25 - jab * 0.35;
-      leftArm.rotation.y = 0.18 + Math.sin(s * 1.8) * 0.12;
-      group.rotation.y = Math.sin(s * 0.9) * 0.25;
-      group.rotation.x = Math.sin(s * 0.6) * 0.12;
+      const jab = (Math.sin(s * 1.65) + 1) * 0.5;
+      rightGlove.position.z = 0.15 + jab * 0.65;
+      rightArm.rotation.y = -0.22 - jab * 0.28;
+      leftArm.rotation.y = 0.14 + Math.sin(s * 1.35) * 0.08;
+      group.rotation.y = Math.sin(s * 0.8) * 0.18;
+      group.rotation.x = Math.sin(s * 0.55) * 0.08;
       renderer.render(scene, camera);
       animationFrameId = requestAnimationFrame(animate);
     }
@@ -268,13 +268,13 @@ const KarateCanvas = () => {
     function animate(t: number) {
       if (!running) return;
       const s = t * 0.001;
-      const phase = (Math.sin(s * 1.6) + 1) * 0.5;
-      kick.rotation.z = -0.55 - phase * 1.05;
-      group.rotation.y = Math.sin(s * 0.9) * 0.35;
-      group.rotation.x = Math.sin(s * 0.6) * 0.12;
-      group.position.y = Math.sin(s * 1.2) * 0.08;
-      arc.scale.set(1 + phase * 0.55, 1 + phase * 0.55, 1);
-      arcMat.opacity = 0.55 * (1 - phase);
+      const phase = (Math.sin(s * 1.25) + 1) * 0.5;
+      kick.rotation.z = -0.5 - phase * 0.9;
+      group.rotation.y = Math.sin(s * 0.75) * 0.22;
+      group.rotation.x = Math.sin(s * 0.55) * 0.08;
+      group.position.y = Math.sin(s * 0.95) * 0.06;
+      arc.scale.set(1 + phase * 0.45, 1 + phase * 0.45, 1);
+      arcMat.opacity = 0.5 * (1 - phase);
 
       renderer.render(scene, camera);
       animationFrameId = requestAnimationFrame(animate);
@@ -479,8 +479,8 @@ const HexCanvasCard = ({
     const rect = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width - 0.5;
     const py = (e.clientY - rect.top) / rect.height - 0.5;
-    tiltX.set(-py * 7);
-    tiltY.set(px * 7);
+    tiltX.set(-py * 4);
+    tiltY.set(px * 4);
   };
 
   const onTiltLeave = () => {
@@ -500,7 +500,7 @@ const HexCanvasCard = ({
         onMouseMove={onTiltMove}
         onMouseLeave={onTiltLeave}
         style={{ rotateX: tiltXSpring, rotateY: tiltYSpring, transformPerspective: 900 }}
-        className="group cursor-pointer transition-all duration-300 drop-shadow-[0_0_16px_var(--sc)] hover:drop-shadow-[0_0_38px_var(--sc)] animate-[hexBreath_6s_ease-in-out_infinite]"
+        className="group cursor-pointer transition-all duration-300 drop-shadow-[0_0_16px_var(--sc)] hover:drop-shadow-[0_0_38px_var(--sc)]"
       >
         <div className="relative w-[300px] h-[260px] sm:w-[320px] sm:h-[278px] lg:w-[360px] lg:h-[312px]">
           <div 
@@ -533,6 +533,9 @@ const HexCanvasCard = ({
       <div className="text-center">
         <span className="font-bold text-[19px] uppercase tracking-[1.2px] block font-[Barlow_Condensed,sans-serif]" style={{ color: 'var(--sc)' }}>
           {title}
+        </span>
+        <span className="hidden sm:block text-[12px] text-[#8A9BC0] mt-1">
+          {desc}
         </span>
       </div>
     </motion.div>
@@ -615,21 +618,21 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-pink/10 border border-rose-pink/20 text-rose-pink text-[11px] font-bold uppercase tracking-[0.2em] mb-2"
               >
                 <Activity className="w-3.5 h-3.5 animate-pulse" />
-                Tech-Forward Animation Lab
+                Martial Arts Club Platform
               </motion.div>
             </Reveal>
 
             <Reveal delay={0.1}>
               <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-semibold tracking-tight leading-[1.05] dark:text-white text-dark-gray">
-                Grow Revenue.<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-pink to-rose-pink-light">Modern Sports Equipment.</span><br />
-                Cultivate your thriving club ecosystem with D-Clix.
+                Run Your Martial Arts Club.<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-pink to-rose-pink-light">Registrations. Attendance. Payments.</span><br />
+                Everything stays organized with D-Clix.
               </h1>
             </Reveal>
 
             <Reveal delay={0.2}>
               <p className="text-muted-gray text-lg md:text-xl font-medium leading-relaxed max-w-lg">
-                Your dynamic club ecosystem, managed effortlessly. <span className="text-rose-pink font-semibold">Anytime. Anywhere.</span>
+                Built for dojos and combat sports academies. <span className="text-rose-pink font-semibold">Anytime. Anywhere.</span>
               </p>
             </Reveal>
 
@@ -661,10 +664,6 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                 90%  { opacity: 0.18; }
                 100% { top: calc(100% - 40px); opacity: 0; }
               }
-              @keyframes hexBreath {
-                0%, 100% { filter: drop-shadow(0 0 14px var(--sc)) drop-shadow(0 0 3px var(--sc)); }
-                50%      { filter: drop-shadow(0 0 26px var(--sc)) drop-shadow(0 0 7px var(--sc)); }
-              }
               @keyframes ctaShine {
                 0%   { transform: translateX(0) rotate(12deg); opacity: 0; }
                 10%  { opacity: 1; }
@@ -695,9 +694,9 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
 
                 <HexCanvasCard 
                   type="martialarts" 
-                  title="Martial Arts" 
-                  desc="Knot & Dan Stripes Swaying." 
-                  hudCode="KNOT:DAN-1 | TWIST:2.34π | WIRE:ON" 
+                  title="Black Belt" 
+                  desc="Belt Knot • Rank Stripes" 
+                  hudCode="BELT:BLACK | RANK:ON | WIRE:ON" 
                   delay={2.2}
                 >
                   <MartialArtsCanvas />
