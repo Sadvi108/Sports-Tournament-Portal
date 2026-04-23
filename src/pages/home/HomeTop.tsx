@@ -724,7 +724,7 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
 
                 <HexCanvasCard 
                   type="martialarts" 
-                  title="Mixed Arts" 
+                  title="MMA" 
                   desc="Comprehensive combat engineering combining striking, clinching, and technical ground maneuvers." 
                   hudCode="TRANSITION_RATE: 0.8S | MMA-01" 
                   delay={2.2}
