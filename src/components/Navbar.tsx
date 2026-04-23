@@ -12,12 +12,21 @@ const Navbar: React.FC = () => {
   const isDashboard = location.pathname.includes('/admin/dashboard');
 
   const navItems = [
-    { name: 'News', path: '#news' },
-    { name: 'Rankings', path: '#rankings' },
-    { name: 'Fixtures', path: '#fixtures' },
-    { name: 'About', path: '#about' },
-    { name: 'Features', path: '#features' },
+    { name: 'News', id: 'news' },
+    { name: 'Rankings', id: 'rankings' },
+    { name: 'Fixtures', id: 'fixtures' },
+    { name: 'About', id: 'about' },
   ];
+
+  const goToSection = (id: string) => {
+    const isCompetitionHome = location.pathname === '/competition';
+    if (!isCompetitionHome) {
+      navigate(`/competition#${id}`);
+      return;
+    }
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-deep-black/80 backdrop-blur-md border-b border-gray-200 dark:border-white/5 px-6 py-4 flex items-center justify-between transition-colors duration-300">
@@ -35,13 +44,13 @@ const Navbar: React.FC = () => {
 
       <div className="hidden lg:flex items-center space-x-8">
         {navItems.map((item) => (
-          <a
+          <button
             key={item.name}
-            href={item.path}
+            onClick={() => goToSection(item.id)}
             className="text-sm font-medium text-muted-gray hover:text-rose-pink dark:hover:text-rose-pink transition-colors"
           >
             {item.name}
-          </a>
+          </button>
         ))}
         
         <button

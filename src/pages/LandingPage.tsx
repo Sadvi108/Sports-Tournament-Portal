@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { sports, type Sport } from '../utils/sportsData';
 import { 
@@ -29,6 +29,17 @@ import LiveScoreTicker from '../components/LiveScoreTicker';
 const LandingPage: React.FC = () => {
   const [selectedSport, setSelectedSport] = useState<Sport | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.replace('#', '');
+    const el = document.getElementById(id);
+    if (!el) return;
+    window.setTimeout(() => {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
+  }, [location.hash]);
 
   const handleSportSelect = (sport: Sport) => {
     setSelectedSport(sport);
@@ -84,7 +95,7 @@ const LandingPage: React.FC = () => {
       <Navbar />
       
       {/* Hero Section / Sport Selection Area */}
-      <section className="relative pt-40 pb-32 px-6 bg-white dark:bg-hero-gradient overflow-hidden border-b border-gray-100 dark:border-white/5">
+      <section className="relative pt-40 pb-32 px-6 bg-white dark:bg-hero-gradient overflow-hidden border-b border-gray-100 dark:border-white/5" id="top">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-rose-pink/5 pointer-events-none dark:hidden" />
         <div className="absolute inset-0 bg-hero-gradient opacity-40 pointer-events-none hidden dark:block" />
         <div className="absolute top-[20%] right-[-5%] w-[40%] h-[40%] bg-rose-pink/10 dark:bg-rose-pink/5 rounded-full blur-[150px] animate-pulse-slow" />
@@ -232,7 +243,7 @@ const LandingPage: React.FC = () => {
       </div>
 
       {/* Everything You Need Section */}
-      <section className="py-32 px-6 dark:bg-deep-black bg-white" id="features">
+      <section className="py-32 px-6 dark:bg-deep-black bg-white scroll-mt-28" id="features">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20 space-y-4">
             <h2 className="text-5xl font-semibold uppercase tracking-tight dark:text-white text-dark-gray">Everything You Need</h2>
@@ -260,7 +271,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* Latest News Section */}
-      <section className="py-32 px-6 dark:bg-deep-black bg-gray-50 transition-colors duration-300" id="news">
+      <section className="py-32 px-6 dark:bg-deep-black bg-gray-50 transition-colors duration-300 scroll-mt-28" id="news">
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-between items-end mb-16">
             <div className="space-y-4">
@@ -305,6 +316,144 @@ const LandingPage: React.FC = () => {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 dark:bg-deep-black bg-white scroll-mt-28" id="rankings">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="space-y-4">
+              <h2 className="text-5xl font-semibold uppercase tracking-tight dark:text-white text-dark-gray">Rankings</h2>
+              <p className="text-muted-gray text-lg font-medium">Top clubs and athletes, updated after each event.</p>
+            </div>
+            <div className="text-xs font-bold uppercase tracking-[0.2em] text-muted-gray">Official Board</div>
+          </div>
+
+          <div className="dark-card bg-white dark:bg-white/5 shadow-xl dark:shadow-none overflow-hidden">
+            <div className="grid grid-cols-12 px-8 py-5 border-b border-gray-100 dark:border-white/5 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-gray">
+              <div className="col-span-2">Rank</div>
+              <div className="col-span-6">Name</div>
+              <div className="col-span-2 text-right">Points</div>
+              <div className="col-span-2 text-right">Trend</div>
+            </div>
+            {[
+              { rank: 1, name: 'D-Clix Elite Dojo', pts: 1240, trend: '+3' },
+              { rank: 2, name: 'Crimson Strike Academy', pts: 1185, trend: '+1' },
+              { rank: 3, name: 'Rose Ring Fighters', pts: 1120, trend: '—' },
+              { rank: 4, name: 'Iron Guard Team', pts: 980, trend: '-1' },
+              { rank: 5, name: 'Kata Performance Unit', pts: 905, trend: '+2' },
+            ].map((row) => (
+              <div key={row.rank} className="grid grid-cols-12 px-8 py-6 border-b border-gray-100 dark:border-white/5 last:border-b-0 items-center">
+                <div className="col-span-2 text-rose-pink font-bold">{row.rank}</div>
+                <div className="col-span-6 font-semibold dark:text-white text-dark-gray">{row.name}</div>
+                <div className="col-span-2 text-right font-bold dark:text-white text-dark-gray">{row.pts}</div>
+                <div className="col-span-2 text-right text-muted-gray font-semibold">{row.trend}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 dark:bg-deep-black bg-gray-50 transition-colors duration-300 scroll-mt-28" id="fixtures">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="space-y-4">
+              <h2 className="text-5xl font-semibold uppercase tracking-tight dark:text-white text-dark-gray">Fixtures</h2>
+              <p className="text-muted-gray text-lg font-medium">Upcoming matches and live results in one place.</p>
+            </div>
+            <button className="text-rose-pink font-bold flex items-center gap-2 hover:underline">
+              View Full Schedule <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="dark-card bg-white dark:bg-white/5 shadow-xl dark:shadow-none overflow-hidden">
+            <LiveScoreTicker />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { time: '09:00', title: 'Karate • Advanced Kata', meta: 'Mat A • Court 1' },
+              { time: '11:30', title: 'Boxing • Junior Finals', meta: 'Ring B • Court 2' },
+              { time: '15:00', title: 'MMA • Semi Finals', meta: 'Cage • Court 3' },
+            ].map((f) => (
+              <div key={f.title} className="dark-card p-8 bg-white dark:bg-white/5 shadow-xl dark:shadow-none">
+                <div className="flex items-start justify-between">
+                  <div className="space-y-2">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-gray">{f.time}</div>
+                    <div className="text-xl font-semibold dark:text-white text-dark-gray">{f.title}</div>
+                    <div className="text-sm text-muted-gray">{f.meta}</div>
+                  </div>
+                  <div className="w-10 h-10 rounded-2xl bg-rose-pink/10 border border-rose-pink/20 text-rose-pink flex items-center justify-center">
+                    <Trophy className="w-5 h-5" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 dark:bg-deep-black bg-white scroll-mt-28" id="about">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <h2 className="text-5xl font-semibold uppercase tracking-tight dark:text-white text-dark-gray">About</h2>
+            <p className="text-muted-gray text-lg font-medium">
+              D-Clix Arena is built for martial arts tournaments—registrations, live fixtures, rankings, and participant management, all in one portal.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { title: 'Fast Registration', desc: 'Clubs and athletes onboard quickly.' },
+                { title: 'Live Visibility', desc: 'Fixtures and results remain easy to follow.' },
+                { title: 'Clear Tracking', desc: 'Rankings and stats presented cleanly.' },
+                { title: 'Support Ready', desc: 'Guided flows for admins and members.' },
+              ].map((b) => (
+                <div key={b.title} className="dark-card p-6 bg-white dark:bg-white/5 shadow-xl dark:shadow-none">
+                  <div className="font-semibold dark:text-white text-dark-gray">{b.title}</div>
+                  <div className="text-sm text-muted-gray mt-1">{b.desc}</div>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-4 pt-4">
+              <button onClick={() => navigate('/about-dclix')} className="rose-btn-primary">
+                About D-Clix
+              </button>
+              <button onClick={() => navigate('/plan-pricing')} className="px-8 py-4 rounded-full border-2 border-gray-200 dark:border-white/10 font-semibold dark:text-white text-dark-gray hover:border-rose-pink hover:text-rose-pink transition-colors">
+                View Pricing
+              </button>
+            </div>
+          </div>
+
+          <div className="dark-card p-10 bg-white dark:bg-white/5 shadow-2xl dark:shadow-none relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-rose-pink/10 via-transparent to-transparent pointer-events-none" />
+            <div className="space-y-8 relative">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-rose-pink/10 border border-rose-pink/20 text-rose-pink flex items-center justify-center">
+                    <Trophy className="w-7 h-7" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-[0.2em] text-muted-gray">Portal Status</div>
+                    <div className="text-2xl font-semibold dark:text-white text-dark-gray">Ready for Competition</div>
+                  </div>
+                </div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-rose-pink">Live</div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-6">
+                {[
+                  { label: 'Events', value: '24' },
+                  { label: 'Clubs', value: '180+' },
+                  { label: 'Athletes', value: '500+' },
+                  { label: 'Support', value: '24/7' },
+                ].map((s) => (
+                  <div key={s.label} className="space-y-1">
+                    <div className="text-3xl font-semibold text-rose-pink">{s.value}</div>
+                    <div className="text-xs font-bold uppercase tracking-[0.2em] text-muted-gray">{s.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
