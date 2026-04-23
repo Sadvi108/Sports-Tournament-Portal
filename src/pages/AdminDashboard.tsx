@@ -9,11 +9,28 @@ import {
   User,
   Mail,
   Phone,
-  Hash
+  Hash,
+  ArrowUpRight
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const AdminDashboard: React.FC = () => {
+  const navigate = useNavigate();
+  const { sport } = useParams();
+
+  const sportLabel = (sport || 'competition')
+    .split('-')
+    .map((p) => (p ? p[0].toUpperCase() + p.slice(1) : p))
+    .join(' ');
+
+  const currentUser = {
+    name: 'User',
+    email: 'user@example.com',
+    phone: 'Not provided',
+    id: '—',
+  };
+
   const summaryCards = [
     { label: 'Registrations', value: '0', icon: Trophy },
     { label: 'Hotel Bookings', value: '0', icon: Calendar },
@@ -27,16 +44,40 @@ const AdminDashboard: React.FC = () => {
 
       <main className="pt-32 pb-20 px-6 max-w-7xl mx-auto space-y-12">
         {/* Header Section */}
-        <div className="flex justify-between items-start">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8">
           <div className="space-y-2">
             <h1 className="text-5xl font-semibold tracking-tight dark:text-white text-dark-gray">
-              Welcome, <span className="text-rose-pink">callmesadvi</span>
+              Welcome, <span className="text-rose-pink">{currentUser.name}</span>
             </h1>
-            <p className="text-muted-gray text-lg font-medium">
-              Manage your tournament bookings and access your information
-            </p>
+            <p className="text-muted-gray text-lg font-medium">Manage registrations, schedules, and live activity for {sportLabel}.</p>
+            <div className="flex flex-wrap gap-3 pt-3">
+              <button
+                onClick={() => navigate(`/competition/${sport || 'taekwondo'}/player/register`)}
+                className="rose-btn-primary !py-3 !px-6 text-sm inline-flex items-center gap-2"
+              >
+                Register Player
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => navigate(`/competition/${sport || 'taekwondo'}/club/register`)}
+                className="px-6 py-3 rounded-full border-2 border-gray-200 dark:border-white/10 font-semibold dark:text-white text-dark-gray hover:border-rose-pink hover:text-rose-pink transition-colors text-sm inline-flex items-center gap-2"
+              >
+                Register Club
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => navigate(`/competition/${sport || 'taekwondo'}/live`)}
+                className="px-6 py-3 rounded-full border-2 border-gray-200 dark:border-white/10 font-semibold dark:text-white text-dark-gray hover:border-rose-pink hover:text-rose-pink transition-colors text-sm inline-flex items-center gap-2"
+              >
+                Watch Live
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
-          <button className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/5 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/10 transition-all text-muted-gray hover:text-rose-pink">
+          <button
+            onClick={() => navigate('/competition')}
+            className="flex items-center justify-center gap-3 px-6 py-3 rounded-2xl bg-white/5 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/10 transition-all text-muted-gray hover:text-rose-pink w-full lg:w-auto"
+          >
             <LogOut className="w-5 h-5" />
             <span className="font-bold text-sm uppercase tracking-widest">Logout</span>
           </button>
@@ -81,10 +122,26 @@ const AdminDashboard: React.FC = () => {
                 <div className="w-20 h-20 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center text-muted-gray/30">
                   <Trophy className="w-10 h-10" />
                 </div>
-                <p className="text-muted-gray font-medium">No tournament registrations yet</p>
-                <button className="rose-btn-primary">
-                  Register Now
-                </button>
+                <div className="space-y-2">
+                  <p className="text-muted-gray font-medium">No tournament registrations yet</p>
+                  <p className="text-muted-gray text-sm">
+                    Add players and clubs first, then start creating and tracking tournament entries.
+                  </p>
+                </div>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <button
+                    onClick={() => navigate(`/competition/${sport || 'taekwondo'}/player/register`)}
+                    className="rose-btn-primary !py-3 !px-6 text-sm"
+                  >
+                    Add Players
+                  </button>
+                  <button
+                    onClick={() => navigate(`/competition/${sport || 'taekwondo'}/club/register`)}
+                    className="px-6 py-3 rounded-full border-2 border-gray-200 dark:border-white/10 font-semibold dark:text-white text-dark-gray hover:border-rose-pink hover:text-rose-pink transition-colors text-sm"
+                  >
+                    Add Clubs
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -101,10 +158,10 @@ const AdminDashboard: React.FC = () => {
 
               <div className="space-y-8">
                 {[
-                  { label: 'Name', value: 'callmesadvi', icon: User },
-                  { label: 'Email', value: 'callmesadvi@gmail.com', icon: Mail },
-                  { label: 'Phone', value: 'Not provided', icon: Phone },
-                  { label: 'Player ID', value: 'temp_1759206511443', icon: Hash },
+                  { label: 'Name', value: currentUser.name, icon: User },
+                  { label: 'Email', value: currentUser.email, icon: Mail },
+                  { label: 'Phone', value: currentUser.phone, icon: Phone },
+                  { label: 'Player ID', value: currentUser.id, icon: Hash },
                 ].map((info) => (
                   <div key={info.label} className="space-y-2">
                     <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-gray">
