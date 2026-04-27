@@ -56,15 +56,13 @@ export function ParallaxKarateBackground({
  
       <motion.div
         className="absolute inset-0"
-        style={
-          {
-            opacity: vignetteOpacity,
-            background:
-              'radial-gradient(circle at var(--sx) var(--sy), rgba(225,29,72,0.22) 0%, rgba(225,29,72,0.10) 25%, transparent 60%)',
-            ['--sx' as any]: spotlightX,
-            ['--sy' as any]: spotlightY,
-          } as React.CSSProperties
-        }
+        style={{
+          opacity: vignetteOpacity,
+          background:
+            'radial-gradient(circle at var(--sx) var(--sy), rgba(225,29,72,0.22) 0%, rgba(225,29,72,0.10) 25%, transparent 60%)',
+          ['--sx' as any]: spotlightX,
+          ['--sy' as any]: spotlightY,
+        }}
       />
  
       {poseSrcs.map((src, index) =>
