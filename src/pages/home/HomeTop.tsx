@@ -702,9 +702,9 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
 
             <Reveal delay={0.1}>
               <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-semibold tracking-tight leading-[1.05] dark:text-white text-dark-gray">
-                Run Your Martial Arts Club.<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-pink to-rose-pink-light">Registrations. Attendance. Payments.</span><br />
-                Everything stays organized with D-Clix.
+                Grow revenue and streamline your club with{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-pink to-rose-pink-light">D-Clix</span>{' '}
+                club management system
               </h1>
             </Reveal>
 
