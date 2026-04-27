@@ -2,9 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Trophy, 
-  Calendar, 
-  Utensils, 
-  CreditCard, 
   LogOut,
   User,
   Mail,
@@ -36,13 +33,6 @@ const AdminDashboard: React.FC = () => {
     phone: 'Not provided',
     id: '—',
   };
-
-  const summaryCards = [
-    { label: 'Registrations', value: '0', icon: Trophy },
-    { label: 'Hotel Bookings', value: '0', icon: Calendar },
-    { label: 'Meal Plans', value: '0', icon: Utensils },
-    { label: 'Total Spent', value: '$0.00', icon: CreditCard },
-  ];
 
   const highlights = [
     { title: 'Instant registrations', desc: 'Create players and clubs in minutes.', icon: Sparkles },
@@ -105,27 +95,6 @@ const AdminDashboard: React.FC = () => {
             <LogOut className="w-5 h-5" />
             <span className="font-bold text-sm uppercase tracking-widest">Logout</span>
           </button>
-        </div>
-
-        {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {summaryCards.map((card, i) => (
-            <motion.div
-              key={card.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="dark-card p-8 flex justify-between items-start bg-white dark:bg-white/5 shadow-xl dark:shadow-none"
-            >
-              <div className="space-y-1">
-                <p className="text-xs font-bold uppercase tracking-widest text-muted-gray">{card.label}</p>
-                <p className="text-3xl font-semibold dark:text-white text-dark-gray">{card.value}</p>
-              </div>
-              <div className="p-3 rounded-xl bg-rose-pink/10 text-rose-pink">
-                <card.icon className="w-6 h-6" />
-              </div>
-            </motion.div>
-          ))}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
