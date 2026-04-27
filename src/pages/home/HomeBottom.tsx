@@ -60,9 +60,6 @@ export default function HomeBottom({ onStartToday }: { onStartToday: () => void 
     [],
   );
 
-  const dash1 = img('web admin dashboard, dark theme, rose accent, KPI cards and table, product screenshot', 'landscape_4_3');
-  const dash2 = img('attendance report dashboard, dark theme, rose accent, chart and list, product screenshot', 'landscape_4_3');
-  const dash3 = img('payments and invoices dashboard, dark theme, rose accent, charts and receipt list, product screenshot', 'landscape_4_3');
   const calloutImg1 = img('dynamic martial arts kick action, high contrast, dark background, cinematic lighting, no logos', 'landscape_4_3');
   const calloutImg2 = img('club manager using laptop dashboard analytics, modern training hall vibe, dark theme, cinematic lighting', 'landscape_4_3');
   const thumb1 = img('athlete training in gym, cinematic, dark background, no logos', 'landscape_4_3');
@@ -80,26 +77,6 @@ export default function HomeBottom({ onStartToday }: { onStartToday: () => void 
 
   return (
     <>
-      <section className="px-6 py-24 border-t border-gray-100 dark:border-white/5">
-        <div className="max-w-7xl mx-auto space-y-10">
-          <Reveal>
-            <div className="text-center space-y-3">
-              <div className="text-4xl font-semibold tracking-tight dark:text-white text-dark-gray">Dashboard Preview</div>
-              <div className="text-muted-gray text-lg font-medium">A visual, data-rich web dashboard experience for modern club operations</div>
-            </div>
-          </Reveal>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {[dash1, dash2, dash3].map((src, i) => (
-              <Reveal key={i} delay={i * 0.08} y={18}>
-                <motion.div whileHover={{ y: -6 }} className="dark-card bg-white dark:bg-white/5 overflow-hidden">
-                  <img className="w-full h-[240px] object-cover" src={src} alt={`Dashboard screenshot ${i + 1}`} />
-                </motion.div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="px-6 py-24">
         <div className="max-w-7xl mx-auto space-y-10">
           <Reveal>
