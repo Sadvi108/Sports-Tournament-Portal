@@ -10,7 +10,13 @@ import {
   Mail,
   Phone,
   Hash,
-  ArrowUpRight
+  ArrowUpRight,
+  Sparkles,
+  Bell,
+  Activity,
+  CalendarDays,
+  ChevronRight,
+  ShieldCheck
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -36,6 +42,24 @@ const AdminDashboard: React.FC = () => {
     { label: 'Hotel Bookings', value: '0', icon: Calendar },
     { label: 'Meal Plans', value: '0', icon: Utensils },
     { label: 'Total Spent', value: '$0.00', icon: CreditCard },
+  ];
+
+  const highlights = [
+    { title: 'Instant registrations', desc: 'Create players and clubs in minutes.', icon: Sparkles },
+    { title: 'Fixtures & schedules', desc: 'Keep matches organized and on time.', icon: CalendarDays },
+    { title: 'Secure access', desc: 'Clean, role-ready dashboard structure.', icon: ShieldCheck },
+  ];
+
+  const announcements = [
+    { title: 'Orange theme enabled', meta: 'UI update', icon: Sparkles },
+    { title: 'Add your first players to unlock registrations', meta: 'Getting started', icon: Trophy },
+    { title: 'Go live when your fixtures are ready', meta: 'Live activity', icon: Activity },
+  ];
+
+  const nextSteps = [
+    { title: 'Register Players', desc: 'Add athletes to your tournament roster.', action: () => navigate(`/competition/${sport || 'taekwondo'}/player/register`) },
+    { title: 'Register Clubs', desc: 'Create clubs and assign participants.', action: () => navigate(`/competition/${sport || 'taekwondo'}/club/register`) },
+    { title: 'Watch Live', desc: 'Follow matches and live updates.', action: () => navigate(`/competition/${sport || 'taekwondo'}/live`) },
   ];
 
   return (
@@ -102,6 +126,123 @@ const AdminDashboard: React.FC = () => {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-8">
+            <div className="dark-card p-10 bg-white dark:bg-white/5 shadow-xl dark:shadow-none">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="p-3 rounded-xl bg-rose-pink/10 text-rose-pink">
+                  <Sparkles className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold dark:text-white text-dark-gray uppercase tracking-tight">What’s New</h3>
+                  <p className="text-muted-gray text-sm">Quick updates and useful guidance</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {highlights.map((h) => (
+                  <div key={h.title} className="p-7 rounded-3xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10">
+                    <div className="w-12 h-12 rounded-2xl bg-rose-pink/10 border border-rose-pink/20 text-rose-pink flex items-center justify-center mb-5">
+                      <h.icon className="w-6 h-6" />
+                    </div>
+                    <div className="text-lg font-semibold dark:text-white text-dark-gray">{h.title}</div>
+                    <div className="text-muted-gray text-sm font-medium mt-2">{h.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="dark-card p-10 bg-white dark:bg-white/5 shadow-xl dark:shadow-none">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="p-3 rounded-xl bg-rose-pink/10 text-rose-pink">
+                  <CalendarDays className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold dark:text-white text-dark-gray uppercase tracking-tight">Upcoming Fixtures</h3>
+                  <p className="text-muted-gray text-sm">Your schedule will appear here once created</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  { title: 'No fixtures yet', meta: 'Create fixtures to show match times' },
+                  { title: 'No venues yet', meta: 'Add locations to improve planning' },
+                ].map((item) => (
+                  <div key={item.title} className="p-7 rounded-3xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-between gap-6">
+                    <div className="space-y-1">
+                      <div className="text-base font-semibold dark:text-white text-dark-gray">{item.title}</div>
+                      <div className="text-muted-gray text-sm font-medium">{item.meta}</div>
+                    </div>
+                    <div className="w-12 h-12 rounded-2xl bg-rose-pink/10 border border-rose-pink/20 text-rose-pink flex items-center justify-center">
+                      <ChevronRight className="w-5 h-5" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-1 space-y-8">
+            <div className="dark-card p-10 bg-white dark:bg-white/5 shadow-xl dark:shadow-none">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="p-3 rounded-xl bg-rose-pink/10 text-rose-pink">
+                  <Bell className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold dark:text-white text-dark-gray uppercase tracking-tight">Announcements</h3>
+                  <p className="text-muted-gray text-sm">Platform updates and reminders</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {announcements.map((a) => (
+                  <div key={a.title} className="p-5 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-start gap-4">
+                    <div className="p-2 rounded-xl bg-rose-pink/10 text-rose-pink border border-rose-pink/20">
+                      <a.icon className="w-4 h-4" />
+                    </div>
+                    <div className="space-y-1">
+                      <div className="font-semibold dark:text-white text-dark-gray leading-snug">{a.title}</div>
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-gray">{a.meta}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="dark-card p-10 bg-white dark:bg-white/5 shadow-xl dark:shadow-none">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="p-3 rounded-xl bg-rose-pink/10 text-rose-pink">
+                  <Activity className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-semibold dark:text-white text-dark-gray uppercase tracking-tight">Next Best Actions</h3>
+                  <p className="text-muted-gray text-sm">Recommended steps to get started</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {nextSteps.map((s) => (
+                  <button
+                    key={s.title}
+                    onClick={s.action}
+                    className="w-full text-left p-5 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-rose-pink/30 transition-colors group"
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="space-y-1">
+                        <div className="font-semibold dark:text-white text-dark-gray">{s.title}</div>
+                        <div className="text-muted-gray text-sm font-medium">{s.desc}</div>
+                      </div>
+                      <div className="w-11 h-11 rounded-2xl bg-rose-pink/10 border border-rose-pink/20 text-rose-pink flex items-center justify-center group-hover:bg-rose-pink/15 transition-colors">
+                        <ArrowUpRight className="w-5 h-5" />
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
