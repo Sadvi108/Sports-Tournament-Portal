@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { Sparkles } from '@/components/ui/sparkles';
 import { Reveal } from '@/components/ui/reveal';
+import { GiGrapple, GiSoccerKick, GiMuscleFat } from 'react-icons/gi';
 
 // Tech-Forward Neon SVG Animations for Equipment
 const BoxingCanvas = () => {
@@ -480,30 +481,30 @@ const MMAImage = () => (
 );
 
 const JudoImage = () => (
-  <div className="relative overflow-hidden aspect-square flex items-center justify-center">
+  <div className="relative overflow-hidden aspect-square flex items-center justify-center group">
     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
     <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-emerald-500/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
-      <img alt="Judo Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(16,185,129,0.6)] translate-y-6 scale-[1.18] invert mix-blend-screen" src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Solid%20black%20silhouette%20of%20two%20judo%20fighters%20grappling%2C%20one%20throwing%20the%20other%2C%20pure%20white%20background%2C%20crisp%20clean%20vector%20style%2C%20minimalist%20design%2C%20high%20contrast&image_size=square" />
+      <GiGrapple className="w-1/2 h-1/2 text-emerald-500 opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
       <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#121212] to-transparent pointer-events-none" />
     </div>
   </div>
 );
 
 const SoccerImage = () => (
-  <div className="relative overflow-hidden aspect-square flex items-center justify-center">
+  <div className="relative overflow-hidden aspect-square flex items-center justify-center group">
     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
     <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-orange-500/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
-      <img alt="Soccer Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(249,115,22,0.6)] translate-y-6 scale-[1.18] invert mix-blend-screen" src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Solid%20black%20silhouette%20of%20a%20soccer%20player%20dribbling%20a%20football%2C%20pure%20white%20background%2C%20crisp%20clean%20vector%20style%2C%20minimalist%20design%2C%20high%20contrast&image_size=square" />
+      <GiSoccerKick className="w-1/2 h-1/2 text-orange-500 opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_12px_rgba(249,115,22,0.8)]" />
       <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#121212] to-transparent pointer-events-none" />
     </div>
   </div>
 );
 
 const SumoImage = () => (
-  <div className="relative overflow-hidden aspect-square flex items-center justify-center">
+  <div className="relative overflow-hidden aspect-square flex items-center justify-center group">
     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
     <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-violet-500/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
-      <img alt="Sumo Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(139,92,246,0.6)] translate-y-6 scale-[1.18] invert mix-blend-screen" src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Solid%20black%20silhouette%20of%20two%20sumo%20wrestlers%20grappling%20in%20a%20match%2C%20pure%20white%20background%2C%20crisp%20clean%20vector%20style%2C%20minimalist%20design%2C%20high%20contrast&image_size=square" />
+      <GiMuscleFat className="w-1/2 h-1/2 text-violet-500 opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_12px_rgba(139,92,246,0.8)]" />
       <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#121212] to-transparent pointer-events-none" />
     </div>
   </div>
