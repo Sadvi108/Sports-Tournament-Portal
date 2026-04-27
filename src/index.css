@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --rose-pink: #e11d48;
+  --rose-pink: #f97316;
   --deep-black: #050505;
   --dark-gray: #111111;
   --muted-gray: #9ca3af;
@@ -82,5 +82,5 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glow-text-rose {
-  text-shadow: 0 0 10px rgba(225, 29, 72, 0.3);
+  text-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
 }

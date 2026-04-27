@@ -5,8 +5,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'rose-pink': '#e11d48', // rose-600
-        'rose-pink-light': '#fb7185', // rose-400
+        'rose-pink': '#f97316', // orange-500
+        'rose-pink-light': '#fdba74', // orange-300
         'deep-black': '#000000',
         'dark-gray': '#111111',
         'muted-gray': '#9ca3af',
