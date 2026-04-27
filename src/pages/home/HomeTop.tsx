@@ -480,7 +480,7 @@ const MMAImage = () => (
 );
 
 const SportImage = ({ baseName, alt, glow }: { baseName: string; alt: string; glow: string }) => {
-  const exts = ['png', 'jpg', 'jpeg', 'webp', 'svg'];
+  const exts = ['jpg', 'png', 'jpeg', 'webp', 'svg'];
   const [idx, setIdx] = useState(0);
   const src = `/images/${baseName}.${exts[idx]}`;
 
