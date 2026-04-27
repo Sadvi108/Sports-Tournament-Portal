@@ -484,7 +484,7 @@ const JudoImage = () => (
   <div className="relative overflow-hidden aspect-square flex items-center justify-center group">
     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
     <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-emerald-500/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
-      <GiGrapple className="w-1/2 h-1/2 text-emerald-500 opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
+      <img alt="Judo Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_12px_rgba(16,185,129,0.8)] translate-y-6 scale-[1.18] invert mix-blend-screen" src="/images/judo.jpg" />
       <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#121212] to-transparent pointer-events-none" />
     </div>
   </div>
@@ -494,7 +494,7 @@ const SoccerImage = () => (
   <div className="relative overflow-hidden aspect-square flex items-center justify-center group">
     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
     <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-orange-500/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
-      <GiSoccerKick className="w-1/2 h-1/2 text-orange-500 opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_12px_rgba(249,115,22,0.8)]" />
+      <img alt="Soccer Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_12px_rgba(249,115,22,0.8)] translate-y-6 scale-[1.18] invert mix-blend-screen" src="/images/soccer.jpg" />
       <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#121212] to-transparent pointer-events-none" />
     </div>
   </div>
@@ -504,7 +504,7 @@ const SumoImage = () => (
   <div className="relative overflow-hidden aspect-square flex items-center justify-center group">
     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
     <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-violet-500/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
-      <GiMuscleFat className="w-1/2 h-1/2 text-violet-500 opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_12px_rgba(139,92,246,0.8)]" />
+      <img alt="Sumo Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_12px_rgba(139,92,246,0.8)] translate-y-6 scale-[1.18] invert mix-blend-screen" src="/images/sumo.jpg" />
       <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#121212] to-transparent pointer-events-none" />
     </div>
   </div>
