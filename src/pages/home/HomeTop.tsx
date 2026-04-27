@@ -479,6 +479,36 @@ const MMAImage = () => (
   </div>
 );
 
+const JudoImage = () => (
+  <div className="relative overflow-hidden aspect-square flex items-center justify-center">
+    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
+    <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-emerald-500/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
+      <img alt="Judo Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(16,185,129,0.6)] translate-y-6 scale-[1.18] invert mix-blend-screen" src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Solid%20black%20silhouette%20of%20two%20judo%20fighters%20grappling%2C%20one%20throwing%20the%20other%2C%20pure%20white%20background%2C%20crisp%20clean%20vector%20style%2C%20minimalist%20design%2C%20high%20contrast&image_size=square" />
+      <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#121212] to-transparent pointer-events-none" />
+    </div>
+  </div>
+);
+
+const SoccerImage = () => (
+  <div className="relative overflow-hidden aspect-square flex items-center justify-center">
+    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
+    <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-orange-500/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
+      <img alt="Soccer Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(249,115,22,0.6)] translate-y-6 scale-[1.18] invert mix-blend-screen" src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Solid%20black%20silhouette%20of%20a%20soccer%20player%20dribbling%20a%20football%2C%20pure%20white%20background%2C%20crisp%20clean%20vector%20style%2C%20minimalist%20design%2C%20high%20contrast&image_size=square" />
+      <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#121212] to-transparent pointer-events-none" />
+    </div>
+  </div>
+);
+
+const SumoImage = () => (
+  <div className="relative overflow-hidden aspect-square flex items-center justify-center">
+    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTM5LjUgMGwuNS41di41aC0uNWwtLjUtLjV2LS41aC41em0wIDM5bC41LjV2LjVoLS41bC0uNS0uNXYtLjVoLjV6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9zdmc+')] opacity-20" />
+    <div className="w-4/5 h-4/5 bg-[#121212] border-2 border-violet-500/20 flex items-center justify-center relative" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
+      <img alt="Sumo Silhouette" className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_8px_rgba(139,92,246,0.6)] translate-y-6 scale-[1.18] invert mix-blend-screen" src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Solid%20black%20silhouette%20of%20two%20sumo%20wrestlers%20grappling%20in%20a%20match%2C%20pure%20white%20background%2C%20crisp%20clean%20vector%20style%2C%20minimalist%20design%2C%20high%20contrast&image_size=square" />
+      <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#121212] to-transparent pointer-events-none" />
+    </div>
+  </div>
+);
+
 const HexCanvasCard = ({ 
   type, 
   title, 
@@ -487,7 +517,7 @@ const HexCanvasCard = ({
   delay, 
   children 
 }: { 
-  type: 'boxing' | 'karate' | 'martialarts', 
+  type: 'boxing' | 'karate' | 'martialarts' | 'judo' | 'soccer' | 'sumo', 
   title: string, 
   desc: string, 
   hudCode: string, 
@@ -497,7 +527,10 @@ const HexCanvasCard = ({
   const colors = {
     boxing: '#E11D48',
     karate: '#00BFFF',
-    martialarts: '#FFC845'
+    martialarts: '#FFC845',
+    judo: '#10B981',
+    soccer: '#F97316',
+    sumo: '#8B5CF6'
   };
   const color = colors[type];
   const tiltX = useMotionValue(0);
@@ -730,6 +763,36 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
                   delay={2.2}
                 >
                   <MMAImage />
+                </HexCanvasCard>
+
+                <HexCanvasCard 
+                  type="judo" 
+                  title="Judo" 
+                  desc="Throws, grappling, and discipline. Utilizing an opponent's force to your advantage." 
+                  hudCode="GRAPPLING_FORCE: 600KG | JD-04" 
+                  delay={3.3}
+                >
+                  <JudoImage />
+                </HexCanvasCard>
+
+                <HexCanvasCard 
+                  type="soccer" 
+                  title="Soccer" 
+                  desc="Skill, teamwork, and speed. Peak athletic endurance and foot-eye coordination." 
+                  hudCode="KICK_VELOCITY: 35M/S | SC-11" 
+                  delay={4.4}
+                >
+                  <SoccerImage />
+                </HexCanvasCard>
+
+                <HexCanvasCard 
+                  type="sumo" 
+                  title="Sumo" 
+                  desc="Strength, balance, and tradition. Maximum stability and core power generation." 
+                  hudCode="CORE_STABILITY: 99% | SM-88" 
+                  delay={5.5}
+                >
+                  <SumoImage />
                 </HexCanvasCard>
               </div>
 
