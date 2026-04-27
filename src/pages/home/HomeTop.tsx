@@ -571,7 +571,7 @@ const HexCanvasCard = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay }}
-      className={`flex flex-col items-center gap-[22px] ${type}`}
+      className={`flex flex-col items-center gap-3 sm:gap-[22px] ${type}`}
       style={{ '--sc': color } as React.CSSProperties}
     >
       <motion.div
@@ -580,7 +580,7 @@ const HexCanvasCard = ({
         style={{ rotateX: tiltXSpring, rotateY: tiltYSpring, transformPerspective: 900 }}
         className="group cursor-pointer transition-all duration-300 drop-shadow-[0_0_16px_var(--sc)] hover:drop-shadow-[0_0_38px_var(--sc)]"
       >
-        <div className="relative w-[300px] h-[260px] sm:w-[320px] sm:h-[278px] lg:w-[360px] lg:h-[312px]">
+        <div className="relative w-[250px] h-[220px] sm:w-[270px] sm:h-[236px] lg:w-[300px] lg:h-[260px]">
           <div 
             className="absolute inset-0"
             style={{ 
@@ -589,7 +589,7 @@ const HexCanvasCard = ({
             }} 
           />
           <div 
-            className="absolute top-[2.5px] left-[5px] w-[290px] h-[255px] sm:top-[3px] sm:left-[6px] sm:w-[308px] sm:h-[272px] lg:top-[3px] lg:left-[6px] lg:w-[348px] lg:h-[306px] overflow-hidden bg-[#050811]"
+            className="absolute inset-[5px] sm:inset-[6px] overflow-hidden bg-[#050811]"
             style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}
           >
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br from-white/5 via-transparent to-transparent" />
@@ -597,11 +597,11 @@ const HexCanvasCard = ({
             
             <div className="absolute inset-0 pointer-events-none z-10">
               <div className="absolute left-0 right-0 h-[1px] opacity-10 bg-gradient-to-r from-transparent via-[var(--sc)] to-transparent animate-[scanline_3s_linear_infinite]" style={{ animationDelay: `${delay}s` }} />
-              <div className="absolute w-[14px] h-[14px] opacity-70 top-[50px] left-[75px] border-t-[1.5px] border-l-[1.5px] border-[var(--sc)]" />
-              <div className="absolute w-[14px] h-[14px] opacity-70 top-[50px] right-[75px] border-t-[1.5px] border-r-[1.5px] border-[var(--sc)]" />
-              <div className="absolute w-[14px] h-[14px] opacity-70 bottom-[50px] left-[75px] border-b-[1.5px] border-l-[1.5px] border-[var(--sc)]" />
-              <div className="absolute w-[14px] h-[14px] opacity-70 bottom-[50px] right-[75px] border-b-[1.5px] border-r-[1.5px] border-[var(--sc)]" />
-              <div className="absolute bottom-[58px] left-1/2 -translate-x-1/2 text-[7px] tracking-[0.9px] font-mono text-[var(--sc)] opacity-40 whitespace-nowrap">
+              <div className="absolute w-[12px] h-[12px] sm:w-[14px] sm:h-[14px] opacity-70 top-[18%] left-[24%] border-t-[1.5px] border-l-[1.5px] border-[var(--sc)]" />
+              <div className="absolute w-[12px] h-[12px] sm:w-[14px] sm:h-[14px] opacity-70 top-[18%] right-[24%] border-t-[1.5px] border-r-[1.5px] border-[var(--sc)]" />
+              <div className="absolute w-[12px] h-[12px] sm:w-[14px] sm:h-[14px] opacity-70 bottom-[18%] left-[24%] border-b-[1.5px] border-l-[1.5px] border-[var(--sc)]" />
+              <div className="absolute w-[12px] h-[12px] sm:w-[14px] sm:h-[14px] opacity-70 bottom-[18%] right-[24%] border-b-[1.5px] border-r-[1.5px] border-[var(--sc)]" />
+              <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 text-[6px] sm:text-[7px] tracking-[0.9px] font-mono text-[var(--sc)] opacity-40 whitespace-nowrap">
                 {hudCode}
               </div>
             </div>
@@ -609,7 +609,7 @@ const HexCanvasCard = ({
         </div>
       </motion.div>
       <div className="text-center">
-        <span className="font-bold text-[19px] uppercase tracking-[1.2px] block font-[Barlow_Condensed,sans-serif]" style={{ color: 'var(--sc)' }}>
+        <span className="font-bold text-[16px] sm:text-[19px] uppercase tracking-[1.2px] block font-[Barlow_Condensed,sans-serif]" style={{ color: 'var(--sc)' }}>
           {title}
         </span>
       </div>
@@ -749,7 +749,7 @@ export default function HomeTop({ onStartToday }: { onStartToday: () => void }) 
               }
             `}</style>
             <Reveal delay={0.4} className="w-full h-full relative flex items-center justify-center">
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 place-items-center w-full max-w-[1200px] relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-7 xl:gap-8 place-items-center w-full max-w-[1200px] relative z-10">
                 <HexCanvasCard 
                   type="karate" 
                   title="Karate" 
