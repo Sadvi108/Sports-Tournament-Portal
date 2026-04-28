@@ -23,9 +23,9 @@ export function ParallaxKarateBackground({
   const [showBackground, setShowBackground] = useState(Boolean(backgroundSrc));
   const [hiddenPoseIndexes, setHiddenPoseIndexes] = useState<Record<number, true>>({});
   const smooth = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 25,
-    mass: 0.4,
+    stiffness: 40,
+    damping: 20,
+    mass: 0.2,
   });
   const spotlightX = useTransform(shouldReduceMotion ? scrollYProgress : smooth, [0, 1], ['35%', '65%']);
   const spotlightY = useTransform(shouldReduceMotion ? scrollYProgress : smooth, [0, 1], ['30%', '55%']);
@@ -40,7 +40,7 @@ export function ParallaxKarateBackground({
       ].join(' ')}
     >
       <div className="absolute inset-0 bg-white dark:bg-deep-black" />
-      <div className="absolute inset-0 bg-gradient-to-b from-rose-pink/5 via-transparent to-transparent dark:from-rose-pink/10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-rose-pink/[0.02] via-transparent to-transparent dark:from-rose-pink/10" />
  
       {showBackground && backgroundSrc ? (
         <div className="absolute inset-0 opacity-[0.28] dark:opacity-[0.18]">
@@ -59,7 +59,7 @@ export function ParallaxKarateBackground({
         style={{
           opacity: vignetteOpacity,
           background:
-            'radial-gradient(circle at var(--sx) var(--sy), rgba(225,29,72,0.22) 0%, rgba(225,29,72,0.10) 25%, transparent 60%)',
+            'radial-gradient(circle at var(--sx) var(--sy), rgba(225,29,72,0.12) 0%, rgba(225,29,72,0.05) 25%, transparent 60%)',
           ['--sx' as any]: spotlightX,
           ['--sy' as any]: spotlightY,
         }}
@@ -87,7 +87,7 @@ export function ParallaxKarateBackground({
         ),
       )}
  
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/80 dark:to-deep-black/85" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/90 dark:to-deep-black/85 pointer-events-none" />
     </div>
   );
 }
@@ -142,7 +142,7 @@ function Pose({
 
   return (
     <motion.div
-      className="absolute left-1/2 top-1/2 h-[88vh] w-auto max-w-none -translate-x-1/2 -translate-y-1/2"
+      className="absolute left-1/2 top-1/2 h-[88vh] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 will-change-transform"
       style={{
         opacity: forceVisible ? maxOpacity : opacity,
         scale: forceVisible ? 1 : scale,
@@ -156,7 +156,7 @@ function Pose({
         alt=""
         width={768}
         height={1024}
-        className="h-full w-auto max-w-none select-none object-contain mix-blend-multiply dark:invert dark:mix-blend-screen"
+        className="h-full w-auto max-w-none select-none object-contain opacity-[0.12] dark:opacity-100 mix-blend-normal dark:invert dark:mix-blend-screen"
         draggable={false}
         onError={onLoadError}
       />
@@ -165,7 +165,7 @@ function Pose({
         alt=""
         width={768}
         height={1024}
-        className="pointer-events-none absolute inset-0 h-full w-auto max-w-none select-none object-contain opacity-70 blur-[1.5px]"
+        className="pointer-events-none absolute inset-0 h-full w-auto max-w-none select-none object-contain opacity-40 dark:opacity-70 blur-[1.5px]"
         style={{
           filter:
             'drop-shadow(0 0 38px rgba(225,29,72,0.35)) drop-shadow(0 0 90px rgba(236,72,153,0.20))',
